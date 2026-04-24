@@ -1256,12 +1256,52 @@ function doCheckIn() {
 // ═══════════════════════════════════════════════════════
 function switchWinnersTab(tab) {
   ['winners', 'updates', 'schedule'].forEach(t => {
-    document.getElementById(t + 'Tab').style.display = 'none';
-    document.getElementById('wTab' + ['winners', 'updates', 'schedule'].indexOf(t) + 1).className = 'btn btn-outline btn-sm';
+    const el = document.getElementById(t + 'Tab');
+    if (el) el.style.display = 'none';
+    const btn = document.getElementById('wTab' + (['winners', 'updates', 'schedule'].indexOf(t) + 1));
+    if (btn) btn.className = 'btn btn-outline btn-sm';
   });
-  document.getElementById(tab + 'Tab').style.display = 'block';
+  const activeTab = document.getElementById(tab + 'Tab');
+  if (activeTab) activeTab.style.display = 'block';
   const idx = ['winners', 'updates', 'schedule'].indexOf(tab) + 1;
-  document.getElementById('wTab' + idx).className = 'btn btn-blue btn-sm';
+  const activeBtn = document.getElementById('wTab' + idx);
+  if (activeBtn) activeBtn.className = 'btn btn-blue btn-sm';
+
+  if (tab === 'winners') renderWinners();
+}
+
+function renderWinners() {
+  const container = document.getElementById('dynamicWinnersList');
+  if (!container) return;
+
+  const users = Object.values(state.allUsers).sort((a, b) => b.coins - a.coins).slice(0, 5);
+  const prizes = ['iPhone 15 Pro', 'Studio Headphones', 'AirPods Pro', '₹5,000 Voucher', '₹2,000 Voucher'];
+  const medals = ['🥇', '🥈', '🥉', '🏅', '🎖️'];
+
+  container.innerHTML = users.map((u, i) => {
+    const finalPhoto = getAvatarUrl(u);
+    const bgSize = finalPhoto.includes('dicebear.com') ? 'contain' : 'cover';
+    return `
+      <div class="winner-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap">
+          <span style="font-size:1.5rem">${medals[i] || '🏅'}</span>
+          <div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:${bgSize};background-position:center;background-repeat:no-repeat;background-color:rgba(255,255,255,0.08);border:none;flex-shrink:0"></div>
+          <div style="flex:1">
+            <p style="font-weight:700">${u.username}</p>
+            <p class="text-muted text-xs">Top Performer · Day ${u.day || 1}</p>
+          </div>
+          <div style="text-align:right">
+            <p style="font-weight:700;color:#f5c518">${prizes[i]}</p>
+            <p class="text-xs text-muted">Estimated Prize</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-blue">Tier ${u.tier || 1}</span>
+          <span class="badge badge-green">${u.coins.toLocaleString()} Coins</span>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 // ═══════════════════════════════════════════════════════
