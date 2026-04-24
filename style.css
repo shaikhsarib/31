@@ -577,7 +577,7 @@ select.input option {
   background-clip: text;
   letter-spacing: -0.02em;
   line-height: 1;
-  pointer-events: none;
+  cursor: pointer;
   user-select: none;
 }
 
