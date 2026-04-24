@@ -102,7 +102,7 @@
       </div>
       <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center">
         <span class="badge badge-blue">🎯 Daily Tasks</span>
-        <span class="badge badge-yellow">🪙 Coin Rewards</span>
+        <span class="badge badge-yellow"><span class="g-coin"></span> Coin Rewards</span>
         <span class="badge badge-green">🏆 Leaderboard</span>
       </div>
       <div style="display:flex;gap:12px;margin-top:20px;justify-content:center;align-items:center">
@@ -336,7 +336,7 @@
             <div class="price-feature-icon">📅</div><span>31-Day Challenge Full Access</span>
           </div>
           <div class="price-feature">
-            <div class="price-feature-icon">🪙</div><span>Daily Coin Rewards + Bonuses</span>
+            <div class="price-feature-icon"><span class="g-coin"></span></div><span>Daily Coin Rewards + Bonuses</span>
           </div>
           <div class="price-feature">
             <div class="price-feature-icon">🎰</div><span>Auto Tier Assignment (Tiers 1-31)</span>
@@ -518,7 +518,7 @@
               bonus to keep your streak alive! 🔥</p>
             <button class="btn btn-sm" id="homeCheckInBtn" onclick="doCheckIn()"
                style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease;width:100%;max-width:240px">
-              <i data-lucide="check-circle" style="width:16px;height:16px"></i> Check In Today (+5 🪙)
+              <i data-lucide="check-circle" style="width:16px;height:16px"></i> Check In Today (+5 <span class="g-coin"></span>)
             </button>
           </div>
         </div>
@@ -542,9 +542,9 @@
           </div>
           <p class="text-xs text-muted" style="margin-top:6px">Day <span id="homeProgressDay">1</span> of 31</p>
           <!-- floating coins -->
-          <span class="float-coin" style="left:10%;animation-delay:0s">🪙</span>
+          <span class="float-coin" style="left:10%;animation-delay:0s"><span class="g-coin"></span></span>
           <span class="float-coin" style="left:35%;animation-delay:1.2s">✨</span>
-          <span class="float-coin" style="left:65%;animation-delay:0.7s">🪙</span>
+          <span class="float-coin" style="left:65%;animation-delay:0.7s"><span class="g-coin"></span></span>
           <span class="float-coin" style="left:85%;animation-delay:2s">⭐</span>
         </div>
 
@@ -664,7 +664,7 @@
           <button class="btn btn-outline btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageQuiz')"><i data-lucide="brain" style="width:14px;height:14px"></i> Daily Quiz</button>
         </div>
         <h2 class="section-heading">Day <span id="taskDayNum">1</span> Tasks 📋 <span
-            style="font-size:.75rem;color:#FFD700;font-weight:600">5 🪙 each</span></h2>
+            style="font-size:.75rem;color:#FFD700;font-weight:600">5 <span class="g-coin"></span> each</span></h2>
         <div id="tasksList"></div>
         <h3 class="section-heading" style="font-size:1rem;margin-top:20px;margin-bottom:10px">31-Day Calendar</h3>
         <div class="grid-7" id="dayGrid"></div>
@@ -781,7 +781,7 @@
         <div class="spin-info-row">
           <div class="spin-token-box">🎟️ <span id="spinTickets">3</span> tickets <button class="btn btn-outline btn-sm"
               onclick="buyTickets()" style="margin-left:6px;padding:4px 8px;font-size:.7rem">+</button></div>
-          <div class="spin-token-box" style="color:#FFD700">🪙 <span id="spinCoins">0</span></div>
+          <div class="spin-token-box" style="color:#FFD700"><span class="g-coin"></span> <span id="spinCoins">0</span></div>
         </div>
         <div style="margin-top:16px">
           <h3 class="section-heading" style="font-size:1rem;margin-bottom:10px">Recent Wins 🏆</h3>
@@ -894,7 +894,7 @@
           style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
           <h2 class="section-heading" style="margin-bottom:0">Daily Quiz 🧠</h2>
           <span class="badge badge-yellow"
-            style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)">+5 🪙 per
+            style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)">+5 <span class="g-coin"></span> per
             correct</span>
         </div>
         <!-- Quiz progress bar -->
@@ -947,7 +947,7 @@
             <p class="text-muted text-xs" id="morePhone">+91 xxxxxxxx</p>
             <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
               <span class="badge badge-yellow"
-                style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)">🪙 <span
+                style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)"><span class="g-coin"></span> <span
                   id="moreCoins">0</span></span>
               <span class="badge badge-blue">Tier <span id="moreTier">31</span></span>
             </div>
@@ -975,7 +975,7 @@
           <div class="list-item" style="cursor:pointer" onclick="showDashPage('pageQuiz')">
             <span style="font-size:1.2rem;color:#f5c518"><i data-lucide="brain"></i></span>
             <span style="flex:1;font-weight:500">Daily Quiz</span>
-            <span class="badge badge-green">+5 🪙/Q</span>
+            <span class="badge badge-green">+5 <span class="g-coin"></span>/Q</span>
             <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="openReferralDialog()">
@@ -1226,10 +1226,10 @@
     <div class="app-header">
       <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Follow &amp; Earn</div>
-      <div class="coins-pill">🪙 <span id="followCoins">0</span></div>
+      <div class="coins-pill"><span class="g-coin"></span> <span id="followCoins">0</span></div>
     </div>
     <div class="page-content">
-      <h2 class="section-heading">Follow &amp; Earn 💰</h2>
+      <h2 class="section-heading">Follow &amp; Earn <span class="g-coin"></span></h2>
       <p class="text-muted text-sm" style="margin-bottom:16px;line-height:1.6">Follow Grow31 on social media to earn
         coins and get the latest updates!</p>
 
@@ -1249,7 +1249,7 @@
             streak alive! 🔥</p>
           <button class="btn btn-full" id="followCheckInBtn" onclick="doCheckIn()"
             style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease">✓
-            Check In Today (+5 🪙)</button>
+            Check In Today (+5 <span class="g-coin"></span>)</button>
         </div>
       </div>
 
@@ -1267,7 +1267,7 @@
           <p style="font-weight:700;font-size:.95rem">Follow on Instagram</p>
           <p class="text-muted text-xs">@_grow31 · Behind the scenes &amp; winners</p>
           <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
-            <p class="coins-reward" style="margin:0">+50 🪙</p>
+            <p class="coins-reward" style="margin:0">+50 <span class="g-coin"></span></p>
             <span
               style="font-size:.65rem;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.07);border-radius:4px;padding:2px 5px">Max:
               50 coins · ~10 min</span>
@@ -1287,7 +1287,7 @@
           <p style="font-weight:700;font-size:.95rem">Subscribe on YouTube</p>
           <p class="text-muted text-xs">@grow31-u3s · Tutorial videos &amp; livestreams</p>
           <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
-            <p class="coins-reward" style="margin:0">+50 🪙</p>
+            <p class="coins-reward" style="margin:0">+50 <span class="g-coin"></span></p>
             <span
               style="font-size:.65rem;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.07);border-radius:4px;padding:2px 5px">Max:
               50 coins · ~10 min</span>
@@ -1321,7 +1321,7 @@
           <p style="font-weight:700;font-size:.95rem">Join Telegram Channel</p>
           <p class="text-muted text-xs">Grow31 Official · Updates &amp; giveaways</p>
           <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
-            <p class="coins-reward" style="margin:0">+50 🪙</p>
+            <p class="coins-reward" style="margin:0">+50 <span class="g-coin"></span></p>
             <span
               style="font-size:.65rem;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.07);border-radius:4px;padding:2px 5px">Max:
               50 coins · ~10 min</span>
@@ -1363,7 +1363,7 @@
           <p style="font-weight:700;font-size:.95rem">Join WhatsApp Group</p>
           <p class="text-muted text-xs">Daily tasks, reminders &amp; support</p>
           <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
-            <p class="coins-reward" style="margin:0">+50 🪙</p>
+            <p class="coins-reward" style="margin:0">+50 <span class="g-coin"></span></p>
             <span
               style="font-size:.65rem;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.07);border-radius:4px;padding:2px 5px">Max:
               50 coins · ~10 min</span>
@@ -1869,16 +1869,19 @@
     </div>
     <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.07)">
       <p class="text-xs text-muted" style="margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase">Follow Grow31</p>
-      <div class="social-links" style="display:flex;gap:10px;flex-wrap:wrap">
+      <div class="social-links" style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="social-btn" href="https://www.instagram.com/_grow31?igsh=ZTdneTg0OXVkYTRy&utm_source=qr" target="_blank"
           style="color:#f48fb1;background:rgba(244,143,177,0.12);border-color:rgba(244,143,177,0.2)">
-          <i data-lucide="instagram"></i> </a>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
         <a class="social-btn" href="https://wa.me/918097781211" target="_blank"
           style="color:#00e676;background:rgba(0,230,118,0.12);border-color:rgba(0,230,118,0.2)">
-          <i data-lucide="message-circle"></i> </a>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
         <a class="social-btn" href="tel:8097781211"
           style="color:#448aff;background:rgba(68,138,255,0.12);border-color:rgba(68,138,255,0.2)">
-          <i data-lucide="phone"></i> </a>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .62 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.62A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
       </div>
     </div>
     <div style="padding:16px 20px">
@@ -1893,7 +1896,7 @@
       <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px">👥 Your Referral
       </h3>
       <p class="text-muted text-sm" style="margin-bottom:12px;font-size:.85rem">Share with friends to earn <span
-          id="refPerReferralLabel" style="color:#FFD700;font-weight:700">+50 🪙</span> each!</p>
+          id="refPerReferralLabel" style="color:#FFD700;font-weight:700">+50 <span class="g-coin"></span></span> each!</p>
       <div class="ref-code-display">
         <p class="text-xs text-muted" style="margin-bottom:4px">Your Referral Link</p>
         <h2 class="ref-code-text" id="myRefCodeDisplay" style="font-size:1rem;letter-spacing:1px;word-break:break-all">
@@ -1908,7 +1911,7 @@
         <p class="text-xs" style="color:rgba(255,255,255,0.6)">Referrals: <span style="color:#00e676;font-weight:700"
             id="refDialogCount">0</span> friends</p>
         <p class="text-xs text-muted" style="margin-top:4px">Earned: <span style="color:#f5c518;font-weight:700"
-            id="refDialogEarned">0</span> 🪙 from referrals</p>
+            id="refDialogEarned">0</span> <span class="g-coin"></span> from referrals</p>
       </div>
       <!-- Referral List -->
       <div>
@@ -1931,13 +1934,13 @@
   <div class="dialog-overlay" id="walletDialog">
     <div class="dialog" style="max-width:400px">
       <button class="dialog-close" onclick="closeDialog('walletDialog')">✕</button>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px">🪙 Coin Wallet
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px"><span class="g-coin"></span> Coin Wallet
       </h3>
       <p class="text-muted text-xs" style="margin-bottom:16px">Your earnings &amp; payout history</p>
       <div
         style="background:linear-gradient(135deg,rgba(212,170,0,0.12),rgba(68,138,255,0.06));border:1px solid rgba(255,215,0,0.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:16px">
         <p class="text-xs text-muted" style="margin-bottom:4px">Total Balance</p>
-        <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:#FFD700">🪙 <span
+        <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:#FFD700"><span class="g-coin"></span> <span
             id="walletBalance">0</span></div>
         <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
           <span class="badge badge-pending">⏳ Payout: Pending Admin Verification</span>
@@ -2018,7 +2021,7 @@
         <div
           style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.78rem;color:rgba(255,255,255,0.7)">
           <span
-            style="width:20px;height:20px;background:rgba(156,39,176,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem">🪙</span>
+            style="width:20px;height:20px;background:rgba(156,39,176,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem"><span class="g-coin"></span></span>
           <span>Daily Coin Rewards + Bonuses</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:.78rem;color:rgba(255,255,255,0.7)">
