@@ -665,7 +665,8 @@ select.input option {
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
+  margin: 0 auto;
 }
 
 .avatar-sleek:hover {

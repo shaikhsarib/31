@@ -1517,7 +1517,7 @@ function getGlobalOccupiedTiers() {
 }
 
 function updateAvatarDisplays(photoUrl, avatarId) {
-  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarEmoji', 'completeProfileAvatar'];
+  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
   const av = AVATARS.find(a => a.id === avatarId);
   const u = state.currentUser;
   
