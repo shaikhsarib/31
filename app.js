@@ -127,14 +127,14 @@ function goHome() {
 
   if (state.currentUser) {
     // Force reset to home tab for dashboard
-    DB.set('lastDashPage', 'home');
+    DB.set('lastDashPage', 'pageHome');
     state.currentView = 'dashView';
     DB.set('lastView', 'dashView');
     showView('dashView');
     
-    // Explicitly switch the tab UI to Home
+    // Explicitly switch the tab UI to Home (using the correct ID 'pageHome')
     if (typeof showDashPage === 'function') {
-      showDashPage('home');
+      showDashPage('pageHome');
     }
     
     setTimeout(renderDash, 10);
