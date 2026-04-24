@@ -755,16 +755,16 @@ function renderLeaderboard(sorted) {
   c.innerHTML = `<div class="card-header"><div class="card-title">🏆 Top Players · Your Rank: #${userRank}</div></div>`;
   sorted.slice(0, 15).forEach((usr, i) => {
     const isMe = usr.id === u.id;
-    const av = AVATARS.find(a => a.id === usr.avatar) || AVATARS[0];
-    const avStyle = usr.photoUrl ? `background:none` : `background:${av.grad}`;
-    const avContent = usr.photoUrl ? `<img src="${usr.photoUrl}" style="width:100%;height:100%;object-fit:cover">` : av.label;
+    const avDef = AVATARS.find(a => a.id === usr.avatar);
+    const finalPhoto = usr.avatarPhoto || usr.photoUrl || (avDef ? avDef.url : null);
+    const avHtml = finalPhoto ? 
+      `<div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:cover;background-position:center;border:none;flex-shrink:0"></div>` :
+      `<div class="avatar-sleek" style="width:36px;height:36px;background:linear-gradient(135deg, #448aff, #ce93d8);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${usr.avatar || '🧑'}</div>`;
 
     c.innerHTML += `
   <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.08);border-left:3px solid #448aff;' : ''}">
     <div style="font-weight:800;font-size:.8rem;color:rgba(255,255,255,0.3);width:20px">${i + 1}</div>
-    <div class="avatar-sleek" style="width:36px;height:36px;font-size:.9rem;${avStyle}">
-      ${avContent}
-    </div>
+    ${avHtml}
     <div style="flex:1;min-width:0">
       <b style="font-size:.92rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${usr.username}${isMe ? ' <span class="badge badge-blue" style="font-size:10px">You</span>' : ''}</b>
       <div style="display:flex;gap:4px;margin-top:2px">
@@ -1590,26 +1590,27 @@ function getGlobalOccupiedTiers() {
 }
 
 function updateAvatarDisplays(photoUrl, avatarId) {
-  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
-  const av = AVATARS.find(a => a.id === avatarId);
   const u = state.currentUser;
+  const targetPhoto = photoUrl || u?.avatarPhoto || u?.photoUrl;
+  const targetId = avatarId || u?.avatar;
+  const avDef = AVATARS.find(a => a.id === targetId);
+  const finalUrl = targetPhoto || (avDef ? avDef.url : null);
 
+  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
   displays.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.classList.add('avatar-sleek');
-
-    let url = photoUrl || u?.photoUrl;
-    if (!url) {
-      if (av) url = av.url;
-      else if (avatarId && avatarId.startsWith('http')) url = avatarId;
-      else url = u?.avatar.startsWith('http') ? u.avatar : AVATARS[0].url;
+    if (finalUrl) {
+      el.style.backgroundImage = `url('${finalUrl}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.innerHTML = '';
+    } else {
+      el.style.backgroundImage = 'none';
+      el.innerHTML = targetId || '🧑';
     }
-
-    el.innerHTML = `<img src="${url}" alt="Avatar" style="width:100%;height:100%;object-fit:cover">`;
-    el.style.background = 'rgba(255,255,255,0.05)';
   });
-  if (window.lucide) lucide.createIcons();
 }
 
 function openAvatarPicker() {
