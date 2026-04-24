@@ -2221,7 +2221,7 @@ function showQuizResult() {
   if (emojiEl) emojiEl.innerText = emoji;
   if (titleEl) titleEl.innerText = title;
   if (subEl) subEl.innerText = sub;
-  if (coinsEl) coinsEl.innerText = earned + ' 🪙';
+  if (coinsEl) coinsEl.innerHTML = `<span class="g-coin"></span> ${earned}`;
 
   // Update header coins
   const u = state.currentUser;
@@ -2245,8 +2245,8 @@ function doLogout() {
 }
 
 // Profile setup - avatar picker (completed)
-  // pickEmoji was replaced by professional openAvatarPicker logic above
-}
+// pickEmoji was replaced by professional openAvatarPicker logic above
+
 
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
