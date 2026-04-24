@@ -219,12 +219,6 @@ function sendOTP() {
   tempPhone = document.getElementById('phoneInput')?.value?.trim() || '';
   if (tempPhone.length < 10 || !/^\d+$/.test(tempPhone)) return showToast("Enter valid 10-digit number", "error");
 
-  // Show T&C one-time before OTP
-  if (!DB.get('termsAccepted', false)) {
-    showView('termsView');
-    return;
-  }
-
   proceedWithOTP();
 }
 
@@ -257,8 +251,17 @@ function verifyOTP() {
   const otpInput = document.getElementById('otpInput');
   const otp = otpInput?.value?.trim() || '';
   if (otp.length !== 6 || !/^\d+$/.test(otp)) return showToast("Enter valid 6-digit OTP", "error");
-  // In production, validate against real OTP service
-  // Demo: accept any 6-digit code
+
+  // Show T&C one-time after OTP but before finishing signup
+  if (!DB.get('termsAccepted', false)) {
+    showView('termsView');
+    return;
+  }
+
+  proceedPostOTP();
+}
+
+function proceedPostOTP() {
   if (state.allUsers[tempPhone]) {
     state.currentUser = state.allUsers[tempPhone];
     DB.set('currentUserPhone', tempPhone);
@@ -412,10 +415,10 @@ function acceptTerms() {
   if (state.currentUser) {
     showView('paymentView');
   } else {
-    // If we have a phone number but haven't sent OTP yet, proceed
+    // If we just verified OTP, proceed to dashboard or referral
     if (typeof tempPhone !== 'undefined' && tempPhone.length === 10) {
       showView('authView');
-      proceedWithOTP();
+      proceedPostOTP();
     } else {
       showView('authView');
     }
