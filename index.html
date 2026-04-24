@@ -2051,6 +2051,12 @@
       
       <div id="avatarOptionsGrid" class="av-picker-grid"></div>
 
+      <div style="margin-top:20px;display:flex;gap:10px">
+        <button class="btn btn-blue btn-full" onclick="generateRandomAvatar()">
+          <i data-lucide="refresh-cw" style="width:16px;height:16px"></i> Randomize 🎲
+        </button>
+      </div>
+
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)">
         <p class="text-xs text-muted" style="margin-bottom:10px">Or upload your own photo</p>
         <input type="file" id="avatarUploadInput" style="display:none" accept="image/*" onchange="handleAvatarUpload(event)">

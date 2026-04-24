@@ -85,12 +85,12 @@ const SPIN_PRIZES = [
 ];
 
 const AVATARS = [
-  { id: 'av1', grad: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', label: '👤' },
-  { id: 'av2', grad: 'linear-gradient(135deg, #FF5F6D 0%, #FFC371 100%)', label: '⚡' },
-  { id: 'av3', grad: 'linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%)', label: '💎' },
-  { id: 'av4', grad: 'linear-gradient(135deg, #00b09b 0%, #96c93d 100%)', label: '🌟' },
-  { id: 'av5', grad: 'linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%)', label: '🚀' },
-  { id: 'av6', grad: 'linear-gradient(135deg, #f953c6 0%, #b91d73 100%)', label: '🔥' }
+  { id: 'av1', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Felix', label: 'av1' },
+  { id: 'av2', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Aneka', label: 'av2' },
+  { id: 'av3', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Jasper', label: 'av3' },
+  { id: 'av4', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Luna', label: 'av4' },
+  { id: 'av5', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Oliver', label: 'av5' },
+  { id: 'av6', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Sasha', label: 'av6' }
 ];
 const LANGS = [{ code: 'en', label: 'English' }, { code: 'hi', label: 'हिंदी' }, { code: 'ta', label: 'தமிழ்' }, { code: 'te', label: 'తెలుగు' }, { code: 'bn', label: 'বাংলা' }];
 const COUNTRIES = [{ code: 'IN', label: '🇮🇳 India' }, { code: 'US', label: '🇺🇸 United States' }, { code: 'UK', label: '🇬🇧 United Kingdom' }, { code: 'AE', label: '🇦🇪 UAE' }, { code: 'SG', label: '🇸🇬 Singapore' }];
@@ -231,7 +231,7 @@ function completeSignup() {
     hasPaid: false, profileComplete: false,
     coins: 100, streak: 0, day: 1, refCode, referrals: 0,
     referralList: [], // list of referred user ids
-    avatar: AVATARS[0].id, lang: 'en', country: 'IN',
+    avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=' + uid, lang: 'en', country: 'IN',
     tasks: initTasks(), claimedRewards: [],
     followedSocials: [], checkedInToday: false, lastCheckIn: '',
     tier: tierNum, queuePosition: getQueuePositionForTier(tierNum),
@@ -1518,23 +1518,23 @@ function getGlobalOccupiedTiers() {
 
 function updateAvatarDisplays(photoUrl, avatarId) {
   const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarEmoji', 'completeProfileAvatar'];
-  const av = AVATARS.find(a => a.id === avatarId) || AVATARS[0];
+  const av = AVATARS.find(a => a.id === avatarId);
+  const u = state.currentUser;
   
   displays.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    
-    // Ensure element has correct base class
     el.classList.add('avatar-sleek');
     
-    if (photoUrl || (id === 'avatarEmoji' && state.currentUser?.photoUrl)) {
-      const url = photoUrl || state.currentUser.photoUrl;
-      el.innerHTML = `<img src="${url}" alt="Avatar">`;
-      el.style.background = 'none';
-    } else {
-      el.innerHTML = av.label;
-      el.style.background = av.grad;
+    let url = photoUrl || u?.photoUrl;
+    if (!url) {
+      if (av) url = av.url;
+      else if (avatarId && avatarId.startsWith('http')) url = avatarId;
+      else url = u?.avatar.startsWith('http') ? u.avatar : AVATARS[0].url;
     }
+
+    el.innerHTML = `<img src="${url}" alt="Avatar" style="width:100%;height:100%;object-fit:cover">`;
+    el.style.background = 'rgba(255,255,255,0.05)';
   });
   if (window.lucide) lucide.createIcons();
 }
@@ -1548,13 +1548,13 @@ function openAvatarPicker() {
   AVATARS.forEach(av => {
     const opt = document.createElement('div');
     opt.className = `av-option ${u.avatar === av.id ? 'selected' : ''}`;
-    opt.style.background = av.grad;
-    opt.innerText = av.label;
+    opt.style.background = 'rgba(255,255,255,0.05)';
+    opt.innerHTML = `<img src="${av.url}" style="width:80%;height:80%">`;
     opt.onclick = () => {
       u.avatar = av.id;
-      u.photoUrl = null; // Clear custom photo if picking preset
+      u.photoUrl = null; 
       updateAvatarDisplays(null, av.id);
-      openAvatarPicker(); // re-render selection
+      openAvatarPicker(); 
       saveData();
     };
     grid.appendChild(opt);
@@ -1563,13 +1563,22 @@ function openAvatarPicker() {
   openDialog('avatarPickerDialog');
 }
 
+function generateRandomAvatar() {
+  const u = state.currentUser;
+  const seed = Math.random().toString(36).substring(7);
+  const url = `https://api.dicebear.com/7.x/notionists/svg?seed=${seed}`;
+  u.avatar = url;
+  u.photoUrl = null;
+  updateAvatarDisplays(url, null);
+  saveData();
+  showToast('Random avatar generated! 🎨', 'success');
+  closeDialog('avatarPickerDialog');
+}
+
 function handleAvatarUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
-  
-  if (file.size > 2 * 1024 * 1024) {
-    return showToast('Image too large. Max 2MB.', 'error');
-  }
+  if (file.size > 2 * 1024 * 1024) return showToast('Image too large. Max 2MB.', 'error');
   
   const reader = new FileReader();
   reader.onload = (e) => {
