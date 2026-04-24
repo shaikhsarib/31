@@ -475,16 +475,19 @@
       <!-- ─── HOME PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageHome" style="display:block">
         <!-- Profile greeting -->
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-          <div class="avatar av-user" id="dashAvatar" style="width:46px;height:46px;font-size:1.4rem;flex-shrink:0">🧑
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:4px 0">
+          <div class="avatar-sleek" id="dashAvatar" style="width:52px;height:52px;font-size:1.5rem;flex-shrink:0;margin:0;border-width:2.5px">
+            🧑
           </div>
-          <div>
-            <h2 style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800">Hi, <span
+          <div style="flex:1;min-width:0">
+            <h2 style="font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2">Hi, <span
                 id="userName">User</span>! 👋</h2>
-            <p class="text-muted" style="font-size:.8rem">Day <span id="userDay">1</span> of 31 · Keep going! 🔥</p>
+            <p class="text-muted" style="font-size:.82rem;margin-top:2px">Day <span id="userDay">1</span> of 31 · Keep going! 🔥</p>
           </div>
-          <div style="margin-left:auto">
-            <button class="btn btn-outline btn-sm" onclick="showDashPage('pageLeader')"><i data-lucide="trophy" style="width:18px;height:18px"></i></button>
+          <div style="flex-shrink:0">
+            <button class="btn btn-outline" onclick="showDashPage('pageLeader')" style="width:42px;height:42px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <i data-lucide="trophy" style="width:20px;height:20px;color:#FFD700"></i>
+            </button>
           </div>
         </div>
 
@@ -1835,7 +1838,7 @@
   <div class="drawer" id="mainDrawer">
     <div class="drawer-header">
       <div style="display:flex;align-items:center;gap:12px">
-        <div class="avatar av-user" id="drawerAvatar" style="width:44px;height:44px;font-size:1.3rem">🧑</div>
+        <div class="avatar-sleek" id="drawerAvatar" style="width:48px;height:48px;font-size:1.3rem;margin:0">🧑</div>
         <div>
           <p style="font-weight:700;font-size:.95rem" id="drawerName">User</p>
           <p class="text-muted text-xs" id="drawerPhone">+91 xxxxxxxx</p>
