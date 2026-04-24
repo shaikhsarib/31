@@ -126,11 +126,17 @@ function goHome() {
   if (splash) splash.style.display = 'none';
 
   if (state.currentUser) {
-    // Direct redirect to dashboard home
+    // Force reset to home tab for dashboard
     DB.set('lastDashPage', 'home');
     state.currentView = 'dashView';
     DB.set('lastView', 'dashView');
     showView('dashView');
+    
+    // Explicitly switch the tab UI to Home
+    if (typeof showDashPage === 'function') {
+      showDashPage('home');
+    }
+    
     setTimeout(renderDash, 10);
   } else {
     // For guests, clicking logo should at least take them to Auth/Login
