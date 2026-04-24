@@ -27,6 +27,21 @@ function restoreSession() {
   const currentPhone = DB.get('currentUserPhone', null);
   if (currentPhone && state.allUsers[currentPhone]) {
     state.currentUser = state.allUsers[currentPhone];
+    
+    // Sync profile inputs if on setup view
+    setTimeout(() => {
+      const u = state.currentUser;
+      const ni = document.getElementById('usernameInput');
+      const cs = document.getElementById('countrySelect');
+      const ls = document.getElementById('langSelect');
+      if (ni) ni.value = u.username || '';
+      if (cs) cs.value = u.country || 'IN';
+      if (ls) ls.value = u.lang || 'en';
+      if (u.avatar) {
+        const ae = document.getElementById('avatarEmoji');
+        if (ae) ae.innerText = u.avatar;
+      }
+    }, 100);
   }
 }
 
@@ -114,6 +129,7 @@ window.addEventListener('load', () => {
     // Instant skip for logged in users
     if (splash) splash.style.display = 'none';
     loginSuccess();
+    initRealtimeSync();
     if (window.lucide) lucide.createIcons();
   } else {
     // Normal flow for guests
@@ -127,6 +143,18 @@ window.addEventListener('load', () => {
     }, 2700);
   }
 });
+
+function initRealtimeSync() {
+  const u = state.currentUser;
+  if (!u) return;
+  const ni = document.getElementById('usernameInput');
+  const cs = document.getElementById('countrySelect');
+  const ls = document.getElementById('langSelect');
+  
+  if (ni) ni.addEventListener('input', (e) => { u.username = e.target.value; saveData(); });
+  if (cs) cs.addEventListener('change', (e) => { u.country = e.target.value; saveData(); });
+  if (ls) ls.addEventListener('change', (e) => { u.lang = e.target.value; saveData(); });
+}
 
 // ═══════════════════════════════════════════════════════
 // AUTH
@@ -281,20 +309,32 @@ function loginSuccess() {
       u.coins += tierBonus;
       u.lastTierBonus = today;
       if (!u.txHistory) u.txHistory = [];
-      u.txHistory.unshift({ type: 'tier_bonus', coins: tierBonus, desc: 'Daily Tier Login Bonus (Tier ' + (u.tier || 1) + '× 10)', time: Date.now() });
+      u.txHistory.unshift({ type: 'tier_bonus', coins: tierBonus, desc: 'Daily Tier Login Bonus (Tier ' + (u.tier || 1) + ' × 10)', time: Date.now() });
       saveData();
       setTimeout(() => showToast('🎉 Tier Bonus! +' + tierBonus + ' 🪙 (Tier ' + (u.tier || 1) + ' × 10)', 'success'), 800);
     }
   }
+
+  // Mandatory Onboarding Flow
   if (!state.sessionTermsAccepted) {
     showView('termsView');
   } else if (!u.hasPaid) {
     state.pendingPayment = { qty: 1, total: getNextTierPrice() };
     showView('paymentView');
-  } else if (!state.currentUser.profileComplete) {
+  } 
+  // View Persistence
+  else if (state.currentView && state.currentView !== 'authView' && state.currentView !== 'splashView') {
+    showView(state.currentView);
+    if (state.currentView === 'dashView') {
+      renderDash();
+      initSpinWheel();
+    }
+  } 
+  // Fallback
+  else if (!u.profileComplete) {
     showView('profileSetupView');
   } else {
-    showView(state.currentView || 'dashView');
+    showView('dashView');
     renderDash();
     initSpinWheel();
   }
@@ -505,7 +545,7 @@ function saveProfile() {
 // ═══════════════════════════════════════════════════════
 // DASHBOARD
 // ═══════════════════════════════════════════════════════
-let currentDashPage = DB.get('lastDashPage', 'pageHome');
+let currentDashPage = 'pageHome';
 
 function showDashPage(pageId) {
   ['pageHome', 'pageTasks', 'pageTiers', 'pageSpin', 'pageLeader', 'pageMore', 'pageQuiz'].forEach(p => {
@@ -515,7 +555,6 @@ function showDashPage(pageId) {
   pageEl.style.display = 'block';
   pageEl.scrollTop = 0;
   currentDashPage = pageId;
-  DB.set('lastDashPage', pageId);
 
   // Update nav
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -593,30 +632,10 @@ function renderDash() {
   if (document.getElementById('spinTickets')) document.getElementById('spinTickets').innerText = u.spinTickets || 0;
   if (document.getElementById('followCoins')) document.getElementById('followCoins').innerText = u.coins.toLocaleString();
 
-  // Check-in status
-  const homeBtn = document.getElementById('homeCheckInBtn');
-  const today = new Date().toDateString();
-  if (homeBtn && u.checkedInToday && u.lastCheckIn === today) {
-    homeBtn.innerText = '✓ Checked In Today!';
-    homeBtn.disabled = true;
-    homeBtn.style.background = 'rgba(255,255,255,0.1)';
-    homeBtn.style.color = 'rgba(255,255,255,0.5)';
-    homeBtn.style.boxShadow = 'none';
-    homeBtn.style.cursor = 'not-allowed';
-  } else if (homeBtn) {
-    homeBtn.innerHTML = 'Check In Today (+5 <span class="g-coin"></span>)';
-    homeBtn.disabled = false;
-    homeBtn.style.background = '';
-    homeBtn.style.color = '';
-    homeBtn.style.boxShadow = '';
-    homeBtn.style.cursor = '';
-  }
-
-  // Active page restoration
-  showDashPage(currentDashPage);
-
   // Sticky rank bar
   updateRankBar(u, rank);
+
+
 
   renderTasksPage();
   startCountdownTimers();
@@ -1958,7 +1977,7 @@ function showView(id, addHistory = true) {
   if (!el) return;
   el.style.display = 'flex';
   el.classList.add('active');
-  
+
   // Persist view for refresh recovery
   if (id !== 'splashView' && id !== 'authView' && id !== 'termsView') {
     state.currentView = id;
