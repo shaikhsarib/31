@@ -267,8 +267,11 @@ function proceedPostOTP() {
     DB.set('currentUserPhone', tempPhone);
     loginSuccess();
   } else {
+    showView('authView');
     const stepOTP = document.getElementById('stepOTP');
     const stepReferral = document.getElementById('stepReferral');
+    const stepPhone = document.getElementById('stepPhone');
+    if (stepPhone) stepPhone.style.display = 'none';
     if (stepOTP) stepOTP.style.display = 'none';
     if (stepReferral) stepReferral.style.display = 'block';
     fillReferralInputIfNeeded();
@@ -417,7 +420,6 @@ function acceptTerms() {
   } else {
     // If we just verified OTP, proceed to dashboard or referral
     if (typeof tempPhone !== 'undefined' && tempPhone.length === 10) {
-      showView('authView');
       proceedPostOTP();
     } else {
       showView('authView');
