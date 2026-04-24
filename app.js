@@ -128,13 +128,10 @@ function goHome() {
     state.currentView = 'dashView';
     DB.set('lastView', 'dashView');
     showView('dashView');
-    renderDash();
+    setTimeout(renderDash, 10);
   } else {
-    if (state.sessionTermsAccepted) {
-      showView('authView');
-    } else {
-      showView('termsView');
-    }
+    // For guests, clicking logo should at least take them to Auth/Login
+    showView('authView');
   }
 }
 

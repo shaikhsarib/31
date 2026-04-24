@@ -581,6 +581,9 @@ select.input option {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s;
+  position: relative;
+  z-index: 101;
+  pointer-events: auto !important;
 }
 
 .logo-text:active {
