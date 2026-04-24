@@ -111,6 +111,16 @@ const AVATARS = [
 const LANGS = [{ code: 'en', label: 'English' }, { code: 'hi', label: 'हिंदी' }, { code: 'ta', label: 'தமிழ்' }, { code: 'te', label: 'తెలుగు' }, { code: 'bn', label: 'বাংলা' }];
 const COUNTRIES = [{ code: 'IN', label: '🇮🇳 India' }, { code: 'US', label: '🇺🇸 United States' }, { code: 'UK', label: '🇬🇧 United Kingdom' }, { code: 'AE', label: '🇦🇪 UAE' }, { code: 'SG', label: '🇸🇬 Singapore' }];
 
+function getAvatarUrl(u) {
+  if (!u) return AVATARS[0].url;
+  const photo = u.avatarPhoto || u.photoUrl;
+  if (photo) return photo;
+  const av = AVATARS.find(a => a.id === u.avatar);
+  if (av) return av.url;
+  if (u.avatar && u.avatar.startsWith('http')) return u.avatar;
+  return AVATARS[0].url;
+}
+
 const VIDEOS = [
   { icon: '🎬', title: 'Getting Started', desc: 'Learn the basics', duration: '4 min', level: 'Beginner', url: 'https://www.youtube.com/@grow31-u3s' },
   { icon: '🏆', title: 'Win Strategies', desc: 'Maximize earnings', duration: '5 min', level: 'Intermediate', url: 'https://www.youtube.com/@grow31-u3s' },
@@ -612,7 +622,7 @@ function renderDash() {
   document.getElementById('headerCoins').innerText = u.coins.toLocaleString();
   document.getElementById('userName').innerText = u.username;
   document.getElementById('userDay').innerText = u.day;
-  updateAvatarDisplays(u.avatarPhoto, u.avatar);
+  updateAvatarDisplays();
   document.getElementById('homeRefCode').innerText = u.refCode;
   const homeRefCoinsEl = document.getElementById('homeRefCoins');
   if (homeRefCoinsEl) homeRefCoinsEl.innerText = '+' + getTierCoinsPerReferral(u.tier || 1) + ' coins';
@@ -737,7 +747,7 @@ function renderMore() {
   document.getElementById('moreCoins').innerText = u.coins.toLocaleString();
   document.getElementById('moreTier').innerText = u.tier || 1;
   document.getElementById('moreRefCount').innerText = u.referrals;
-  updateAvatarDisplays(u.avatarPhoto, u.avatar);
+  updateAvatarDisplays();
   const refLink = document.getElementById('moreRefLink');
   if (refLink) refLink.innerText = u.refCode || 'Grow31/' + u.username;
 
@@ -755,11 +765,8 @@ function renderLeaderboard(sorted) {
   c.innerHTML = `<div class="card-header"><div class="card-title">🏆 Top Players · Your Rank: #${userRank}</div></div>`;
   sorted.slice(0, 15).forEach((usr, i) => {
     const isMe = usr.id === u.id;
-    const avDef = AVATARS.find(a => a.id === usr.avatar);
-    const finalPhoto = usr.avatarPhoto || usr.photoUrl || (avDef ? avDef.url : null);
-    const avHtml = finalPhoto ? 
-      `<div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:cover;background-position:center;border:none;flex-shrink:0"></div>` :
-      `<div class="avatar-sleek" style="width:36px;height:36px;background:linear-gradient(135deg, #448aff, #ce93d8);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${usr.avatar || '🧑'}</div>`;
+    const finalPhoto = getAvatarUrl(usr);
+    const avHtml = `<div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:cover;background-position:center;border:none;flex-shrink:0"></div>`;
 
     c.innerHTML += `
   <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.08);border-left:3px solid #448aff;' : ''}">
@@ -1313,7 +1320,7 @@ function openDrawer() {
 
     if (drawerName) drawerName.innerText = u.username;
     if (drawerPhone) drawerPhone.innerText = '+91 ' + u.phone;
-    updateAvatarDisplays(u.avatarPhoto, u.avatar);
+    updateAvatarDisplays();
   }
 
   const overlay = document.getElementById('drawerOverlay');
@@ -1489,6 +1496,29 @@ function saveNewUsername() {
   renderDash();
 }
 
+function updateAvatarDisplays() {
+  const u = state.currentUser;
+  if (!u) return;
+  const finalUrl = getAvatarUrl(u);
+
+  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
+  displays.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('avatar-sleek');
+    if (finalUrl) {
+      el.style.backgroundImage = `url('${finalUrl}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.innerHTML = '';
+    } else {
+      el.style.backgroundImage = 'none';
+      el.innerHTML = '🧑';
+    }
+  });
+  if (window.lucide) lucide.createIcons();
+}
+
 // ═══════════════════════════════════════════════════════
 // CONTACT
 // ═══════════════════════════════════════════════════════
@@ -1589,28 +1619,7 @@ function getGlobalOccupiedTiers() {
   return Object.values(state.allUsers).reduce((sum, user) => sum + getUserOwnedTiers(user), 0);
 }
 
-function updateAvatarDisplays(photoUrl, avatarId) {
-  const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
-  const av = AVATARS.find(a => a.id === avatarId);
-  const u = state.currentUser;
 
-  displays.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.add('avatar-sleek');
-
-    let url = photoUrl || u?.photoUrl;
-    if (!url) {
-      if (av) url = av.url;
-      else if (avatarId && avatarId.startsWith('http')) url = avatarId;
-      else url = u?.avatar.startsWith('http') ? u.avatar : AVATARS[0].url;
-    }
-
-    el.innerHTML = `<img src="${url}" alt="Avatar" style="width:100%;height:100%;object-fit:cover">`;
-    el.style.background = 'rgba(255,255,255,0.05)';
-  });
-  if (window.lucide) lucide.createIcons();
-}
 
 function openAvatarPicker() {
   const u = state.currentUser;
@@ -1626,7 +1635,7 @@ function openAvatarPicker() {
     opt.onclick = () => {
       u.avatar = av.id;
       u.photoUrl = null;
-      updateAvatarDisplays(null, av.id);
+      updateAvatarDisplays();
       openAvatarPicker();
       saveData();
       
@@ -1646,7 +1655,7 @@ function generateRandomAvatar() {
   const url = `https://api.dicebear.com/7.x/notionists/svg?seed=${seed}`;
   u.avatar = url;
   u.photoUrl = null;
-  updateAvatarDisplays(url, null);
+  updateAvatarDisplays();
   saveData();
   showToast('Random avatar generated! 🎨', 'success');
   closeDialog('avatarPickerDialog');
@@ -1666,7 +1675,7 @@ function handleAvatarUpload(event) {
     const url = e.target.result;
     state.currentUser.photoUrl = url;
     state.currentUser.avatar = 'custom';
-    updateAvatarDisplays(url, null);
+    updateAvatarDisplays();
     closeDialog('avatarPickerDialog');
     saveData();
     showToast('Profile photo updated!', 'success');
@@ -1790,7 +1799,7 @@ function handlePhotoUpload(input) {
     const dataUrl = e.target.result;
     if (!state.currentUser) return;
     state.currentUser.avatarPhoto = dataUrl;
-    updateAvatarDisplays(dataUrl, null);
+    updateAvatarDisplays();
     closeDialog('emojiDialog');
     closeDialog('usernameEditDialog');
     saveData();
