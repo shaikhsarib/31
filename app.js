@@ -123,6 +123,10 @@ const VIDEOS = [
 // ═══════════════════════════════════════════════════════
 function goHome() {
   if (state.currentUser) {
+    // Force reset to home tab for dashboard
+    DB.set('lastDashPage', 'home');
+    state.currentView = 'dashView';
+    DB.set('lastView', 'dashView');
     loginSuccess();
   } else {
     if (state.sessionTermsAccepted) {
