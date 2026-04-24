@@ -18,7 +18,8 @@ let state = {
     { id: 'r2', name: 'Coffee Gift', tier: 'advanced', value: '₹100', description: 'Cafe voucher' }
   ]),
   spinRecords: DB.get('spinRecords', []),
-  sessionTermsAccepted: false
+  sessionTermsAccepted: false,
+  isBuyingSlots: false
 };
 
 function restoreSession() {
@@ -431,6 +432,7 @@ function afterPayment() {
   plan.tiers.forEach(item => u.ownedTiers.push(item.tier));
   u.tier = Math.max(...u.ownedTiers);
   u.queuePosition = getQueuePositionForTier(u.tier);
+  state.isBuyingSlots = false;
   if (!u.txHistory) u.txHistory = [];
   u.txHistory.unshift({ type: 'purchase', amount: paidAmount, desc: 'Tier purchase', time: Date.now() });
   saveData();
@@ -832,7 +834,8 @@ function showMyTierClaimInfo() {
   <p class="text-muted text-xs" style="margin-bottom:10px">Seat breakdown by tier</p>
   ${breakdownHtml}
 </div>
-<p class="text-muted text-sm" style="line-height:1.6">Your tier seat counts are shown above. Use the tier dashboard to see the full tier map and your current position. Each tier has dynamic pricing: Tier 1 = ₹1, Tier 2 = ₹2, ..., Tier 31 = ₹31.</p>
+<p class="text-muted text-sm" style="line-height:1.6;margin-bottom:16px">Your tier seat counts are shown above. Use the tier dashboard to see the full tier map and your current position. Each tier has dynamic pricing: Tier 1 = ₹1, Tier 2 = ₹2, ..., Tier 31 = ₹31.</p>
+<button class="btn btn-blue btn-full" onclick="closeDialog('tierDialog'); openBuyTiersDialog();" style="margin-bottom:10px">Get More Slots 🚀</button>
 `;
   document.getElementById('tierDialogTitle').innerText = 'My Tier Info';
   document.getElementById('tierDialogDesc').innerText = 'View your tier details and pricing.';
@@ -1612,6 +1615,7 @@ function confirmBuyTiers() {
   const qty = Math.max(1, Math.min(10, parseInt(document.getElementById('bsQty')?.value || 1)));
   const plan = getTierPurchasePlan(qty);
   const total = plan.total;
+  state.isBuyingSlots = true;
   closeDialog('buyTiersDialog');
 
   state.pendingPayment = { qty, total, plan };
@@ -1828,6 +1832,13 @@ function pushView(id) {
   if (viewHistory.length > 10) viewHistory.shift();
 }
 function goBack() {
+  if (state.isBuyingSlots) {
+    state.isBuyingSlots = false;
+    showView('dashView', false);
+    renderDash();
+    openBuyTiersDialog();
+    return;
+  }
   if (viewHistory.length > 1) {
     viewHistory.pop();
     const prev = viewHistory[viewHistory.length - 1];

@@ -2018,9 +2018,10 @@
         </div>
       </div>
 
-      <button class="btn btn-white btn-full btn-lg" onclick="confirmBuyTiers()">
-        Proceed to Payment 🚀
-      </button>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-outline btn-full" onclick="closeDialog('buyTiersDialog')" style="font-weight:600">Back</button>
+        <button class="btn btn-white btn-full" onclick="confirmBuyTiers()" style="font-weight:700">Proceed 🚀</button>
+      </div>
       <p class="text-xs text-muted text-center" style="margin-top:10px;opacity:.5">🔒 Demo payment enabled · secure
         simulation only</p>
     </div>
@@ -2087,6 +2088,7 @@
       <h3 id="tierDialogTitle" style="font-family:'Poppins',sans-serif;font-weight:800;margin-bottom:4px">Tier Info</h3>
       <p id="tierDialogDesc" class="text-muted text-xs" style="margin-bottom:16px"></p>
       <div id="tierDialogContent"></div>
+      <button class="btn btn-outline btn-full btn-sm" onclick="closeDialog('tierDialog')" style="margin-top:16px">Back</button>
     </div>
   </div>
 
