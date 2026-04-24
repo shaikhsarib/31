@@ -2419,7 +2419,6 @@ select.input option {
     font-size: .82rem
   }
 
-  .grid-2,
   .grid-3 {
     grid-template-columns: 1fr
   }
