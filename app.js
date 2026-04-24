@@ -121,6 +121,18 @@ const VIDEOS = [
 // ═══════════════════════════════════════════════════════
 // SPLASH
 // ═══════════════════════════════════════════════════════
+function goHome() {
+  if (state.currentUser) {
+    loginSuccess();
+  } else {
+    if (state.sessionTermsAccepted) {
+      showView('authView');
+    } else {
+      showView('termsView');
+    }
+  }
+}
+
 window.addEventListener('load', () => {
   restoreSession();
   prefillReferralFromUrl();
