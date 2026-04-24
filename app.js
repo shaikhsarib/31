@@ -19,6 +19,7 @@ let state = {
   ]),
   spinRecords: DB.get('spinRecords', []),
   sessionTermsAccepted: DB.get('termsAccepted', false),
+  currentView: DB.get('lastView', 'dashView'),
   isBuyingSlots: false
 };
 
@@ -108,20 +109,23 @@ const VIDEOS = [
 window.addEventListener('load', () => {
   restoreSession();
   prefillReferralFromUrl();
-  const splashDelay = state.currentUser ? 1200 : 2700;
-  setTimeout(() => {
-    const splash = document.getElementById('splashView');
-    if (splash) splash.classList.add('hidden');
+  const splash = document.getElementById('splashView');
+  if (state.currentUser) {
+    // Instant skip for logged in users
+    if (splash) splash.style.display = 'none';
+    loginSuccess();
+    if (window.lucide) lucide.createIcons();
+  } else {
+    // Normal flow for guests
     setTimeout(() => {
-      if (splash) splash.style.display = 'none';
-      if (state.currentUser) {
-        loginSuccess();
-      } else {
+      if (splash) splash.classList.add('hidden');
+      setTimeout(() => {
+        if (splash) splash.style.display = 'none';
         showView('authView');
-      }
-      if (window.lucide) lucide.createIcons();
-    }, 600);
-  }, splashDelay);
+        if (window.lucide) lucide.createIcons();
+      }, 600);
+    }, 2700);
+  }
 });
 
 // ═══════════════════════════════════════════════════════
@@ -290,7 +294,7 @@ function loginSuccess() {
   } else if (!state.currentUser.profileComplete) {
     showView('profileSetupView');
   } else {
-    showView('dashView');
+    showView(state.currentView || 'dashView');
     renderDash();
     initSpinWheel();
   }
@@ -302,9 +306,9 @@ function loginSuccess() {
 function switchTermsTab(id, btn) {
   ['tc', 'privacy', 'refund'].forEach(t => {
     const p = document.getElementById('tpanel-' + t);
-    if (p) { 
-      p.classList.remove('active'); 
-      p.style.display = 'none'; 
+    if (p) {
+      p.classList.remove('active');
+      p.style.display = 'none';
       p.classList.add('collapsed');
     }
   });
@@ -324,9 +328,9 @@ function expandTerms(btn) {
 function switchTermsTab2(id, btn) {
   ['tc2', 'privacy2', 'refund2'].forEach(t => {
     const p = document.getElementById('tpanel-' + t);
-    if (p) { 
-      p.classList.remove('active'); 
-      p.style.display = 'none'; 
+    if (p) {
+      p.classList.remove('active');
+      p.style.display = 'none';
       p.classList.add('collapsed');
     }
   });
@@ -1520,12 +1524,12 @@ function updateAvatarDisplays(photoUrl, avatarId) {
   const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarPickerBtn', 'completeProfileAvatar'];
   const av = AVATARS.find(a => a.id === avatarId);
   const u = state.currentUser;
-  
+
   displays.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.classList.add('avatar-sleek');
-    
+
     let url = photoUrl || u?.photoUrl;
     if (!url) {
       if (av) url = av.url;
@@ -1543,7 +1547,7 @@ function openAvatarPicker() {
   const u = state.currentUser;
   const grid = document.getElementById('avatarOptionsGrid');
   if (!grid) return;
-  
+
   grid.innerHTML = '';
   AVATARS.forEach(av => {
     const opt = document.createElement('div');
@@ -1552,14 +1556,14 @@ function openAvatarPicker() {
     opt.innerHTML = `<img src="${av.url}" style="width:80%;height:80%">`;
     opt.onclick = () => {
       u.avatar = av.id;
-      u.photoUrl = null; 
+      u.photoUrl = null;
       updateAvatarDisplays(null, av.id);
-      openAvatarPicker(); 
+      openAvatarPicker();
       saveData();
     };
     grid.appendChild(opt);
   });
-  
+
   openDialog('avatarPickerDialog');
 }
 
@@ -1579,7 +1583,7 @@ function handleAvatarUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
   if (file.size > 2 * 1024 * 1024) return showToast('Image too large. Max 2MB.', 'error');
-  
+
   const reader = new FileReader();
   reader.onload = (e) => {
     const url = e.target.result;
@@ -1933,6 +1937,13 @@ function showView(id, addHistory = true) {
   if (!el) return;
   el.style.display = 'flex';
   el.classList.add('active');
+  
+  // Persist view for refresh recovery
+  if (id !== 'splashView' && id !== 'authView' && id !== 'termsView') {
+    state.currentView = id;
+    DB.set('lastView', id);
+  }
+
   if (addHistory) pushView(id);
   if (id === 'paymentView') {
     updatePaymentView();
@@ -2256,10 +2267,10 @@ function resetQuiz() {
 
 function saveData() { DB.set('users', state.allUsers) }
 
-function doLogout() { 
-  state.currentUser = null; 
+function doLogout() {
+  state.currentUser = null;
   state.sessionTermsAccepted = false;
-  DB.set('currentUserPhone', null); 
+  DB.set('currentUserPhone', null);
   showView('authView');
 }
 
