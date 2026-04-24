@@ -1629,6 +1629,10 @@ function openAvatarPicker() {
       updateAvatarDisplays(null, av.id);
       openAvatarPicker();
       saveData();
+      
+      // Live update leaderboard
+      const sorted = Object.values(state.allUsers).sort((a, b) => b.coins - a.coins);
+      renderLeaderboard(sorted);
     };
     grid.appendChild(opt);
   });
@@ -1646,6 +1650,10 @@ function generateRandomAvatar() {
   saveData();
   showToast('Random avatar generated! 🎨', 'success');
   closeDialog('avatarPickerDialog');
+  
+  // Live update leaderboard
+  const sorted = Object.values(state.allUsers).sort((a, b) => b.coins - a.coins);
+  renderLeaderboard(sorted);
 }
 
 function handleAvatarUpload(event) {
@@ -1789,6 +1797,9 @@ function handlePhotoUpload(input) {
     showToast("Photo updated! 📸", "success");
     renderMore();
     renderDash();
+    // Live update leaderboard
+    const sorted = Object.values(state.allUsers).sort((a, b) => b.coins - a.coins);
+    renderLeaderboard(sorted);
   };
   reader.readAsDataURL(file);
   input.value = ''; // Reset for next selection
