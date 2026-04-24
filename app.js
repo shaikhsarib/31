@@ -27,7 +27,7 @@ function restoreSession() {
   const currentPhone = DB.get('currentUserPhone', null);
   if (currentPhone && state.allUsers[currentPhone]) {
     state.currentUser = state.allUsers[currentPhone];
-    
+
     // Sync profile inputs if on setup view
     setTimeout(() => {
       const u = state.currentUser;
@@ -154,7 +154,7 @@ function initRealtimeSync() {
   const ni = document.getElementById('usernameInput');
   const cs = document.getElementById('countrySelect');
   const ls = document.getElementById('langSelect');
-  
+
   if (ni) ni.addEventListener('input', (e) => { u.username = e.target.value; saveData(); });
   if (cs) cs.addEventListener('change', (e) => { u.country = e.target.value; saveData(); });
   if (ls) ls.addEventListener('change', (e) => { u.lang = e.target.value; saveData(); });
@@ -325,7 +325,7 @@ function loginSuccess() {
   } else if (!u.hasPaid) {
     state.pendingPayment = { qty: 1, total: getNextTierPrice() };
     showView('paymentView');
-  } 
+  }
   // View Persistence
   else if (state.currentView && state.currentView !== 'authView' && state.currentView !== 'splashView') {
     showView(state.currentView);
@@ -333,7 +333,7 @@ function loginSuccess() {
       renderDash();
       initSpinWheel();
     }
-  } 
+  }
   // Fallback
   else if (!u.profileComplete) {
     showView('profileSetupView');
@@ -2313,8 +2313,9 @@ function resetQuiz() {
 
 function saveData() { DB.set('users', state.allUsers) }
 
-function doLogout() { 
+function doLogout() {
   localStorage.removeItem('g31_currentUserPhone');
+  localStorage.removeItem('g31_termsAccepted');
   localStorage.removeItem('g31_lastView');
   localStorage.removeItem('g31_lastDashPage');
   state.currentUser = null;
