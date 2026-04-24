@@ -791,7 +791,8 @@ function renderLeaderboard(sorted) {
   sorted.slice(0, 15).forEach((usr, i) => {
     const isMe = usr.id === u.id;
     const finalPhoto = getAvatarUrl(usr);
-    const avHtml = `<div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:cover;background-position:center;border:none;flex-shrink:0"></div>`;
+    const bgSize = finalPhoto.includes('dicebear.com') ? 'contain' : 'cover';
+    const avHtml = `<div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:${bgSize};background-position:center;background-repeat:no-repeat;background-color:rgba(255,255,255,0.08);border:none;flex-shrink:0"></div>`;
 
     c.innerHTML += `
   <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.08);border-left:3px solid #448aff;' : ''}">
@@ -1533,11 +1534,14 @@ function updateAvatarDisplays() {
     el.classList.add('avatar-sleek');
     if (finalUrl) {
       el.style.backgroundImage = `url('${finalUrl}')`;
-      el.style.backgroundSize = 'cover';
+      el.style.backgroundSize = (finalUrl.includes('dicebear.com')) ? 'contain' : 'cover';
       el.style.backgroundPosition = 'center';
+      el.style.backgroundRepeat = 'no-repeat';
+      el.style.backgroundColor = 'rgba(255,255,255,0.08)';
       el.innerHTML = '';
     } else {
       el.style.backgroundImage = 'none';
+      el.style.backgroundColor = '';
       el.innerHTML = '🧑';
     }
   });
