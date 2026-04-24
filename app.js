@@ -1375,19 +1375,18 @@ function openWalletDialog() {
       txEl.innerHTML = history.slice(0, 20).map(tx => {
         const d = new Date(tx.time);
         const dateStr = d.toLocaleDateString('en-IN') + ' ' + d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-        const icon = tx.type === 'spin' ? '🎡' : tx.type === 'referral' ? '👥' : tx.type === 'follow' ? '❤️' : tx.type === 'task' ? '✅' : tx.type === 'profile' ? '✨' : '🪙';
+        const icon = tx.type === 'spin' ? '🎡' : tx.type === 'referral' ? '👥' : tx.type === 'follow' ? '❤️' : tx.type === 'task' ? '✅' : tx.type === 'profile' ? '✨' : '💰';
         return `<div class="wallet-tx">
       <div>
         <span style="font-size:.82rem">${icon} ${tx.desc || 'Transaction'}</span>
         <p class="text-xs text-muted" style="margin-top:2px">${dateStr}</p>
       </div>
-      <span class="wallet-${tx.coins > 0 ? 'credit' : 'pending'}">+${tx.coins} 🪙</span>
+      <span class="wallet-${tx.coins > 0 ? 'credit' : 'pending'}">+${tx.coins} <span class="g-coin"></span></span>
     </div>`;
       }).join('');
     }
   }
-  document.getElementById('walletDialog').classList.add('open');
-  if (window.lucide) lucide.createIcons();
+  openDialog('walletDialog');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1396,8 +1395,7 @@ function openWalletDialog() {
 function openUsernameEditDialog() {
   const inp = document.getElementById('newUsernameInput');
   if (inp) inp.value = state.currentUser.username || '';
-  document.getElementById('usernameEditDialog').classList.add('open');
-  if (window.lucide) lucide.createIcons();
+  openDialog('usernameEditDialog');
 }
 
 function saveNewUsername() {
@@ -1630,7 +1628,6 @@ function getNextTierPrice() {
 function openBuyTiersDialog() {
   const u = state.currentUser;
   if (!u) return;
-  const dialog = document.getElementById('buyTiersDialog');
   const nextPlan = getTierPurchasePlan(1);
   const nextTier = nextPlan.tiers[0]?.tier || (u?.tier || MAX_TIERS);
   const nextPrice = nextPlan.tiers[0]?.price || getNextTierPrice();
@@ -1647,7 +1644,7 @@ function openBuyTiersDialog() {
 
   updateBuyTierPrice();
 
-  if (dialog) { dialog.classList.add('open'); if (window.lucide) lucide.createIcons(); }
+  openDialog('buyTiersDialog');
 }
 
 function updateBuyTierPrice() {
@@ -1943,11 +1940,22 @@ function showView(id, addHistory = true) {
   if (window.lucide) lucide.createIcons();
 }
 
+function openDialog(id) {
+  const d = document.getElementById(id);
+  if (d) {
+    d.classList.add('open');
+    updateMobileBackBtn();
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
 function closeDialog(id) {
-  const view = document.getElementById(id);
-  if (view) view.classList.remove('open');
-  updateMobileBackBtn();
-  if (window.lucide) lucide.createIcons();
+  const d = document.getElementById(id);
+  if (d) {
+    d.classList.remove('open');
+    updateMobileBackBtn();
+    if (window.lucide) lucide.createIcons();
+  }
 }
 
 function showToast(m, type = "success") {
