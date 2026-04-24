@@ -137,7 +137,11 @@ window.addEventListener('load', () => {
       if (splash) splash.classList.add('hidden');
       setTimeout(() => {
         if (splash) splash.style.display = 'none';
-        showView('authView');
+        if (!state.sessionTermsAccepted) {
+          showView('termsView');
+        } else {
+          showView('authView');
+        }
         if (window.lucide) lucide.createIcons();
       }, 600);
     }, 2700);
@@ -394,7 +398,9 @@ function acceptTerms() {
   if (!document.getElementById('termsCheck').checked) return showToast("Please accept the terms first", "error");
   state.sessionTermsAccepted = true;
   DB.set('termsAccepted', true);
-  if (!state.currentUser.hasPaid) {
+  if (!state.currentUser) {
+    showView('authView');
+  } else if (!state.currentUser.hasPaid) {
     state.pendingPayment = state.pendingPayment || { qty: 1, total: getNextTierPrice() };
     showView('paymentView');
   } else {
@@ -2307,11 +2313,12 @@ function resetQuiz() {
 
 function saveData() { DB.set('users', state.allUsers) }
 
-function doLogout() {
+function doLogout() { 
+  localStorage.removeItem('g31_currentUserPhone');
+  localStorage.removeItem('g31_lastView');
+  localStorage.removeItem('g31_lastDashPage');
   state.currentUser = null;
-  state.sessionTermsAccepted = false;
-  DB.set('currentUserPhone', null);
-  showView('authView');
+  location.reload();
 }
 
 // Profile setup - avatar picker (completed)
