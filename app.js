@@ -505,7 +505,7 @@ function saveProfile() {
 // ═══════════════════════════════════════════════════════
 // DASHBOARD
 // ═══════════════════════════════════════════════════════
-let currentDashPage = 'pageHome';
+let currentDashPage = DB.get('lastDashPage', 'pageHome');
 
 function showDashPage(pageId) {
   ['pageHome', 'pageTasks', 'pageTiers', 'pageSpin', 'pageLeader', 'pageMore', 'pageQuiz'].forEach(p => {
@@ -515,6 +515,7 @@ function showDashPage(pageId) {
   pageEl.style.display = 'block';
   pageEl.scrollTop = 0;
   currentDashPage = pageId;
+  DB.set('lastDashPage', pageId);
 
   // Update nav
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -592,10 +593,30 @@ function renderDash() {
   if (document.getElementById('spinTickets')) document.getElementById('spinTickets').innerText = u.spinTickets || 0;
   if (document.getElementById('followCoins')) document.getElementById('followCoins').innerText = u.coins.toLocaleString();
 
+  // Check-in status
+  const homeBtn = document.getElementById('homeCheckInBtn');
+  const today = new Date().toDateString();
+  if (homeBtn && u.checkedInToday && u.lastCheckIn === today) {
+    homeBtn.innerText = '✓ Checked In Today!';
+    homeBtn.disabled = true;
+    homeBtn.style.background = 'rgba(255,255,255,0.1)';
+    homeBtn.style.color = 'rgba(255,255,255,0.5)';
+    homeBtn.style.boxShadow = 'none';
+    homeBtn.style.cursor = 'not-allowed';
+  } else if (homeBtn) {
+    homeBtn.innerHTML = 'Check In Today (+5 <span class="g-coin"></span>)';
+    homeBtn.disabled = false;
+    homeBtn.style.background = '';
+    homeBtn.style.color = '';
+    homeBtn.style.boxShadow = '';
+    homeBtn.style.cursor = '';
+  }
+
+  // Active page restoration
+  showDashPage(currentDashPage);
+
   // Sticky rank bar
   updateRankBar(u, rank);
-
-
 
   renderTasksPage();
   startCountdownTimers();
