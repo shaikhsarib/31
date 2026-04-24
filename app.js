@@ -122,6 +122,9 @@ const VIDEOS = [
 // SPLASH
 // ═══════════════════════════════════════════════════════
 function goHome() {
+  const splash = document.getElementById('splashView');
+  if (splash) splash.style.display = 'none';
+
   if (state.currentUser) {
     // Direct redirect to dashboard home
     DB.set('lastDashPage', 'home');
