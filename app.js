@@ -170,11 +170,8 @@ window.addEventListener('load', () => {
       if (splash) splash.classList.add('hidden');
       setTimeout(() => {
         if (splash) splash.style.display = 'none';
-        if (!state.sessionTermsAccepted) {
-          showView('termsView');
-        } else {
-          showView('authView');
-        }
+        showView('authView');
+
         if (window.lucide) lucide.createIcons();
       }, 600);
     }, 2700);
@@ -222,6 +219,16 @@ function sendOTP() {
   tempPhone = document.getElementById('phoneInput')?.value?.trim() || '';
   if (tempPhone.length < 10 || !/^\d+$/.test(tempPhone)) return showToast("Enter valid 10-digit number", "error");
 
+  // Show T&C one-time before OTP
+  if (!DB.get('termsAccepted', false)) {
+    showView('termsView');
+    return;
+  }
+
+  proceedWithOTP();
+}
+
+function proceedWithOTP() {
   const stepPhone = document.getElementById('stepPhone');
   const stepOTP = document.getElementById('stepOTP');
   const otpPhoneDisplay = document.getElementById('otpPhoneDisplay');
@@ -395,6 +402,24 @@ function switchTermsTab(id, btn) {
   if (btn) btn.classList.add('active');
   const rm = document.getElementById('termsReadMore');
   if (rm) rm.style.display = 'block';
+}
+
+function acceptTerms() {
+  if (!document.getElementById('termsCheck').checked) return showToast("Accept terms to continue", "error");
+  state.sessionTermsAccepted = true;
+  DB.set('termsAccepted', true);
+  
+  if (state.currentUser) {
+    showView('paymentView');
+  } else {
+    // If we have a phone number but haven't sent OTP yet, proceed
+    if (typeof tempPhone !== 'undefined' && tempPhone.length === 10) {
+      showView('authView');
+      proceedWithOTP();
+    } else {
+      showView('authView');
+    }
+  }
 }
 
 function expandTerms(btn) {
