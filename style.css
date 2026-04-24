@@ -62,9 +62,10 @@ a {
   --glow-purple: rgba(138, 43, 226, 0.35);
   --glow-blue: rgba(68, 138, 255, 0.3);
   --glow-orange: rgba(255, 112, 67, 0.3);
+  --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --nav-height: 76px;
-  --rankbar-height: 56px;
+  --nav-height: 72px;
+  --rankbar-height: 0px;
 }
 
 i[data-lucide] {
@@ -552,14 +553,14 @@ select.input option {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(5, 5, 16, 0.7);
+  background: rgba(5, 5, 16, 0.75);
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 18px
+  padding: calc(12px + var(--safe-top)) 16px 12px;
 }
 
 .logo-text {
@@ -604,11 +605,107 @@ select.input option {
   transition: background .2s
 }
 
-.dots-btn:hover {
-  background: rgba(255, 255, 255, 0.14)
+/* ── G-COIN UI ── */
+.g-coin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+  border-radius: 50%;
+  color: #000;
+  font-weight: 800;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.1);
+  margin-right: 6px;
+  flex-shrink: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ── BOTTOM NAV ── */
+.g-coin::before {
+  content: "G";
+}
+
+.coins-pill {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #FFD700;
+  font-size: 0.95rem;
+}
+
+.rank-coins-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  color: #FFD700;
+}
+
+/* ── PROFESSIONAL AVATARS ── */
+.avatar-sleek {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--av-grad, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.avatar-sleek:hover {
+  transform: scale(1.05);
+}
+
+.avatar-sleek img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.av-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.av-option {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.av-option.selected {
+  border-color: #448aff;
+  background: rgba(68, 138, 255, 0.1);
+}
+
+.av-option:hover {
+  transform: translateY(-2px);
+}
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -927,13 +1024,27 @@ select.input option {
   background: rgba(14, 14, 31, 0.95);
   backdrop-filter: blur(32px) saturate(1.6);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 28px;
+  border-radius: 24px;
+  padding: 24px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   animation: dialogIn .3s cubic-bezier(.34, 1.56, .64, 1);
   position: relative;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1)
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.dialog::-webkit-scrollbar {
+  width: 4px;
+}
+.dialog::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
 }
 
 @keyframes dialogIn {
@@ -2285,7 +2396,10 @@ select.input option {
   }
 
   .dialog {
-    max-width: 92vw
+    max-width: 95vw;
+    padding: 20px;
+    border-radius: 20px;
+    max-height: 85dvh;
   }
 
   .text-muted {

@@ -398,7 +398,7 @@
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px">
       <div style="width:100%;max-width:400px">
         <div style="text-align:center;margin-bottom:28px">
-          <div class="profile-avatar" id="avatarPickerBtn" onclick="pickEmoji()">
+          <div class="avatar-sleek" id="avatarPickerBtn" onclick="openAvatarPicker()" style="width:50px;height:50px;font-size:1.2rem">
             <span id="avatarEmoji">🧑</span>
           </div>
           <h2 class="font-syne" style="font-size:1.4rem;font-weight:800;margin-bottom:6px">Complete Your Profile</h2>
@@ -458,7 +458,7 @@
         Grow31
       </div>
       <div class="flex items-center gap-3">
-        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><i data-lucide="circle-dollar-sign" style="width:16px;height:16px"></i> <span id="headerCoins">0</span>
+        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span id="headerCoins">0</span>
         </div>
         <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu" style="width:20px;height:20px"></i></button>
       </div>
@@ -903,7 +903,7 @@
             style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:14px;padding:16px;margin-bottom:20px">
             <p class="text-xs text-muted" style="margin-bottom:4px">Coins Earned</p>
             <p style="font-family:'Poppins',sans-serif;font-size:2rem;font-weight:800;color:#FFD700"
-              id="quizCoinsEarned">0 🪙</p>
+              id="quizCoinsEarned"><span class="g-coin"></span> 0</p>
           </div>
           <button class="btn btn-white btn-full btn-lg" onclick="resetQuiz()">🔄 Try Again Tomorrow</button>
         </div>
@@ -1077,7 +1077,7 @@
       </div>
       <div class="rank-bar-stats">
         <div class="rank-badge-pill">🏆 <span id="rankBarRank">#–</span></div>
-        <div class="rank-coins-pill">🪙 <span id="rankBarCoins">0</span></div>
+        <div class="rank-coins-pill"><span class="g-coin"></span> <span id="rankBarCoins">0</span></div>
       </div>
     </div>
   </div>
@@ -1946,81 +1946,80 @@
   <div class="dialog-overlay" id="buyTiersDialog">
     <div class="dialog" style="max-width:420px">
       <button class="dialog-close" onclick="closeDialog('buyTiersDialog')">✕</button>
-      <div style="text-align:center;margin-bottom:18px">
-        <div style="font-size:2.5rem;margin-bottom:8px">🛒</div>
-        <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px">Buy More Tiers
-        </h3>
+      <div style="text-align:center;margin-bottom:14px">
+        <div style="font-size:2rem;margin-bottom:6px">🛒</div>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:2px">Buy More Tiers</h3>
         <p class="text-muted text-xs">Upgrade your pool access with tier purchases</p>
       </div>
 
       <!-- Current Tier Info -->
       <div
-        style="background:rgba(156,39,176,0.1);border:1px solid rgba(156,39,176,0.3);border-radius:12px;padding:14px;margin-bottom:16px">
+        style="background:rgba(156,39,176,0.1);border:1px solid rgba(156,39,176,0.3);border-radius:12px;padding:12px;margin-bottom:12px">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
           <div>
-            <p class="text-xs text-muted">Current Tier</p>
-            <p style="font-weight:800;font-size:1.1rem;color:#ce93d8" id="bsCurrentTier">Tier 31</p>
+            <p class="text-xs text-muted" style="font-size:.65rem;margin-bottom:2px">Current Tier</p>
+            <p style="font-weight:800;font-size:1rem;color:#ce93d8" id="bsCurrentTier">Tier 31</p>
           </div>
           <div style="text-align:center">
-            <p class="text-xs text-muted">Queue Position</p>
-            <p style="font-weight:800;font-size:1.1rem;color:#82b1ff" id="bsQueuePos">#1</p>
+            <p class="text-xs text-muted" style="font-size:.65rem;margin-bottom:2px">Queue Position</p>
+            <p style="font-weight:800;font-size:1rem;color:#82b1ff" id="bsQueuePos">#1</p>
           </div>
           <div style="text-align:right">
-            <p class="text-xs text-muted">Price Per Tier</p>
-            <p style="font-weight:800;font-size:1.1rem;color:#00e676" id="bsPerTierPrice">₹30</p>
+            <p class="text-xs text-muted" style="font-size:.65rem;margin-bottom:2px">Price Per Tier</p>
+            <p style="font-weight:800;font-size:1rem;color:#00e676" id="bsPerTierPrice">₹30</p>
           </div>
         </div>
       </div>
 
       <!-- Quantity Selector -->
       <div
-        style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;margin-bottom:16px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <span style="font-weight:600;font-size:.9rem">Number of Seats</span>
-          <div style="display:flex;align-items:center;gap:12px">
+        style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span style="font-weight:600;font-size:.85rem">Number of Seats</span>
+          <div style="display:flex;align-items:center;gap:10px">
             <button onclick="changeBuyQty(-1)"
-              style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center">−</button>
+              style="width:32px;height:32px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center">−</button>
             <input type="number" id="bsQty" value="1" min="1" max="10" oninput="updateBuyTierPrice()"
-              style="width:60px;text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:1.1rem;font-weight:700;padding:8px;font-family:'Poppins',sans-serif">
+              style="width:50px;text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;font-size:1rem;font-weight:700;padding:6px;font-family:'Poppins',sans-serif">
             <button onclick="changeBuyQty(1)"
-              style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button>
+              style="width:32px;height:32px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button>
           </div>
         </div>
         <div
-          style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08)">
-          <span class="text-muted text-sm" id="bsPerTier">1 seat × ₹31 each</span>
+          style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid rgba(255,255,255,0.08)">
+          <span class="text-muted text-xs" id="bsPerTier">1 seat × ₹31 each</span>
           <div style="text-align:right">
-            <p class="text-xs text-muted">Total Price</p>
-            <p style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#ce93d8"
+            <p class="text-xs text-muted" style="font-size:.65rem">Total Price</p>
+            <p style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;color:#ce93d8"
               id="bsTotalPrice">₹31</p>
           </div>
         </div>
       </div>
 
       <!-- Features of buying tiers -->
-      <div style="margin-bottom:16px">
+      <div style="margin-bottom:12px">
         <div
-          style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.85rem;color:rgba(255,255,255,0.7)">
+          style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.78rem;color:rgba(255,255,255,0.7)">
           <span
-            style="width:24px;height:24px;background:rgba(0,230,118,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem">📅</span>
+            style="width:20px;height:20px;background:rgba(0,230,118,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem">📅</span>
           <span>Full 31-Day Challenge Access</span>
         </div>
         <div
-          style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.85rem;color:rgba(255,255,255,0.7)">
+          style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.78rem;color:rgba(255,255,255,0.7)">
           <span
-            style="width:24px;height:24px;background:rgba(156,39,176,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem">🪙</span>
+            style="width:20px;height:20px;background:rgba(156,39,176,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem">🪙</span>
           <span>Daily Coin Rewards + Bonuses</span>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:8px 0;font-size:.85rem;color:rgba(255,255,255,0.7)">
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:.78rem;color:rgba(255,255,255,0.7)">
           <span
-            style="width:24px;height:24px;background:rgba(68,138,255,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem">🏆</span>
-          <span>Leaderboard + Pool Win Eligibility</span>
+            style="width:20px;height:20px;background:rgba(68,138,255,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem">🏆</span>
+          <span>Leaderboard + Pool Eligibility</span>
         </div>
       </div>
 
-      <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn btn-outline btn-full" onclick="closeDialog('buyTiersDialog')" style="font-weight:600">Back</button>
-        <button class="btn btn-white btn-full" onclick="confirmBuyTiers()" style="font-weight:700">Proceed 🚀</button>
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button class="btn btn-outline btn-full" onclick="closeDialog('buyTiersDialog')" style="font-weight:600;padding:12px">Back</button>
+        <button class="btn btn-white btn-full" onclick="confirmBuyTiers()" style="font-weight:700;padding:12px">Proceed 🚀</button>
       </div>
       <p class="text-xs text-muted text-center" style="margin-top:10px;opacity:.5">🔒 Demo payment enabled · secure
         simulation only</p>
@@ -2032,7 +2031,7 @@
     <div class="app-header">
       <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text"><img src="Images/LOGO.jpeg" alt="Grow31" class="app-logo"> Perks</div>
-      <div class="coins-pill">🪙 <span id="perksCoins">0</span></div>
+      <div class="coins-pill"><span class="g-coin"></span> <span id="perksCoins">0</span></div>
     </div>
     <div class="page-content">
       <h2 class="section-heading">🎁 Your Perks</h2>
@@ -2043,13 +2042,22 @@
     </div>
   </div>
 
-  <!-- SPIN RESULT DIALOG -->
-  <div class="dialog-overlay" id="spinResultDialog">
-    <div class="dialog" style="max-width:340px;text-align:center">
-      <div id="spinResultEmoji" style="font-size:3.5rem;margin-bottom:12px">🎉</div>
-      <h3 id="spinResultTitle" style="font-family:'Poppins',sans-serif;font-weight:800;margin-bottom:6px">Congratulations!</h3>
-      <p id="spinResultText" class="text-muted" style="margin-bottom:20px"></p>
-      <button class="btn btn-white btn-full" onclick="closeDialog('spinResultDialog')">Awesome! 🚀</button>
+  <!-- AVATAR PICKER DIALOG -->
+  <div class="dialog-overlay" id="avatarPickerDialog">
+    <div class="dialog" style="max-width:400px">
+      <button class="dialog-close" onclick="closeDialog('avatarPickerDialog')">✕</button>
+      <h3 style="font-family:'Poppins',sans-serif;font-weight:800;margin-bottom:4px">Select Avatar</h3>
+      <p class="text-muted text-xs" style="margin-bottom:16px">Choose a sleek profile image or upload your own</p>
+      
+      <div id="avatarOptionsGrid" class="av-picker-grid"></div>
+
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)">
+        <p class="text-xs text-muted" style="margin-bottom:10px">Or upload your own photo</p>
+        <input type="file" id="avatarUploadInput" style="display:none" accept="image/*" onchange="handleAvatarUpload(event)">
+        <button class="btn btn-outline btn-full" onclick="document.getElementById('avatarUploadInput').click()">
+          <i data-lucide="upload" style="width:16px;height:16px"></i> Upload Photo
+        </button>
+      </div>
     </div>
   </div>
 

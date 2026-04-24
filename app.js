@@ -84,7 +84,14 @@ const SPIN_PRIZES = [
   { label: '3 🪙', coins: 3, color: '#ffa726', prob: 800 },
 ];
 
-const EMOJIS = ['🧑', '👦', '👧', '🧔', '👩', '🧑‍🦱', '🧑‍🦳', '🧑‍🦰', '🦸', '🦹', '🧙', '🎅', '👨‍💻', '👩‍💻', '🏋️', '🎮', '🚀', '🌟', '🔥', '💎', '🐉', '🦋', '🌈', '⚡'];
+const AVATARS = [
+  { id: 'av1', grad: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', label: '👤' },
+  { id: 'av2', grad: 'linear-gradient(135deg, #FF5F6D 0%, #FFC371 100%)', label: '⚡' },
+  { id: 'av3', grad: 'linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%)', label: '💎' },
+  { id: 'av4', grad: 'linear-gradient(135deg, #00b09b 0%, #96c93d 100%)', label: '🌟' },
+  { id: 'av5', grad: 'linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%)', label: '🚀' },
+  { id: 'av6', grad: 'linear-gradient(135deg, #f953c6 0%, #b91d73 100%)', label: '🔥' }
+];
 const LANGS = [{ code: 'en', label: 'English' }, { code: 'hi', label: 'हिंदी' }, { code: 'ta', label: 'தமிழ்' }, { code: 'te', label: 'తెలుగు' }, { code: 'bn', label: 'বাংলা' }];
 const COUNTRIES = [{ code: 'IN', label: '🇮🇳 India' }, { code: 'US', label: '🇺🇸 United States' }, { code: 'UK', label: '🇬🇧 United Kingdom' }, { code: 'AE', label: '🇦🇪 UAE' }, { code: 'SG', label: '🇸🇬 Singapore' }];
 
@@ -224,7 +231,7 @@ function completeSignup() {
     hasPaid: false, profileComplete: false,
     coins: 100, streak: 0, day: 1, refCode, referrals: 0,
     referralList: [], // list of referred user ids
-    avatar: '🧑', lang: 'en', country: 'IN',
+    avatar: AVATARS[0].id, lang: 'en', country: 'IN',
     tasks: initTasks(), claimedRewards: [],
     followedSocials: [], checkedInToday: false, lastCheckIn: '',
     tier: tierNum, queuePosition: getQueuePositionForTier(tierNum),
@@ -552,7 +559,7 @@ function renderDash() {
   mini.innerHTML = todayTasks.map(t => `
 <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:.88rem">
   <span>${t.done ? '✅ ' : ''}<span style="${t.done ? 'opacity:.5' : ''};">${t.title}</span></span>
-  <span style="color:#FFD700;font-weight:700;font-size:.8rem">${t.done ? 'Done' : '+' + t.reward + ' 🪙'}</span>
+  <span style="color:#FFD700;font-weight:700;font-size:.8rem">${t.done ? 'Done' : '+' + t.reward + ' G'}</span>
 </div>
 `).join('');
 
@@ -616,7 +623,7 @@ function renderTasksPage() {
     div.innerHTML = `
   <div class="flex justify-between w-full" style="align-items:center">
     <span style="font-weight:500">${t.done ? '✅ ' : ''}${t.title}</span>
-    <span style="color:#FFD700;font-weight:700;font-size:.85rem">+${t.reward} 🪙</span>
+    <span style="color:#FFD700;font-weight:700;font-size:.85rem">+${t.reward} G</span>
   </div>`;
     c.appendChild(div);
   });
@@ -639,7 +646,7 @@ function completeTask(tid) {
   if (!state.currentUser.txHistory) state.currentUser.txHistory = [];
   state.currentUser.txHistory.unshift({ type: 'task', coins: t.reward, desc: 'Task: ' + t.title, time: Date.now() });
   saveData();
-  showToast("Task Done! +" + t.reward + " 🪙");
+  showToast("Task Done! +" + t.reward + " G");
   renderDash();
 }
 
@@ -672,26 +679,26 @@ function renderLeaderboard(sorted) {
   const userRank = sorted.findIndex(x => x.id === u.id) + 1;
   c.innerHTML = `<div class="card-header"><div class="card-title">🏆 Top Players · Your Rank: #${userRank}</div></div>`;
   sorted.slice(0, 15).forEach((usr, i) => {
-    const cls = i === 0 ? 'av-gold' : i === 1 ? 'av-silver' : i === 2 ? 'av-bronze' : 'av-default';
-    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
-    const lvl = Math.min(80, Math.max(1, Math.floor(usr.coins / 1000) + 1));
     const isMe = usr.id === u.id;
+    const av = AVATARS.find(a => a.id === usr.avatar) || AVATARS[0];
+    const avStyle = usr.photoUrl ? `background:none` : `background:${av.grad}`;
+    const avContent = usr.photoUrl ? `<img src="${usr.photoUrl}" style="width:100%;height:100%;object-fit:cover">` : av.label;
+
     c.innerHTML += `
   <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.08);border-left:3px solid #448aff;' : ''}">
-    <div class="avatar ${cls}" style="font-size:.75rem;flex-shrink:0">${i + 1}</div>
-    <div class="avatar av-user" style="width:32px;height:32px;font-size:1.1rem">
-      ${usr.avatarPhoto ? `<img src="${usr.avatarPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : (usr.avatar || '🧑')}
+    <div style="font-weight:800;font-size:.8rem;color:rgba(255,255,255,0.3);width:20px">${i + 1}</div>
+    <div class="avatar-sleek" style="width:36px;height:36px;font-size:.9rem;${avStyle}">
+      ${avContent}
     </div>
     <div style="flex:1;min-width:0">
-      <b style="font-size:.9rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${usr.username} ${medal}${isMe ? ' 👈' : ''}</b>
-      <div style="display:flex;gap:4px;margin-top:2px;flex-wrap:wrap">
-        <span class="badge badge-purple" style="font-size:.6rem;padding:2px 6px">Lv.${lvl}</span>
-        <span class="badge badge-gray" style="font-size:.6rem;padding:2px 6px">Tier ${usr.tier || 1}</span>
+      <b style="font-size:.92rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${usr.username}${isMe ? ' <span class="badge badge-blue" style="font-size:10px">You</span>' : ''}</b>
+      <div style="display:flex;gap:4px;margin-top:2px">
+        <span class="badge badge-gray" style="font-size:.65rem;padding:2px 6px">Tier ${usr.tier || 1}</span>
       </div>
     </div>
     <div style="text-align:right;flex-shrink:0">
-      <div style="font-weight:700;font-size:.9rem;color:#FFD700">${usr.coins.toLocaleString()} <i data-lucide="circle-dollar-sign" style="width:14px;height:14px"></i></div>
-      <div class="text-xs text-muted">coins</div>
+      <div style="font-weight:800;font-size:1rem;color:#FFD700"><span class="g-coin"></span> ${usr.coins.toLocaleString()}</div>
+      <div class="text-xs text-muted" style="font-size:10px">G-credits</div>
     </div>
   </div>`;
   });
@@ -1111,7 +1118,7 @@ function doCheckIn() {
   if (!u.txHistory) u.txHistory = [];
   u.txHistory.unshift({ type: 'checkin', coins: 5, desc: 'Daily check-in bonus', time: Date.now() });
   saveData();
-  showToast("✓ Checked in! +5 coins + 1 spin ticket 🎟️", "success");
+  showToast("✓ Checked in! +5 G-coins + 1 spin ticket 🎟️", "success");
   // Update home button
   const homeBtn = document.getElementById('homeCheckInBtn');
   if (homeBtn) {
@@ -1509,23 +1516,72 @@ function getGlobalOccupiedTiers() {
   return Object.values(state.allUsers).reduce((sum, user) => sum + getUserOwnedTiers(user), 0);
 }
 
-function updateAvatarDisplays(photoUrl, emoji) {
+function updateAvatarDisplays(photoUrl, avatarId) {
   const displays = ['dashAvatar', 'moreAvatar', 'drawerAvatar', 'rankBarAvatar', 'navMoreAvatar', 'avatarEmoji', 'completeProfileAvatar'];
+  const av = AVATARS.find(a => a.id === avatarId) || AVATARS[0];
+  
   displays.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    if (photoUrl) {
-      el.innerHTML = `<img src="${photoUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-      el.style.display = 'flex';
-      el.style.alignItems = 'center';
-      el.style.justifyContent = 'center';
-      el.style.overflow = 'hidden';
+    
+    // Ensure element has correct base class
+    el.classList.add('avatar-sleek');
+    
+    if (photoUrl || (id === 'avatarEmoji' && state.currentUser?.photoUrl)) {
+      const url = photoUrl || state.currentUser.photoUrl;
+      el.innerHTML = `<img src="${url}" alt="Avatar">`;
+      el.style.background = 'none';
     } else {
-      el.innerHTML = emoji || '🧑';
-      // If it was showing an image, we might need to reset some styles but usually it's fine
+      el.innerHTML = av.label;
+      el.style.background = av.grad;
     }
   });
   if (window.lucide) lucide.createIcons();
+}
+
+function openAvatarPicker() {
+  const u = state.currentUser;
+  const grid = document.getElementById('avatarOptionsGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = '';
+  AVATARS.forEach(av => {
+    const opt = document.createElement('div');
+    opt.className = `av-option ${u.avatar === av.id ? 'selected' : ''}`;
+    opt.style.background = av.grad;
+    opt.innerText = av.label;
+    opt.onclick = () => {
+      u.avatar = av.id;
+      u.photoUrl = null; // Clear custom photo if picking preset
+      updateAvatarDisplays(null, av.id);
+      openAvatarPicker(); // re-render selection
+      saveData();
+    };
+    grid.appendChild(opt);
+  });
+  
+  openDialog('avatarPickerDialog');
+}
+
+function handleAvatarUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  if (file.size > 2 * 1024 * 1024) {
+    return showToast('Image too large. Max 2MB.', 'error');
+  }
+  
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const url = e.target.result;
+    state.currentUser.photoUrl = url;
+    state.currentUser.avatar = 'custom';
+    updateAvatarDisplays(url, null);
+    closeDialog('avatarPickerDialog');
+    saveData();
+    showToast('Profile photo updated!', 'success');
+  };
+  reader.readAsDataURL(file);
 }
 
 function getTierByIndex(index) {
@@ -2189,31 +2245,7 @@ function doLogout() {
 }
 
 // Profile setup - avatar picker (completed)
-function pickEmoji() {
-  const d = document.getElementById('emojiDialog');
-  if (!d) return;
-  let grid = d.querySelector('div[style*="grid-template-columns"]');
-  if (!grid) {
-    grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:0 28px 20px';
-    const inner = d.querySelector('.dialog');
-    inner.insertBefore(grid, inner.querySelector('button.dialog-close').nextSibling.nextSibling.nextSibling);
-  }
-  grid.innerHTML = '';
-  EMOJIS.forEach(emoji => {
-    const btn = document.createElement('button');
-    btn.style.cssText = 'width:100%;aspect-ratio:1;border-radius:12px;background:rgba(68,138,255,0.1);border:1px solid rgba(68,138,255,0.2);color:#fff;font-size:1.8rem;cursor:pointer;transition:all .2s';
-    btn.innerText = emoji;
-    btn.onclick = () => {
-      document.getElementById('avatarEmoji').innerText = emoji;
-      state.currentUser.avatar = emoji;
-      updateAvatarDisplays(null, emoji);
-      closeDialog('emojiDialog');
-    };
-    btn.onmouseover = () => btn.style.background = 'rgba(68,138,255,0.3)';
-    btn.onmouseout = () => btn.style.background = 'rgba(68,138,255,0.1)';
-    grid.appendChild(btn);
-  });
+  // pickEmoji was replaced by professional openAvatarPicker logic above
 }
 
 // Initialize on page load
