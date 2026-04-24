@@ -18,7 +18,7 @@ let state = {
     { id: 'r2', name: 'Coffee Gift', tier: 'advanced', value: '₹100', description: 'Cafe voucher' }
   ]),
   spinRecords: DB.get('spinRecords', []),
-  sessionTermsAccepted: false,
+  sessionTermsAccepted: DB.get('termsAccepted', false),
   isBuyingSlots: false
 };
 
@@ -108,6 +108,7 @@ const VIDEOS = [
 window.addEventListener('load', () => {
   restoreSession();
   prefillReferralFromUrl();
+  const splashDelay = state.currentUser ? 1200 : 2700;
   setTimeout(() => {
     const splash = document.getElementById('splashView');
     if (splash) splash.classList.add('hidden');
@@ -120,7 +121,7 @@ window.addEventListener('load', () => {
       }
       if (window.lucide) lucide.createIcons();
     }, 600);
-  }, 2700);
+  }, splashDelay);
 });
 
 // ═══════════════════════════════════════════════════════
@@ -348,6 +349,7 @@ function expandTerms2(btn) {
 function acceptTerms() {
   if (!document.getElementById('termsCheck').checked) return showToast("Please accept the terms first", "error");
   state.sessionTermsAccepted = true;
+  DB.set('termsAccepted', true);
   if (!state.currentUser.hasPaid) {
     state.pendingPayment = state.pendingPayment || { qty: 1, total: getNextTierPrice() };
     showView('paymentView');
