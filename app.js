@@ -252,6 +252,12 @@ function verifyOTP() {
   const otp = otpInput?.value?.trim() || '';
   if (otp.length !== 6 || !/^\d+$/.test(otp)) return showToast("Enter valid 6-digit OTP", "error");
 
+  // Set user state early if they exist
+  if (state.allUsers[tempPhone]) {
+    state.currentUser = state.allUsers[tempPhone];
+    DB.set('currentUserPhone', tempPhone);
+  }
+
   // Show T&C one-time after OTP but before finishing signup
   if (!DB.get('termsAccepted', false)) {
     showView('termsView');
@@ -262,9 +268,7 @@ function verifyOTP() {
 }
 
 function proceedPostOTP() {
-  if (state.allUsers[tempPhone]) {
-    state.currentUser = state.allUsers[tempPhone];
-    DB.set('currentUserPhone', tempPhone);
+  if (state.currentUser) {
     loginSuccess();
   } else {
     showView('authView');
@@ -373,7 +377,7 @@ function loginSuccess() {
     showView('paymentView');
   }
   // View Persistence
-  else if (state.currentView && state.currentView !== 'authView' && state.currentView !== 'splashView') {
+  else if (state.currentView && !['authView', 'splashView', 'termsView'].includes(state.currentView)) {
     showView(state.currentView);
     if (state.currentView === 'dashView') {
       renderDash();
@@ -415,15 +419,11 @@ function acceptTerms() {
   state.sessionTermsAccepted = true;
   DB.set('termsAccepted', true);
   
-  if (state.currentUser) {
-    showView('paymentView');
+  // Proceed to dashboard, referral, or payment flow
+  if (state.currentUser || (typeof tempPhone !== 'undefined' && tempPhone.length === 10)) {
+    proceedPostOTP();
   } else {
-    // If we just verified OTP, proceed to dashboard or referral
-    if (typeof tempPhone !== 'undefined' && tempPhone.length === 10) {
-      proceedPostOTP();
-    } else {
-      showView('authView');
-    }
+    showView('authView');
   }
 }
 
