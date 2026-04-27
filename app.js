@@ -252,10 +252,6 @@ function verifyOTP() {
   const otp = otpInput?.value?.trim() || '';
   if (otp.length !== 6 || !/^\d+$/.test(otp)) return showToast("Enter valid 6-digit OTP", "error");
 
-  // Hide OTP step immediately so it cannot reappear during transitions
-  const stepOTP = document.getElementById('stepOTP');
-  if (stepOTP) stepOTP.style.display = 'none';
-
   // Set user state early if they exist
   if (state.allUsers[tempPhone]) {
     state.currentUser = state.allUsers[tempPhone];
