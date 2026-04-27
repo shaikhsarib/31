@@ -1374,7 +1374,10 @@ function shareRef() {
 // ═══════════════════════════════════════════════════════
 // DRAWER
 // ═══════════════════════════════════════════════════════
-function openDrawer() {
+function openDrawer(mode) {
+  if (mode === 'lang') return showLangDialog();
+  if (mode === 'country') return showCountryDialog();
+
   const u = state.currentUser;
   if (u) {
     const drawerName = document.getElementById('drawerName');
@@ -1414,8 +1417,7 @@ function showLangDialog() {
   <span style="font-size:.95rem;font-weight:500">${l.label}</span>
   ${(state.currentUser?.lang || 'en') === l.code ? '<span class="badge badge-green">✓ Active</span>' : '<span class="text-muted text-sm">›</span>'}
 </div>`).join('');
-  const dialog = document.getElementById('langDialog');
-  if (dialog) { dialog.classList.add('open'); if (window.lucide) lucide.createIcons(); }
+  openDialog('langDialog');
 }
 
 function setLang(code) {
@@ -1433,8 +1435,7 @@ function showCountryDialog() {
   <span style="font-size:.95rem;font-weight:500">${ct.label}</span>
   ${(state.currentUser?.country || 'IN') === ct.code ? '<span class="badge badge-green">✓ Active</span>' : '<span class="text-muted text-sm">›</span>'}
 </div>`).join('');
-  const dialog = document.getElementById('countryDialog');
-  if (dialog) { dialog.classList.add('open'); if (window.lucide) lucide.createIcons(); }
+  openDialog('countryDialog');
 }
 
 function setCountry(code) {
