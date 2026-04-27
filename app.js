@@ -388,13 +388,12 @@ function loginSuccess() {
     showView(lastView);
     // Extra initialization if the restored view is the dashboard
     if (lastView === 'dashView') {
-      renderDash();
-      initSpinWheel();
+      const lastPage = DB.get('lastDashPage', 'pageHome');
+      showDashPage(lastPage);
     }
   } else {
-    showView('dashView');
-    renderDash();
-    initSpinWheel();
+    const lastPage = DB.get('lastDashPage', 'pageHome');
+    showDashPage(lastPage);
   }
 }
 
@@ -613,6 +612,7 @@ function showDashPage(pageId) {
   pageEl.style.display = 'block';
   pageEl.scrollTop = 0;
   currentDashPage = pageId;
+  DB.set('lastDashPage', pageId);
 
   // Update nav
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
