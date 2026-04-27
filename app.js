@@ -2006,8 +2006,8 @@ function updateMobileBackBtn() {
   const isSmall = window.matchMedia('(max-width: 680px)').matches;
   const hasDialog = !!document.querySelector('.dialog-overlay.open');
   const drawerOpen = document.getElementById('mainDrawer')?.classList.contains('open');
-  const dashActive = document.getElementById('dashView')?.classList.contains('active');
-  const canBack = hasDialog || drawerOpen || viewHistory.length > 1 || (dashActive && currentDashPage !== 'pageHome');
+  const dashActive = document.getElementById('dashView')?.style.display === 'flex';
+  const canBack = hasDialog || drawerOpen || (viewHistory.length > 1 && !dashActive);
   btn.style.display = (isSmall && canBack) ? 'inline-flex' : 'none';
 }
 
