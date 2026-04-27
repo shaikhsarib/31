@@ -272,7 +272,8 @@ function verifyOTP() {
 }
 
 function proceedPostOTP() {
-  if (state.currentUser) {
+  // Show Referral screen for new users OR existing users who haven't paid yet
+  if (state.currentUser && state.currentUser.hasPaid) {
     loginSuccess();
   } else {
     showView('authView');
