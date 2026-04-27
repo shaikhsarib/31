@@ -608,11 +608,11 @@
         <!-- STATS ROW -->
         <div class="grid-2 mb-4" style="margin-bottom:14px">
           <div class="card stat-card">
-            <div class="stat-icon"><i data-lucide="zap" style="width:16px;height:16px"></i> Streak</div>
+            <div class="stat-icon"><i data-lucide="zap" style="width:16px;height:16px"></i> <span data-i18n="streak">Streak</span></div>
             <div class="stat-val" id="statStreak" style="color:#ff7043">0</div>
           </div>
           <div class="card stat-card">
-            <div class="stat-icon"><i data-lucide="trophy" style="width:16px;height:16px"></i> Rank</div>
+            <div class="stat-icon"><i data-lucide="trophy" style="width:16px;height:16px"></i> <span data-i18n="rank">Rank</span></div>
             <div class="stat-val" id="statRank" style="color:#f5c518">#–</div>
           </div>
         </div>
@@ -621,9 +621,9 @@
         <div class="card mb-4" style="margin-bottom:14px">
           <div class="card-header"
             style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0">
-            <div class="card-title">Today's Tasks</div>
+            <div class="card-title" data-i18n="today_tasks">Today's Tasks</div>
             <button class="btn btn-outline btn-sm" style="font-size:.7rem;padding:4px 10px"
-              onclick="showDashPage('pageTasks')">See All</button>
+              onclick="showDashPage('pageTasks')" data-i18n="see_all">See All</button>
           </div>
           <div id="miniTasksList" style="padding:8px 16px 16px"></div>
         </div>
@@ -633,43 +633,43 @@
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showDashPage('pageSpin')">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="dices" style="width:32px;height:32px"></i>
             </div>
-            <p style="font-weight:700;font-size:.9rem">Spin Wheel</p>
-            <p class="text-muted text-xs">Win big coins!</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="spin_wheel">Spin Wheel</p>
+            <p class="text-muted text-xs" data-i18n="win_big">Win big coins!</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showDashPage('pageQuiz')">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="brain" style="width:32px;height:32px"></i>
             </div>
-            <p style="font-weight:700;font-size:.9rem">Daily Quiz</p>
-            <p class="text-muted text-xs">10 Qs · Earn coins!</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="daily_quiz">Daily Quiz</p>
+            <p class="text-muted text-xs" data-i18n="qs_10">10 Qs · Earn coins!</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('followView')">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="heart" style="width:32px;height:32px"></i>
             </div>
-            <p style="font-weight:700;font-size:.9rem">Follow &amp; Earn</p>
-            <p class="text-muted text-xs">Social rewards</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="follow_earn">Follow &amp; Earn</p>
+            <p class="text-muted text-xs" data-i18n="social_rewards">Social rewards</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('winnersView')">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="medal" style="width:32px;height:32px"></i>
             </div>
-            <p style="font-weight:700;font-size:.9rem">Winners</p>
-            <p class="text-muted text-xs">Today's results</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="winners">Winners</p>
+            <p class="text-muted text-xs" data-i18n="today_results">Today's results</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="openBuyTiersDialog()">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="shopping-cart"
                 style="width:32px;height:32px"></i></div>
-            <p style="font-weight:700;font-size:.9rem">Buy More Tiers</p>
-            <p class="text-muted text-xs">Advance faster with new tiers</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="buy_tiers">Buy More Tiers</p>
+            <p class="text-muted text-xs" data-i18n="advance_faster">Advance faster with new tiers</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('videosView')">
             <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="play-circle"
                 style="width:32px;height:32px"></i></div>
-            <p style="font-weight:700;font-size:.9rem">Tutorial Videos</p>
-            <p class="text-muted text-xs">Learn & earn!</p>
+            <p style="font-weight:700;font-size:.9rem" data-i18n="tutorial_videos">Tutorial Videos</p>
+            <p class="text-muted text-xs" data-i18n="learn_earn">Learn & earn!</p>
           </div>
         </div>
 
         <!-- DAY GRID -->
-        <h3 class="section-heading" style="font-size:1rem;margin-bottom:10px">31-Day Progress</h3>
+        <h3 class="section-heading" style="font-size:1rem;margin-bottom:10px" data-i18n="progress_31">31-Day Progress</h3>
         <div class="grid-7 mb-4" id="homeGrid" style="margin-bottom:14px"></div>
 
         <!-- BANNER AD SPACE 2 -->
@@ -1443,30 +1443,30 @@
     <div class="app-header">
       <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
           style="width:20px;height:20px"></i> Back</button>
-      <div class="logo-text">Winners</div>
+      <div class="logo-text" data-i18n="winners">Winners</div>
       <div style="width:60px"></div>
     </div>
     <div class="page-content">
-      <h2 class="section-heading">Winners &amp; Updates <i data-lucide="medal" style="width:20px;height:20px"></i></h2>
+      <h2 class="section-heading"><span data-i18n="winners_tab">Winners &amp; Updates</span> <i data-lucide="medal" style="width:20px;height:20px"></i></h2>
 
       <!-- Countdown Timer -->
       <div
         style="background:linear-gradient(135deg,rgba(68,138,255,0.12),rgba(156,39,176,0.08));border:1px solid rgba(68,138,255,0.25);border-radius:14px;padding:14px;margin-bottom:16px;text-align:center">
-        <p class="text-xs text-muted" style="margin-bottom:4px"><i data-lucide="clock"
+        <p class="text-xs text-muted" style="margin-bottom:4px" data-i18n="next_results"><i data-lucide="clock"
             style="width:12px;height:12px"></i> Next Results Announcement In</p>
         <p style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#82b1ff"
           class="countdown-timer">—</p>
-        <p class="text-xs text-muted" style="margin-top:4px;opacity:.6">Winners announced at midnight daily</p>
+        <p class="text-xs text-muted" style="margin-top:4px;opacity:.6" data-i18n="winners_ann">Winners announced at midnight daily</p>
       </div>
 
       <!-- Tabs -->
       <div style="display:flex;gap:8px;margin-bottom:16px">
         <button class="btn btn-blue btn-sm" id="wTab1" onclick="switchWinnersTab('winners')"><i data-lucide="award"
-            style="width:14px;height:14px"></i> Winners</button>
+            style="width:14px;height:14px"></i> <span data-i18n="winners_tab">Winners</span></button>
         <button class="btn btn-outline btn-sm" id="wTab2" onclick="switchWinnersTab('updates')"><i
-            data-lucide="megaphone" style="width:14px;height:14px"></i> Updates</button>
+            data-lucide="megaphone" style="width:14px;height:14px"></i> <span data-i18n="updates_tab">Updates</span></button>
         <button class="btn btn-outline btn-sm" id="wTab3" onclick="switchWinnersTab('schedule')"><i
-            data-lucide="calendar" style="width:14px;height:14px"></i> Schedule</button>
+            data-lucide="calendar" style="width:14px;height:14px"></i> <span data-i18n="schedule_tab">Schedule</span></button>
       </div>
 
       <!-- Winners Tab -->
@@ -1917,17 +1917,17 @@
       </div>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showDashPage('pageMore')">
-      <span class="drawer-item-icon"><i data-lucide="user"></i></span>Profile<span class="drawer-item-arr">›</span>
+      <span class="drawer-item-icon"><i data-lucide="user"></i></span><span data-i18n="profile">Profile</span><span class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showLangDialog()">
-      <span class="drawer-item-icon"><i data-lucide="languages"></i></span>Language<span
+      <span class="drawer-item-icon"><i data-lucide="languages"></i></span><span data-i18n="language">Language</span><span
         class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showCountryDialog()">
-      <span class="drawer-item-icon"><i data-lucide="globe"></i></span>Country<span class="drawer-item-arr">›</span>
+      <span class="drawer-item-icon"><i data-lucide="globe"></i></span><span data-i18n="country">Country</span><span class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('helpView')">
-      <span class="drawer-item-icon"><i data-lucide="help-circle"></i></span>Help &amp; Support<span
+      <span class="drawer-item-icon"><i data-lucide="help-circle"></i></span><span data-i18n="help_support">Help &amp; Support</span><span
         class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('contactView')">
