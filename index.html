@@ -29,7 +29,8 @@
   <!-- SPLASH VIEW -->
   <!-- ═════════════════════════════════════════ -->
   <div id="splashView">
-    <div class="splash-icon" onclick="goHome()" style="cursor:pointer;position:relative;z-index:9999"><img src="Images/LOGO.jpeg" alt="Grow31" class="logo-image"></div>
+    <div class="splash-icon" onclick="goHome()" style="cursor:pointer;position:relative;z-index:9999"><img
+        src="Images/LOGO.jpeg" alt="Grow31" class="logo-image"></div>
     <div class="splash-title">Grow31</div>
     <div class="splash-sub">31 Days. One Challenge. Real Rewards.</div>
     <div class="splash-loader">
@@ -61,12 +62,16 @@
             <input class="input" type="tel" id="phoneInput" placeholder="10-digit phone number" maxlength="10"
               style="padding-left:52px">
           </div>
-          <button class="btn btn-white btn-full btn-lg" onclick="sendOTP()">Continue <i data-lucide="arrow-right" style="width:18px;height:18px"></i></button>
-          <p class="text-center" style="margin-top:14px;font-size:.7rem;color:rgba(255,255,255,0.4)">By continuing, you agree to our <a href="#" onclick="showView('termsView')" style="text-decoration:underline;color:#448aff">Terms &amp; Conditions</a></p>
+          <button class="btn btn-white btn-full btn-lg" onclick="sendOTP()">Continue <i data-lucide="arrow-right"
+              style="width:18px;height:18px"></i></button>
+          <p class="text-center" style="margin-top:14px;font-size:.7rem;color:rgba(255,255,255,0.4)">By continuing, you
+            agree to our <a href="#" onclick="showView('termsView')"
+              style="text-decoration:underline;color:#448aff">Terms &amp; Conditions</a></p>
         </div>
         <!-- Step: OTP -->
         <div id="stepOTP" style="padding:32px 28px;display:none">
-          <button class="back-btn" onclick="goBackToPhone()"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button>
+          <button class="back-btn" onclick="goBackToPhone()"><i data-lucide="chevron-left"
+              style="width:18px;height:18px"></i> Back</button>
           <h2
             style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800;text-align:center;margin-bottom:6px">
             Verify OTP</h2>
@@ -97,8 +102,10 @@
             style="background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.15);border-radius:10px;padding:10px 14px;margin-bottom:16px">
             <p class="text-xs" style="color:#00e676">🎁 Use a referral code to get +50 bonus coins on signup!</p>
           </div>
-          <button class="btn btn-white btn-full btn-lg" onclick="completeSignup()" style="margin-bottom:12px">Finish Setup →</button>
-          <p class="text-center"><a href="#" onclick="completeSignup()" class="text-muted text-xs" style="text-decoration:underline">Skip for now</a></p>
+          <button class="btn btn-white btn-full btn-lg" onclick="completeSignup()" style="margin-bottom:12px">Finish
+            Setup →</button>
+          <p class="text-center"><a href="#" onclick="completeSignup()" class="text-muted text-xs"
+              style="text-decoration:underline">Skip for now</a></p>
         </div>
       </div>
       <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center">
@@ -176,12 +183,14 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="termsView">
     <div class="app-header">
-      <button class="back-btn" onclick="showView('authView')" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="showView('authView')" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text" onclick="goHome()"><img src="Images/LOGO.jpeg" alt="Grow31" class="app-logo"> Grow31</div>
       <div style="width:60px"></div>
     </div>
     <div style="padding:20px 20px;max-width:480px;margin:0 auto;width:100%;flex:1;display:flex;flex-direction:column">
-      <h2 class="section-heading" style="font-size:1.3rem;margin-bottom:14px"><i data-lucide="file-text" style="width:20px;height:20px"></i> Read &amp; Accept Policies</h2>
+      <h2 class="section-heading" style="font-size:1.3rem;margin-bottom:14px"><i data-lucide="file-text"
+          style="width:20px;height:20px"></i> Read &amp; Accept Policies</h2>
       <div class="terms-tab-nav">
         <button class="terms-tab-btn active" onclick="switchTermsTab('tc',this)">T&amp;C</button>
         <button class="terms-tab-btn" onclick="switchTermsTab('privacy',this)">Privacy</button>
@@ -286,8 +295,11 @@
         <h4>5. Contact</h4>
         <p>[Your Email / Contact]</p>
       </div>
-      <div id="termsReadMore" style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
-        <button class="btn-sm" onclick="expandTerms(this)" style="background:none;border:none;color:#000;font-weight:800;font-size:.85rem;cursor:pointer;padding:10px 20px">Show more</button>
+      <div id="termsReadMore"
+        style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
+        <button class="btn-sm" onclick="expandTerms(this)"
+          style="background:none;border:none;color:#000;font-weight:800;font-size:.85rem;cursor:pointer;padding:10px 20px">Show
+          more</button>
       </div>
       <label
         style="display:flex;align-items:center;gap:12px;margin-bottom:20px;cursor:pointer;padding:14px;background:rgba(255,255,255,0.06);border-radius:12px;border:1px solid rgba(255,255,255,0.1)">
@@ -305,14 +317,17 @@
       <span class="badge badge-green" style="font-size:.7rem">🔒 Secure</span>
     </div>
     <div style="padding:24px 20px;max-width:440px;margin:0 auto;width:100%;flex:1">
-      <h2 class="section-heading" style="font-size:1.5rem;margin-bottom:6px">Join the Challenge <i data-lucide="rocket" style="width:22px;height:22px"></i></h2>
+      <h2 class="section-heading" style="font-size:1.5rem;margin-bottom:6px">Join the Challenge <i data-lucide="rocket"
+          style="width:22px;height:22px"></i></h2>
       <p class="text-muted text-sm" style="margin-bottom:12px">One-time payment · Instant access · No hidden fees</p>
       <div id="paymentTierInfo"></div>
       <div class="card mb-4"
         style="margin-bottom:16px;padding:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;">
         <span class="trust-badge green"><i data-lucide="lock" style="width:14px;height:14px"></i> Secure Checkout</span>
-        <span class="trust-badge blue"><i data-lucide="shield-check" style="width:14px;height:14px"></i> Trusted Gateway</span>
-        <span class="trust-badge yellow"><i data-lucide="check-circle" style="width:14px;height:14px"></i> No Hidden Fees</span>
+        <span class="trust-badge blue"><i data-lucide="shield-check" style="width:14px;height:14px"></i> Trusted
+          Gateway</span>
+        <span class="trust-badge yellow"><i data-lucide="check-circle" style="width:14px;height:14px"></i> No Hidden
+          Fees</span>
         <p class="text-muted text-xs" style="margin:0;width:100%;text-align:center;line-height:1.5;opacity:.85">Trusted
           payment experience with secure verification and strong trust signals for every user.</p>
       </div>
@@ -381,7 +396,7 @@
         <h2 class="font-syne" style="font-size:1.8rem;font-weight:800;margin-bottom:8px">Payment Successful!</h2>
         <p id="confirmDetails" class="text-muted" style="margin-bottom:16px;font-size:.95rem">Your tier purchase is
           confirmed.</p>
-        <button class="btn btn-white btn-lg" onclick="afterPayment()">Continue to Dashboard →</button>
+        <button class="btn btn-white btn-lg" onclick="afterPayment()">Continue to Profile Setup →</button>
       </div>
       <p id="confirmMsg" class="text-muted" style="margin-top:16px;font-size:.9rem">Processing your payment...</p>
     </div>
@@ -400,14 +415,17 @@
       <div style="width:100%;max-width:400px">
         <div style="text-align:center;margin-bottom:28px">
           <div style="position:relative;display:inline-block">
-            <div class="avatar-sleek" id="avatarPickerBtn" onclick="openAvatarPicker()" style="width:80px;height:80px;font-size:2rem;margin-bottom:12px;border-width:3px">
+            <div class="avatar-sleek" id="avatarPickerBtn" onclick="openAvatarPicker()"
+              style="width:80px;height:80px;font-size:2rem;margin-bottom:12px;border-width:3px">
               <span id="avatarEmoji">🧑</span>
             </div>
-            <div onclick="openAvatarPicker()" style="position:absolute;bottom:0;right:0;background:#448aff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #050510;cursor:pointer">
+            <div onclick="openAvatarPicker()"
+              style="position:absolute;bottom:0;right:0;background:#448aff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #050510;cursor:pointer">
               <i data-lucide="camera" style="width:12px;height:12px;color:white"></i>
             </div>
           </div>
-          <p class="text-xs" style="color:#448aff;font-weight:600;margin-bottom:12px;cursor:pointer" onclick="openAvatarPicker()">Tap to change</p>
+          <p class="text-xs" style="color:#448aff;font-weight:600;margin-bottom:12px;cursor:pointer"
+            onclick="openAvatarPicker()">Tap to change</p>
           <h2 class="font-syne" style="font-size:1.4rem;font-weight:800;margin-bottom:6px">Complete Your Profile</h2>
           <p class="text-muted text-sm">Set up your profile to unlock your referral ID and earn coins!</p>
         </div>
@@ -429,8 +447,10 @@
             <option value="te">తెలుగు (Telugu)</option>
             <option value="bn">বাংলা (Bengali)</option>
           </select>
-          <button class="btn btn-white btn-full btn-lg" onclick="saveProfile()" style="margin-bottom:14px">Save &amp; Get My Referral ID 🎉</button>
-          <p class="text-center"><a href="#" onclick="skipProfile()" class="text-muted text-xs" style="text-decoration:underline">Skip for now</a></p>
+          <button class="btn btn-white btn-full btn-lg" onclick="saveProfile()" style="margin-bottom:14px">Save &amp;
+            Get My Referral ID 🎉</button>
+          <p class="text-center"><a href="#" onclick="skipProfile()" class="text-muted text-xs"
+              style="text-decoration:underline">Skip for now</a></p>
         </div>
       </div>
     </div>
@@ -464,9 +484,11 @@
         Grow31
       </div>
       <div class="flex items-center gap-3">
-        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span id="headerCoins">0</span>
+        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span
+            id="headerCoins">0</span>
         </div>
-        <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu" style="width:20px;height:20px"></i></button>
+        <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu"
+            style="width:20px;height:20px"></i></button>
       </div>
     </div>
 
@@ -476,16 +498,20 @@
       <div class="page-content page-content-ranked" id="pageHome" style="display:block">
         <!-- Profile greeting -->
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:4px 0">
-          <div class="avatar-sleek" id="dashAvatar" style="width:52px;height:52px;font-size:1.5rem;flex-shrink:0;margin:0;border-width:2.5px">
+          <div class="avatar-sleek" id="dashAvatar"
+            style="width:52px;height:52px;font-size:1.5rem;flex-shrink:0;margin:0;border-width:2.5px">
             🧑
           </div>
           <div style="flex:1;min-width:0">
-            <h2 style="font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2">Hi, <span
-                id="userName">User</span>! 👋</h2>
-            <p class="text-muted" style="font-size:.82rem;margin-top:2px">Day <span id="userDay">1</span> of 31 · Keep going! 🔥</p>
+            <h2
+              style="font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2">
+              Hi, <span id="userName">User</span>! 👋</h2>
+            <p class="text-muted" style="font-size:.82rem;margin-top:2px">Day <span id="userDay">1</span> of 31 · Keep
+              going! 🔥</p>
           </div>
           <div style="flex-shrink:0">
-            <button class="btn btn-outline" onclick="showDashPage('pageLeader')" style="width:42px;height:42px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,0.03)">
+            <button class="btn btn-outline" onclick="showDashPage('pageLeader')"
+              style="width:42px;height:42px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,0.03)">
               <i data-lucide="trophy" style="width:20px;height:20px;color:#FFD700"></i>
             </button>
           </div>
@@ -517,8 +543,9 @@
             <p class="text-muted text-xs" style="margin-bottom:14px;font-size:.8rem;line-height:1.4">Claim your daily
               bonus to keep your streak alive! 🔥</p>
             <button class="btn btn-sm" id="homeCheckInBtn" onclick="doCheckIn()"
-               style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease;width:100%;max-width:240px">
-              <i data-lucide="check-circle" style="width:16px;height:16px"></i> Check In Today (+5 <span class="g-coin"></span>)
+              style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease;width:100%;max-width:240px">
+              <i data-lucide="check-circle" style="width:16px;height:16px"></i> Check In Today (+5 <span
+                class="g-coin"></span>)
             </button>
           </div>
         </div>
@@ -550,7 +577,8 @@
 
         <!-- COMPLETE PROFILE CTA (if not completed) -->
         <div class="complete-profile-card" id="completeProfileCard" onclick="goToProfileSetup()">
-          <div class="avatar-sleek" id="completeProfileAvatar" style="width:40px;height:40px;font-size:1rem;flex-shrink:0;margin:0">
+          <div class="avatar-sleek" id="completeProfileAvatar"
+            style="width:40px;height:40px;font-size:1rem;flex-shrink:0;margin:0">
             <i data-lucide="sparkles" style="width:20px;height:20px"></i>
           </div>
           <div style="flex:1">
@@ -566,13 +594,15 @@
         <!-- REFERRAL INVITE CARD (highlighted) -->
         <div class="invite-card invite-card-glow mb-4" onclick="openReferralDialog()" style="margin-bottom:14px">
           <div>
-            <p style="font-weight:700;font-size:.95rem;margin-bottom:3px"><i data-lucide="users" style="width:18px;height:18px"></i> Invite Friends</p>
+            <p style="font-weight:700;font-size:.95rem;margin-bottom:3px"><i data-lucide="users"
+                style="width:18px;height:18px"></i> Invite Friends</p>
             <p style="font-size:.78rem;color:rgba(255,255,255,0.5)">Earn <span style="color:#00e676;font-weight:700"
                 id="homeRefCoins">+50 coins</span> per referral 🎁</p>
             <p style="font-size:.72rem;color:rgba(0,230,118,0.7);margin-top:3px">Your code: <span id="homeRefCode"
                 style="font-weight:700;font-family:'Poppins',sans-serif;letter-spacing:2px">—</span></p>
           </div>
-          <button class="btn btn-green btn-sm" style="pointer-events:none;flex-shrink:0">Invite <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button>
+          <button class="btn btn-green btn-sm" style="pointer-events:none;flex-shrink:0">Invite <i
+              data-lucide="arrow-right" style="width:14px;height:14px"></i></button>
         </div>
 
         <!-- STATS ROW -->
@@ -601,32 +631,38 @@
         <!-- QUICK ACTIONS GRID -->
         <div class="grid-2 mb-4" style="margin-bottom:14px">
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showDashPage('pageSpin')">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="dices" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="dices" style="width:32px;height:32px"></i>
+            </div>
             <p style="font-weight:700;font-size:.9rem">Spin Wheel</p>
             <p class="text-muted text-xs">Win big coins!</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showDashPage('pageQuiz')">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="brain" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="brain" style="width:32px;height:32px"></i>
+            </div>
             <p style="font-weight:700;font-size:.9rem">Daily Quiz</p>
             <p class="text-muted text-xs">10 Qs · Earn coins!</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('followView')">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="heart" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="heart" style="width:32px;height:32px"></i>
+            </div>
             <p style="font-weight:700;font-size:.9rem">Follow &amp; Earn</p>
             <p class="text-muted text-xs">Social rewards</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('winnersView')">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="medal" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="medal" style="width:32px;height:32px"></i>
+            </div>
             <p style="font-weight:700;font-size:.9rem">Winners</p>
             <p class="text-muted text-xs">Today's results</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="openBuyTiersDialog()">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="shopping-cart" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="shopping-cart"
+                style="width:32px;height:32px"></i></div>
             <p style="font-weight:700;font-size:.9rem">Buy More Tiers</p>
             <p class="text-muted text-xs">Advance faster with new tiers</p>
           </div>
           <div class="card" style="padding:16px;cursor:pointer;text-align:center" onclick="showView('videosView')">
-            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="play-circle" style="width:32px;height:32px"></i></div>
+            <div style="font-size:2rem;margin-bottom:6px"><i data-lucide="play-circle"
+                style="width:32px;height:32px"></i></div>
             <p style="font-weight:700;font-size:.9rem">Tutorial Videos</p>
             <p class="text-muted text-xs">Learn & earn!</p>
           </div>
@@ -649,7 +685,8 @@
 
       <!-- ─── TASKS PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageTasks" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <!-- AD -->
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
@@ -660,8 +697,10 @@
         </div>
         <!-- Tasks/Quiz tab row -->
         <div style="display:flex;gap:10px;margin-bottom:16px">
-          <button class="btn btn-blue btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageTasks')"><i data-lucide="clipboard-list" style="width:14px;height:14px"></i> Daily Tasks</button>
-          <button class="btn btn-outline btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageQuiz')"><i data-lucide="brain" style="width:14px;height:14px"></i> Daily Quiz</button>
+          <button class="btn btn-blue btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageTasks')"><i
+              data-lucide="clipboard-list" style="width:14px;height:14px"></i> Daily Tasks</button>
+          <button class="btn btn-outline btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageQuiz')"><i
+              data-lucide="brain" style="width:14px;height:14px"></i> Daily Quiz</button>
         </div>
         <h2 class="section-heading">Day <span id="taskDayNum">1</span> Tasks 📋 <span
             style="font-size:.75rem;color:#FFD700;font-weight:600">5 <span class="g-coin"></span> each</span></h2>
@@ -680,7 +719,8 @@
 
       <!-- ─── TIERS PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageTiers" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <!-- AD -->
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
@@ -749,7 +789,8 @@
 
       <!-- ─── SPIN PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageSpin" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <!-- AD -->
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
@@ -768,7 +809,8 @@
           </div>
           <div class="spin-btn-row">
             <button class="btn btn-blue btn-full" onclick="doSpin('coins')" id="spinBtn1">
-              <i data-lucide="ticket" style="width:18px;height:18px"></i> Spin Wheel<br><span style="font-size:.7rem;opacity:.7">Use 1 ticket</span>
+              <i data-lucide="ticket" style="width:18px;height:18px"></i> Spin Wheel<br><span
+                style="font-size:.7rem;opacity:.7">Use 1 ticket</span>
             </button>
           </div>
           <!-- Watch Ads row -->
@@ -781,7 +823,8 @@
         <div class="spin-info-row">
           <div class="spin-token-box">🎟️ <span id="spinTickets">3</span> tickets <button class="btn btn-outline btn-sm"
               onclick="buyTickets()" style="margin-left:6px;padding:4px 8px;font-size:.7rem">+</button></div>
-          <div class="spin-token-box" style="color:#FFD700"><span class="g-coin"></span> <span id="spinCoins">0</span></div>
+          <div class="spin-token-box" style="color:#FFD700"><span class="g-coin"></span> <span id="spinCoins">0</span>
+          </div>
         </div>
         <div style="margin-top:16px">
           <h3 class="section-heading" style="font-size:1rem;margin-bottom:10px">Recent Wins 🏆</h3>
@@ -799,7 +842,8 @@
 
       <!-- ─── LEADERBOARD PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageLeader" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <!-- AD -->
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
@@ -877,7 +921,8 @@
 
       <!-- ─── QUIZ PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageQuiz" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
             <p style="font-weight:600;font-size:.85rem">Advertisement Space</p>
@@ -887,14 +932,17 @@
         </div>
         <!-- Tasks/Quiz tab row -->
         <div style="display:flex;gap:10px;margin-bottom:16px">
-          <button class="btn btn-outline btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageTasks')"><i data-lucide="clipboard-list" style="width:14px;height:14px"></i> Daily Tasks</button>
-          <button class="btn btn-blue btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageQuiz')"><i data-lucide="brain" style="width:14px;height:14px"></i> Daily Quiz</button>
+          <button class="btn btn-outline btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageTasks')"><i
+              data-lucide="clipboard-list" style="width:14px;height:14px"></i> Daily Tasks</button>
+          <button class="btn btn-blue btn-sm" style="flex:1;font-size:.85rem" onclick="showDashPage('pageQuiz')"><i
+              data-lucide="brain" style="width:14px;height:14px"></i> Daily Quiz</button>
         </div>
         <div
           style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
           <h2 class="section-heading" style="margin-bottom:0">Daily Quiz 🧠</h2>
           <span class="badge badge-yellow"
-            style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)">+5 <span class="g-coin"></span> per
+            style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)">+5 <span
+              class="g-coin"></span> per
             correct</span>
         </div>
         <!-- Quiz progress bar -->
@@ -922,7 +970,8 @@
 
       <!-- ─── MORE PAGE ─── -->
       <div class="page-content page-content-ranked" id="pageMore" style="display:none">
-        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
+        <div style="margin-bottom:12px"><button class="back-btn" onclick="showDashPage('pageHome')" style="margin:0"><i
+              data-lucide="chevron-left" style="width:18px;height:18px"></i> Back</button></div>
         <!-- AD -->
         <div class="banner-ad" style="margin-bottom:14px"><span style="font-size:1.2rem">📢</span>
           <div style="text-align:left">
@@ -940,15 +989,17 @@
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
               <p style="font-weight:700;font-size:1.05rem;font-family:'Poppins',sans-serif" id="moreUsername">User</p>
               <button class="btn btn-outline btn-sm" onclick="openUsernameEditDialog()"
-                style="padding:2px 8px;font-size:.7rem"><i data-lucide="edit-3" style="width:12px;height:12px"></i></button>
+                style="padding:2px 8px;font-size:.7rem"><i data-lucide="edit-3"
+                  style="width:12px;height:12px"></i></button>
               <button class="btn btn-outline btn-sm" onclick="triggerPhotoUpload()"
-                style="padding:2px 8px;font-size:.7rem"><i data-lucide="camera" style="width:12px;height:12px"></i></button>
+                style="padding:2px 8px;font-size:.7rem"><i data-lucide="camera"
+                  style="width:12px;height:12px"></i></button>
             </div>
             <p class="text-muted text-xs" id="morePhone">+91 xxxxxxxx</p>
             <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
               <span class="badge badge-yellow"
-                style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)"><span class="g-coin"></span> <span
-                  id="moreCoins">0</span></span>
+                style="color:#FFD700;background:rgba(212,170,0,0.18);border-color:rgba(255,215,0,0.4)"><span
+                  class="g-coin"></span> <span id="moreCoins">0</span></span>
               <span class="badge badge-blue">Tier <span id="moreTier">31</span></span>
             </div>
           </div>
@@ -976,19 +1027,22 @@
             <span style="font-size:1.2rem;color:#f5c518"><i data-lucide="brain"></i></span>
             <span style="flex:1;font-weight:500">Daily Quiz</span>
             <span class="badge badge-green">+5 <span class="g-coin"></span>/Q</span>
-            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="openReferralDialog()">
             <span style="font-size:1.2rem;color:#00e676"><i data-lucide="users"></i></span>
             <span style="flex:1;font-weight:500">My Referrals</span>
             <span class="badge badge-green" id="moreRefCount">0</span>
-            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="openPerksView()">
             <span style="font-size:1.2rem;color:#ce93d8"><i data-lucide="gift"></i></span>
             <span style="flex:1;font-weight:500">Perks &amp; Rewards</span>
             <span class="badge badge-purple">New</span>
-            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="showView('winnersView')">
             <span style="font-size:1.2rem;color:#f5c518"><i data-lucide="medal"></i></span>
@@ -1005,12 +1059,14 @@
           <div class="list-item" style="cursor:pointer" onclick="openDrawer('lang')">
             <span style="font-size:1.2rem;color:#80deea"><i data-lucide="languages"></i></span>
             <span style="flex:1;font-weight:500">Language</span>
-            <span class="text-muted" id="moreLang">English <i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" id="moreLang">English <i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="openDrawer('country')">
             <span style="font-size:1.2rem;color:#c5e1a5"><i data-lucide="globe"></i></span>
             <span style="flex:1;font-weight:500">Country</span>
-            <span class="text-muted" id="moreCountry">🇮🇳 India <i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" id="moreCountry">🇮🇳 India <i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
         </div>
         <div class="card" style="margin-bottom:12px">
@@ -1018,7 +1074,8 @@
             <span style="font-size:1.2rem;color:#448aff"><i data-lucide="bot"></i></span>
             <span style="flex:1;font-weight:500">AI Assistant</span>
             <span class="badge badge-blue">New</span>
-            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
+            <span class="text-muted" style="margin-left:8px"><i data-lucide="chevron-right"
+                style="width:16px;height:16px"></i></span>
           </div>
           <div class="list-item" style="cursor:pointer" onclick="showView('helpView')">
             <span style="font-size:1.2rem;color:#ffca28"><i data-lucide="help-circle"></i></span>
@@ -1044,7 +1101,8 @@
           </div>
           <div class="banner-ad-label">AD</div>
         </div>
-        <button class="btn btn-danger btn-full" onclick="doLogout()" style="margin-top:8px"><i data-lucide="log-out" style="width:18px;height:18px"></i> Logout</button>
+        <button class="btn btn-danger btn-full" onclick="doLogout()" style="margin-top:8px"><i data-lucide="log-out"
+            style="width:18px;height:18px"></i> Logout</button>
         <p class="text-xs text-muted text-center" style="margin-top:16px;opacity:.4">Grow31 v1.0 · <a
             href="/cdn-cgi/l/email-protection#ef9c9a9f9f809d9baf889d8098dcdec18c8082" style="color:inherit"><span
               class="__cf_email__"
@@ -1071,7 +1129,8 @@
         <span class="nav-icon"><i data-lucide="dices"></i></span>Spin
       </button>
       <button class="nav-btn" id="navMore" onclick="showDashPage('pageMore')">
-        <span class="nav-icon" id="navMoreAvatar" style="width:24px;height:24px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:1.1rem">👤</span>More
+        <span class="nav-icon" id="navMoreAvatar"
+          style="width:24px;height:24px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:1.1rem">👤</span>More
       </button>
     </div>
 
@@ -1098,12 +1157,14 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="videosView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Tutorial Videos</div>
       <div style="width:60px"></div>
     </div>
     <div class="page-content">
-      <h2 class="section-heading">Learn How to Grow31 <i data-lucide="play-circle" style="width:20px;height:20px"></i></h2>
+      <h2 class="section-heading">Learn How to Grow31 <i data-lucide="play-circle" style="width:20px;height:20px"></i>
+      </h2>
       <p class="text-muted text-sm" style="margin-bottom:20px;line-height:1.6">Watch these tutorial videos to understand
         how Grow31 works, earn coins, climb the leaderboard, and maximize your rewards!</p>
 
@@ -1224,7 +1285,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="followView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Follow &amp; Earn</div>
       <div class="coins-pill"><span class="g-coin"></span> <span id="followCoins">0</span></div>
     </div>
@@ -1379,7 +1441,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="winnersView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Winners</div>
       <div style="width:60px"></div>
     </div>
@@ -1389,7 +1452,8 @@
       <!-- Countdown Timer -->
       <div
         style="background:linear-gradient(135deg,rgba(68,138,255,0.12),rgba(156,39,176,0.08));border:1px solid rgba(68,138,255,0.25);border-radius:14px;padding:14px;margin-bottom:16px;text-align:center">
-        <p class="text-xs text-muted" style="margin-bottom:4px"><i data-lucide="clock" style="width:12px;height:12px"></i> Next Results Announcement In</p>
+        <p class="text-xs text-muted" style="margin-bottom:4px"><i data-lucide="clock"
+            style="width:12px;height:12px"></i> Next Results Announcement In</p>
         <p style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#82b1ff"
           class="countdown-timer">—</p>
         <p class="text-xs text-muted" style="margin-top:4px;opacity:.6">Winners announced at midnight daily</p>
@@ -1397,9 +1461,12 @@
 
       <!-- Tabs -->
       <div style="display:flex;gap:8px;margin-bottom:16px">
-        <button class="btn btn-blue btn-sm" id="wTab1" onclick="switchWinnersTab('winners')"><i data-lucide="award" style="width:14px;height:14px"></i> Winners</button>
-        <button class="btn btn-outline btn-sm" id="wTab2" onclick="switchWinnersTab('updates')"><i data-lucide="megaphone" style="width:14px;height:14px"></i> Updates</button>
-        <button class="btn btn-outline btn-sm" id="wTab3" onclick="switchWinnersTab('schedule')"><i data-lucide="calendar" style="width:14px;height:14px"></i> Schedule</button>
+        <button class="btn btn-blue btn-sm" id="wTab1" onclick="switchWinnersTab('winners')"><i data-lucide="award"
+            style="width:14px;height:14px"></i> Winners</button>
+        <button class="btn btn-outline btn-sm" id="wTab2" onclick="switchWinnersTab('updates')"><i
+            data-lucide="megaphone" style="width:14px;height:14px"></i> Updates</button>
+        <button class="btn btn-outline btn-sm" id="wTab3" onclick="switchWinnersTab('schedule')"><i
+            data-lucide="calendar" style="width:14px;height:14px"></i> Schedule</button>
       </div>
 
       <!-- Winners Tab -->
@@ -1501,7 +1568,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="aiChatView" style="min-height:100vh">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">AI Assistant</div>
       <button class="btn btn-outline btn-sm" onclick="clearChat()">Clear</button>
     </div>
@@ -1513,7 +1581,8 @@
       <div class="chat-input-row">
         <input class="chat-input" id="chatInput" placeholder="Ask anything..."
           onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="chat-send" onclick="sendChat()"><i data-lucide="send" style="width:18px;height:18px"></i></button>
+        <button class="chat-send" onclick="sendChat()"><i data-lucide="send"
+            style="width:18px;height:18px"></i></button>
       </div>
     </div>
   </div>
@@ -1523,7 +1592,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="helpView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Help</div>
       <div style="width:60px"></div>
     </div>
@@ -1531,7 +1601,8 @@
       <h2 class="section-heading">Help &amp; Support</h2>
       <div class="card mb-4" style="margin-bottom:12px">
         <div class="card-content">
-          <p style="font-weight:700;margin-bottom:6px"><i data-lucide="mail" style="width:16px;height:16px"></i> Email Support</p>
+          <p style="font-weight:700;margin-bottom:6px"><i data-lucide="mail" style="width:16px;height:16px"></i> Email
+            Support</p>
           <p class="text-muted text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
               data-cfemail="98ebede8e8f7eaecd8ffeaf7efaba9b6fbf7f5">[email&#160;protected]</a></p>
           <p class="text-muted text-xs" style="margin-top:4px">Response within 24 hours</p>
@@ -1539,7 +1610,8 @@
       </div>
       <div class="card mb-4" style="margin-bottom:12px">
         <div class="card-content">
-          <p style="font-weight:700;margin-bottom:10px"><i data-lucide="help-circle" style="width:16px;height:16px"></i> Frequently Asked Questions</p>
+          <p style="font-weight:700;margin-bottom:10px"><i data-lucide="help-circle" style="width:16px;height:16px"></i>
+            Frequently Asked Questions</p>
           <div style="border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:10px;margin-bottom:10px">
             <p style="font-weight:600;font-size:.9rem;margin-bottom:4px">How do I earn coins?</p>
             <p class="text-muted text-sm">Complete daily tasks, refer friends, spin the wheel, follow on social media,
@@ -1568,7 +1640,8 @@
   <!-- TERMS VIEW 2 (from inside app) -->
   <div class="view" id="termsView2">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Policies</div>
       <div style="width:60px"></div>
     </div>
@@ -1579,7 +1652,8 @@
         <button class="terms-tab-btn" onclick="switchTermsTab2('privacy2',this)">Privacy</button>
         <button class="terms-tab-btn" onclick="switchTermsTab2('refund2',this)">Refund</button>
       </div>
-      <div class="terms-body terms-tab-panel active collapsed" id="tpanel-tc2" style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
+      <div class="terms-body terms-tab-panel active collapsed" id="tpanel-tc2"
+        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
         <h4>TERMS &amp; CONDITIONS – GROW31</h4>
         <h4>1. Platform Nature</h4>
         <p>Grow31 is a membership-based community participation platform. It is <b>NOT</b> an investment scheme or
@@ -1616,7 +1690,8 @@
         <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
             data-cfemail="6c1f191c1c031e182c0b1e031b5f5d420f0301">[email&#160;protected]</a></p>
       </div>
-      <div class="terms-body terms-tab-panel collapsed" id="tpanel-privacy2" style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
+      <div class="terms-body terms-tab-panel collapsed" id="tpanel-privacy2"
+        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
         <h4>PRIVACY POLICY – GROW31</h4>
         <h4>1. Information We Collect</h4>
         <p>Name, phone number, email (if provided), usage &amp; activity data.</p>
@@ -1638,7 +1713,8 @@
         <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
             data-cfemail="11626461617e63655176637e6622203f727e7c">[email&#160;protected]</a></p>
       </div>
-      <div class="terms-body terms-tab-panel collapsed" id="tpanel-refund2" style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
+      <div class="terms-body terms-tab-panel collapsed" id="tpanel-refund2"
+        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
         <h4>REFUND POLICY – GROW31</h4>
         <h4>1. No Refund Policy</h4>
         <p>All payments are <b>non-refundable</b>. Once access granted, no refunds entertained.</p>
@@ -1652,8 +1728,11 @@
         <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
             data-cfemail="6b181e1b1b04191f2b0c19041c585a45080406">[email&#160;protected]</a></p>
       </div>
-      <div id="termsReadMore2" style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
-        <button class="btn-sm" onclick="expandTerms2(this)" style="background:none;border:none;color:#000;font-weight:800;font-size:.85rem;cursor:pointer;padding:10px 20px">Show more</button>
+      <div id="termsReadMore2"
+        style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
+        <button class="btn-sm" onclick="expandTerms2(this)"
+          style="background:none;border:none;color:#000;font-weight:800;font-size:.85rem;cursor:pointer;padding:10px 20px">Show
+          more</button>
       </div>
     </div>
   </div>
@@ -1663,7 +1742,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="contactView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Contact</div>
       <div style="width:60px"></div>
     </div>
@@ -1674,8 +1754,13 @@
 
       <!-- Phone Number -->
       <div class="contact-card" onclick="window.open('tel:8097781211')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#25D366;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,0.3)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .62 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.62A2 2 0 0 1 22 16.92z"></path></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#25D366;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,0.3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .62 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.62A2 2 0 0 1 22 16.92z">
+            </path>
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">Call Support</p>
@@ -1685,8 +1770,12 @@
       </div>
 
       <div class="contact-card" onclick="window.open('mailto:support@grow31.com')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#448aff;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(68,138,255,0.3)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#448aff;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(68,138,255,0.3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">Email Support</p>
@@ -1697,8 +1786,12 @@
 
       <!-- Social Links -->
       <div class="contact-card" onclick="window.open('https://www.instagram.com/_grow31','_blank')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(220,39,67,0.3)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(220,39,67,0.3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">Instagram</p>
@@ -1708,8 +1801,12 @@
       </div>
 
       <div class="contact-card" onclick="window.open('https://youtube.com/@grow31-u3s','_blank')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#FF0000;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(255,0,0,0.3)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#FF0000;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(255,0,0,0.3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">YouTube Channel</p>
@@ -1719,8 +1816,12 @@
       </div>
 
       <div class="contact-card" onclick="window.open('https://wa.me/918097781211')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#25D366;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,0.3)">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.764.46 3.42 1.264 4.86L2 22l5.304-1.392c1.404.764 3.008 1.196 4.708 1.196 5.508 0 9.988-4.48 9.988-9.988S17.52 2 12.012 2zm5.72 14.656c-.244.688-1.428 1.256-1.956 1.336-.472.072-1.088.104-1.748-.108-.4-.128-.9-.304-1.544-.58-2.736-1.184-4.52-3.952-4.656-4.136-.136-.184-1.108-1.472-1.108-2.812 0-1.34.7-2.004.948-2.268.248-.264.54-.332.72-.332.18 0 .36 0 .516.008.164.004.388-.06.604.464.224.544.76 1.848.824 1.98.068.132.112.284.024.46-.088.176-.132.284-.264.436l-.388.452c-.128.148-.264.312-.112.576.152.264.676 1.112 1.448 1.804.996.888 1.836 1.164 2.1 1.3.264.136.416.116.572-.064.156-.18.668-.78.844-1.044.176-.264.352-.224.592-.136s1.536.724 1.8.856c.264.132.44.2.504.308.064.108.064.624-.18 1.312z"/></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#25D366;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,0.3)">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.764.46 3.42 1.264 4.86L2 22l5.304-1.392c1.404.764 3.008 1.196 4.708 1.196 5.508 0 9.988-4.48 9.988-9.988S17.52 2 12.012 2zm5.72 14.656c-.244.688-1.428 1.256-1.956 1.336-.472.072-1.088.104-1.748-.108-.4-.128-.9-.304-1.544-.58-2.736-1.184-4.52-3.952-4.656-4.136-.136-.184-1.108-1.472-1.108-2.812 0-1.34.7-2.004.948-2.268.248-.264.54-.332.72-.332.18 0 .36 0 .516.008.164.004.388-.06.604.464.224.544.76 1.848.824 1.98.068.132.112.284.024.46-.088.176-.132.284-.264.436l-.388.452c-.128.148-.264.312-.112.576.152.264.676 1.112 1.448 1.804.996.888 1.836 1.164 2.1 1.3.264.136.416.116.572-.064.156-.18.668-.78.844-1.044.176-.264.352-.224.592-.136s1.536.724 1.8.856c.264.132.44.2.504.308.064.108.064.624-.18 1.312z" />
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">WhatsApp Support</p>
@@ -1730,8 +1831,12 @@
       </div>
 
       <div class="contact-card" onclick="window.open('https://t.me/+JhvCkrA8Fg8yZTVl')">
-        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#0088cc;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(0,136,204,0.3)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7.021l-2.02 9.551c-.15.682-.557.85-.1.459l-3.084-2.274-1.489 1.432c-.164.164-.302.302-.62.302l.221-3.142 5.719-5.166c.249-.221-.054-.344-.381-.127l-7.07 4.453-3.041-.951c-.662-.207-.674-.662.138-.98l11.895-4.584c.551-.201 1.034.129.832.926z"/></svg>
+        <div
+          style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#0088cc;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(0,136,204,0.3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7.021l-2.02 9.551c-.15.682-.557.85-.1.459l-3.084-2.274-1.489 1.432c-.164.164-.302.302-.62.302l.221-3.142 5.719-5.166c.249-.221-.054-.344-.381-.127l-7.07 4.453-3.041-.951c-.662-.207-.674-.662.138-.98l11.895-4.584c.551-.201 1.034.129.832.926z" />
+          </svg>
         </div>
         <div>
           <p style="font-weight:700;font-size:.95rem">Telegram Community</p>
@@ -1755,7 +1860,8 @@
   <!-- ═════════════════════════════════════════ -->
   <div class="view" id="adminView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text">Admin Panel</div>
       <button class="btn btn-outline btn-sm" onclick="exitAdmin()">Exit</button>
     </div>
@@ -1814,47 +1920,65 @@
       <span class="drawer-item-icon"><i data-lucide="user"></i></span>Profile<span class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showLangDialog()">
-      <span class="drawer-item-icon"><i data-lucide="languages"></i></span>Language<span class="drawer-item-arr">›</span>
+      <span class="drawer-item-icon"><i data-lucide="languages"></i></span>Language<span
+        class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showCountryDialog()">
       <span class="drawer-item-icon"><i data-lucide="globe"></i></span>Country<span class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('helpView')">
-      <span class="drawer-item-icon"><i data-lucide="help-circle"></i></span>Help &amp; Support<span class="drawer-item-arr">›</span>
+      <span class="drawer-item-icon"><i data-lucide="help-circle"></i></span>Help &amp; Support<span
+        class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('contactView')">
       <span class="drawer-item-icon"><i data-lucide="phone"></i></span>Contact Us<span class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('termsView2')">
-      <span class="drawer-item-icon"><i data-lucide="file-text"></i></span>Terms &amp; Conditions<span class="drawer-item-arr">›</span>
+      <span class="drawer-item-icon"><i data-lucide="file-text"></i></span>Terms &amp; Conditions<span
+        class="drawer-item-arr">›</span>
     </div>
     <div class="drawer-item" onclick="closeDrawer();showView('aiChatView')">
       <span class="drawer-item-icon"><i data-lucide="bot"></i></span>AI Assistant <span class="badge badge-blue"
         style="margin-left:6px;font-size:.6rem">NEW</span><span class="drawer-item-arr">›</span>
     </div>
     <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.07)">
-      <p class="text-xs text-muted" style="margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase">Follow Grow31</p>
+      <p class="text-xs text-muted" style="margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase">Follow
+        Grow31</p>
       <div class="social-links" style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="social-btn" href="https://www.instagram.com/_grow31?igsh=ZTdneTg0OXVkYTRy&utm_source=qr" target="_blank"
+        <a class="social-btn" href="https://www.instagram.com/_grow31?igsh=ZTdneTg0OXVkYTRy&utm_source=qr"
+          target="_blank"
           style="color:#fff;background:linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);border:none;box-shadow:0 4px 12px rgba(220,39,67,0.3)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
         </a>
         <a class="social-btn" href="https://youtube.com/@grow31-u3s?si=RVZX6ZbiKUb6jhWq" target="_blank"
           style="color:#fff;background:#FF0000;border:none;box-shadow:0 4px 12px rgba(255,0,0,0.3)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+          </svg>
         </a>
         <a class="social-btn" href="https://t.me/+JhvCkrA8Fg8yZTVl" target="_blank"
           style="color:#fff;background:#0088cc;border:none;box-shadow:0 4px 12px rgba(0,136,204,0.3)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7.021l-2.02 9.551c-.15.682-.557.85-.1.459l-3.084-2.274-1.489 1.432c-.164.164-.302.302-.62.302l.221-3.142 5.719-5.166c.249-.221-.054-.344-.381-.127l-7.07 4.453-3.041-.951c-.662-.207-.674-.662.138-.98l11.895-4.584c.551-.201 1.034.129.832.926z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7.021l-2.02 9.551c-.15.682-.557.85-.1.459l-3.084-2.274-1.489 1.432c-.164.164-.302.302-.62.302l.221-3.142 5.719-5.166c.249-.221-.054-.344-.381-.127l-7.07 4.453-3.041-.951c-.662-.207-.674-.662.138-.98l11.895-4.584c.551-.201 1.034.129.832.926z" />
+          </svg>
         </a>
         <a class="social-btn" href="https://wa.me/918097781211" target="_blank"
           style="color:#fff;background:#25D366;border:none;box-shadow:0 4px 12px rgba(37,211,102,0.3)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.764.46 3.42 1.264 4.86L2 22l5.304-1.392c1.404.764 3.008 1.196 4.708 1.196 5.508 0 9.988-4.48 9.988-9.988S17.52 2 12.012 2zm5.72 14.656c-.244.688-1.428 1.256-1.956 1.336-.472.072-1.088.104-1.748-.108-.4-.128-.9-.304-1.544-.58-2.736-1.184-4.52-3.952-4.656-4.136-.136-.184-1.108-1.472-1.108-2.812 0-1.34.7-2.004.948-2.268.248-.264.54-.332.72-.332.18 0 .36 0 .516.008.164.004.388-.06.604.464.224.544.76 1.848.824 1.98.068.132.112.284.024.46-.088.176-.132.284-.264.436l-.388.452c-.128.148-.264.312-.112.576.152.264.676 1.112 1.448 1.804.996.888 1.836 1.164 2.1 1.3.264.136.416.116.572-.064.156-.18.668-.78.844-1.044.176-.264.352-.224.592-.136s1.536.724 1.8.856c.264.132.44.2.504.308.064.108.064.624-.18 1.312z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.764.46 3.42 1.264 4.86L2 22l5.304-1.392c1.404.764 3.008 1.196 4.708 1.196 5.508 0 9.988-4.48 9.988-9.988S17.52 2 12.012 2zm5.72 14.656c-.244.688-1.428 1.256-1.956 1.336-.472.072-1.088.104-1.748-.108-.4-.128-.9-.304-1.544-.58-2.736-1.184-4.52-3.952-4.656-4.136-.136-.184-1.108-1.472-1.108-2.812 0-1.34.7-2.004.948-2.268.248-.264.54-.332.72-.332.18 0 .36 0 .516.008.164.004.388-.06.604.464.224.544.76 1.848.824 1.98.068.132.112.284.024.46-.088.176-.132.284-.264.436l-.388.452c-.128.148-.264.312-.112.576.152.264.676 1.112 1.448 1.804.996.888 1.836 1.164 2.1 1.3.264.136.416.116.572-.064.156-.18.668-.78.844-1.044.176-.264.352-.224.592-.136s1.536.724 1.8.856c.264.132.44.2.504.308.064.108.064.624-.18 1.312z" />
+          </svg>
         </a>
       </div>
     </div>
     <div style="padding:16px 20px">
-      <button class="btn btn-danger btn-full" onclick="closeDrawer();doLogout()"><i data-lucide="log-out" style="width:18px;height:18px"></i> Logout</button>
+      <button class="btn btn-danger btn-full" onclick="closeDrawer();doLogout()"><i data-lucide="log-out"
+          style="width:18px;height:18px"></i> Logout</button>
     </div>
   </div>
 
@@ -1865,7 +1989,8 @@
       <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px">👥 Your Referral
       </h3>
       <p class="text-muted text-sm" style="margin-bottom:12px;font-size:.85rem">Share with friends to earn <span
-          id="refPerReferralLabel" style="color:#FFD700;font-weight:700">+50 <span class="g-coin"></span></span> each!</p>
+          id="refPerReferralLabel" style="color:#FFD700;font-weight:700">+50 <span class="g-coin"></span></span> each!
+      </p>
       <div class="ref-code-display">
         <p class="text-xs text-muted" style="margin-bottom:4px">Your Referral Link</p>
         <h2 class="ref-code-text" id="myRefCodeDisplay" style="font-size:1rem;letter-spacing:1px;word-break:break-all">
@@ -1903,14 +2028,15 @@
   <div class="dialog-overlay" id="walletDialog">
     <div class="dialog" style="max-width:400px">
       <button class="dialog-close" onclick="closeDialog('walletDialog')">✕</button>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px"><span class="g-coin"></span> Coin Wallet
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px"><span
+          class="g-coin"></span> Coin Wallet
       </h3>
       <p class="text-muted text-xs" style="margin-bottom:16px">Your earnings &amp; payout history</p>
       <div
         style="background:linear-gradient(135deg,rgba(212,170,0,0.12),rgba(68,138,255,0.06));border:1px solid rgba(255,215,0,0.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:16px">
         <p class="text-xs text-muted" style="margin-bottom:4px">Total Balance</p>
-        <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:#FFD700"><span class="g-coin"></span> <span
-            id="walletBalance">0</span></div>
+        <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:#FFD700"><span
+            class="g-coin"></span> <span id="walletBalance">0</span></div>
         <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
           <span class="badge badge-pending">⏳ Payout: Pending Admin Verification</span>
         </div>
@@ -1931,7 +2057,8 @@
       <button class="dialog-close" onclick="closeDialog('buyTiersDialog')">✕</button>
       <div style="text-align:center;margin-bottom:14px">
         <div style="font-size:2rem;margin-bottom:6px">🛒</div>
-        <h3 style="font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:2px">Buy More Tiers</h3>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:2px">Buy More Tiers
+        </h3>
         <p class="text-muted text-xs">Upgrade your pool access with tier purchases</p>
       </div>
 
@@ -1990,7 +2117,8 @@
         <div
           style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:.78rem;color:rgba(255,255,255,0.7)">
           <span
-            style="width:20px;height:20px;background:rgba(156,39,176,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem"><span class="g-coin"></span></span>
+            style="width:20px;height:20px;background:rgba(156,39,176,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem"><span
+              class="g-coin"></span></span>
           <span>Daily Coin Rewards + Bonuses</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:.78rem;color:rgba(255,255,255,0.7)">
@@ -2001,8 +2129,10 @@
       </div>
 
       <div style="display:flex;gap:10px;margin-top:14px">
-        <button class="btn btn-outline btn-full" onclick="closeDialog('buyTiersDialog')" style="font-weight:600;padding:12px">Back</button>
-        <button class="btn btn-white btn-full" onclick="confirmBuyTiers()" style="font-weight:700;padding:12px">Proceed 🚀</button>
+        <button class="btn btn-outline btn-full" onclick="closeDialog('buyTiersDialog')"
+          style="font-weight:600;padding:12px">Back</button>
+        <button class="btn btn-white btn-full" onclick="confirmBuyTiers()" style="font-weight:700;padding:12px">Proceed
+          🚀</button>
       </div>
       <p class="text-xs text-muted text-center" style="margin-top:10px;opacity:.5">🔒 Demo payment enabled · secure
         simulation only</p>
@@ -2012,7 +2142,8 @@
   <!-- PERKS VIEW -->
   <div class="view" id="perksView">
     <div class="app-header">
-      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left" style="width:20px;height:20px"></i> Back</button>
+      <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
+          style="width:20px;height:20px"></i> Back</button>
       <div class="logo-text"><img src="Images/LOGO.jpeg" alt="Grow31" class="app-logo"> Perks</div>
       <div class="coins-pill"><span class="g-coin"></span> <span id="perksCoins">0</span></div>
     </div>
@@ -2031,7 +2162,7 @@
       <button class="dialog-close" onclick="closeDialog('avatarPickerDialog')">✕</button>
       <h3 style="font-family:'Poppins',sans-serif;font-weight:800;margin-bottom:4px">Select Avatar</h3>
       <p class="text-muted text-xs" style="margin-bottom:16px">Choose a sleek profile image or upload your own</p>
-      
+
       <div id="avatarOptionsGrid" class="av-picker-grid"></div>
 
       <div style="margin-top:20px;display:flex;gap:10px">
@@ -2042,7 +2173,8 @@
 
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)">
         <p class="text-xs text-muted" style="margin-bottom:10px">Or upload your own photo</p>
-        <input type="file" id="avatarUploadInput" style="display:none" accept="image/*" onchange="handleAvatarUpload(event)">
+        <input type="file" id="avatarUploadInput" style="display:none" accept="image/*"
+          onchange="handleAvatarUpload(event)">
         <button class="btn btn-outline btn-full" onclick="document.getElementById('avatarUploadInput').click()">
           <i data-lucide="upload" style="width:16px;height:16px"></i> Upload Photo
         </button>
@@ -2085,7 +2217,8 @@
       <h3 id="tierDialogTitle" style="font-family:'Poppins',sans-serif;font-weight:800;margin-bottom:4px">Tier Info</h3>
       <p id="tierDialogDesc" class="text-muted text-xs" style="margin-bottom:16px"></p>
       <div id="tierDialogContent"></div>
-      <button class="btn btn-outline btn-full btn-sm" onclick="closeDialog('tierDialog')" style="margin-top:16px">Back</button>
+      <button class="btn btn-outline btn-full btn-sm" onclick="closeDialog('tierDialog')"
+        style="margin-top:16px">Back</button>
     </div>
   </div>
 
@@ -2096,4 +2229,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
