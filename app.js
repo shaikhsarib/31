@@ -381,10 +381,21 @@ function loginSuccess() {
     return;
   }
 
-  // 4. Final Destination: Dashboard
-  showView('dashView');
-  renderDash();
-  initSpinWheel();
+  // 4. Final Destination: Dashboard or Persisted View
+  const lastView = DB.get('lastView');
+  const ignoreViews = ['authView', 'splashView', 'termsView', 'paymentView', 'profileSetupView'];
+  if (lastView && !ignoreViews.includes(lastView)) {
+    showView(lastView);
+    // Extra initialization if the restored view is the dashboard
+    if (lastView === 'dashView') {
+      renderDash();
+      initSpinWheel();
+    }
+  } else {
+    showView('dashView');
+    renderDash();
+    initSpinWheel();
+  }
 }
 
 // ═══════════════════════════════════════════════════════
