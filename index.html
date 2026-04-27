@@ -543,8 +543,8 @@
             <p class="text-muted text-xs" style="margin-bottom:14px;font-size:.8rem;line-height:1.4" data-i18n="claim_bonus">Claim your daily
               bonus to keep your streak alive! 🔥</p>
             <button class="btn btn-sm" id="homeCheckInBtn" onclick="doCheckIn()"
-              style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease;width:100%;max-width:240px" data-i18n="checkin_btn">
-              <i data-lucide="check-circle" style="width:16px;height:16px"></i> Check In Today (+5 <span
+              style="background:linear-gradient(135deg,#00e676,#1de9b6);color:#000;font-weight:700;border:none;box-shadow:0 4px 16px rgba(0,230,118,0.3);transition:all .3s ease;width:100%;max-width:240px">
+              <i data-lucide="check-circle" style="width:16px;height:16px"></i> <span data-i18n="checkin_btn">Check In Today</span> (+5 <span
                 class="g-coin"></span>)
             </button>
           </div>
@@ -555,7 +555,7 @@
           style="background:linear-gradient(135deg,rgba(156,39,176,0.12),rgba(68,138,255,0.06));border:1px solid rgba(156,39,176,0.25);">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div>
-              <p style="font-weight:700;font-size:.92rem;margin-bottom:2px" data-i18n="challenge_active">🚀 31-Day Challenge Active!</p>
+              <p style="font-weight:700;font-size:.92rem;margin-bottom:2px">🚀 <span data-i18n="challenge_active">31-Day Challenge Active!</span></p>
               <p class="text-muted text-xs" data-i18n="complete_tasks">Complete tasks daily to climb the leaderboard</p>
             </div>
             <div style="text-align:center;min-width:60px">
@@ -595,7 +595,7 @@
         <div class="invite-card invite-card-glow mb-4" onclick="openReferralDialog()" style="margin-bottom:14px">
           <div>
             <p style="font-weight:700;font-size:.95rem;margin-bottom:3px"><i data-lucide="users"
-                style="width:18px;height:18px"></i> Invite Friends</p>
+                style="width:18px;height:18px"></i> <span data-i18n="invite_friends">Invite Friends</span></p>
             <p style="font-size:.78rem;color:rgba(255,255,255,0.5)">Earn <span style="color:#00e676;font-weight:700"
                 id="homeRefCoins">+50 coins</span> per referral 🎁</p>
             <p style="font-size:.72rem;color:rgba(0,230,118,0.7);margin-top:3px">Your code: <span id="homeRefCode"

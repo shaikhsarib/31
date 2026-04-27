@@ -233,17 +233,7 @@ function translateApp() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) {
-      // If it has children (like an icon), only replace the text node
-      if (el.children.length > 0) {
-        // Find text node
-        Array.from(el.childNodes).forEach(node => {
-          if (node.nodeType === 3 && node.textContent.trim().length > 0) {
-            node.textContent = node.textContent.replace(node.textContent.trim(), dict[key]);
-          }
-        });
-      } else {
-        el.textContent = dict[key];
-      }
+      el.innerText = dict[key];
     }
   });
 }
