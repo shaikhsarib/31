@@ -447,22 +447,6 @@ function expandTerms2(btn) {
 }
 
 // ═══════════════════════════════════════════════════════
-// TERMS
-// ═══════════════════════════════════════════════════════
-function acceptTerms() {
-  if (!document.getElementById('termsCheck').checked) return showToast("Please accept the terms first", "error");
-  state.sessionTermsAccepted = true;
-  DB.set('termsAccepted', true);
-  if (!state.currentUser) {
-    showView('authView');
-  } else if (!state.currentUser.hasPaid) {
-    state.pendingPayment = state.pendingPayment || { qty: 1, total: getNextTierPrice() };
-    showView('paymentView');
-  } else {
-    showView('dashView');
-    renderDash();
-  }
-}
 
 // ═══════════════════════════════════════════════════════
 // PAYMENT
