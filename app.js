@@ -2007,7 +2007,7 @@ function updateMobileBackBtn() {
   const hasDialog = !!document.querySelector('.dialog-overlay.open');
   const drawerOpen = document.getElementById('mainDrawer')?.classList.contains('open');
   const dashActive = document.getElementById('dashView')?.style.display === 'flex';
-  const canBack = hasDialog || drawerOpen || (viewHistory.length > 1 && !dashActive);
+  const canBack = hasDialog || (viewHistory.length > 1 && !dashActive && !drawerOpen);
   btn.style.display = (isSmall && canBack) ? 'inline-flex' : 'none';
 }
 
