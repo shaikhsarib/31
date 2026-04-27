@@ -41,6 +41,7 @@ function restoreSession() {
         const ae = document.getElementById('avatarEmoji');
         if (ae) ae.innerText = u.avatar;
       }
+      translateApp();
     }, 100);
   }
 }
@@ -108,7 +109,79 @@ const AVATARS = [
   { id: 'av5', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Oliver', label: 'av5' },
   { id: 'av6', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Sasha', label: 'av6' }
 ];
-const LANGS = [{ code: 'en', label: 'English' }, { code: 'hi', label: 'हिंदी' }, { code: 'ta', label: 'தமிழ்' }, { code: 'te', label: 'తెలుగు' }, { code: 'bn', label: 'বাংলা' }];
+const LANGS = [
+  { code: 'en', label: 'English' },
+  { code: 'hi', label: 'हिंदी' },
+  { code: 'ta', label: 'தமிழ்' },
+  { code: 'te', label: 'తెలుగు' },
+  { code: 'bn', label: 'বাংলা' }
+];
+
+const I18N = {
+  en: {
+    daily_checkin: "Daily Check-In",
+    claim_bonus: "Claim your daily bonus to keep your streak alive!",
+    checkin_btn: "Check In Today",
+    challenge_active: "31-Day Challenge Active!",
+    complete_tasks: "Complete tasks daily to climb the leaderboard",
+    invite_friends: "Invite Friends",
+    earn_coins: "Earn +50 coins per referral",
+    your_code: "Your code:",
+    nav_home: "Home",
+    nav_tasks: "Tasks",
+    nav_invite: "Invite",
+    nav_spin: "Spin",
+    nav_more: "More",
+    winners_ann: "Winners announced at midnight daily",
+    next_results: "Next Results Announcement In",
+    winners_tab: "Winners",
+    updates_tab: "Updates",
+    schedule_tab: "Schedule"
+  },
+  hi: {
+    daily_checkin: "डेली चेक-इन",
+    claim_bonus: "अपनी स्ट्रीक बनाए रखने के लिए अपना दैनिक बोनस प्राप्त करें!",
+    checkin_btn: "आज ही चेक-इन करें",
+    challenge_active: "31-दिन की चुनौती सक्रिय है!",
+    complete_tasks: "लीडरबोर्ड पर चढ़ने के लिए प्रतिदिन कार्य पूरे करें",
+    invite_friends: "दोस्तों को आमंत्रित करें",
+    earn_coins: "प्रत्येक रेफरल पर +50 सिक्के कमाएं",
+    your_code: "आपका कोड:",
+    nav_home: "होम",
+    nav_tasks: "कार्य",
+    nav_invite: "आमंत्रित",
+    nav_spin: "स्पिन",
+    nav_more: "अधिक",
+    winners_ann: "विजेताओं की घोषणा प्रतिदिन आधी रात को की जाती है",
+    next_results: "अगली परिणाम घोषणा में",
+    winners_tab: "विजेता",
+    updates_tab: "अपडेट",
+    schedule_tab: "शेड्यूल"
+  }
+};
+
+function translateApp() {
+  const lang = state.currentUser?.lang || 'en';
+  const dict = I18N[lang] || I18N['en'];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      // If it has children (like an icon), only replace the text node
+      if (el.children.length > 0) {
+        // Find text node
+        Array.from(el.childNodes).forEach(node => {
+          if (node.nodeType === 3 && node.textContent.trim().length > 0) {
+            node.textContent = node.textContent.replace(node.textContent.trim(), dict[key]);
+          }
+        });
+      } else {
+        el.textContent = dict[key];
+      }
+    }
+  });
+}
+
 const COUNTRIES = [{ code: 'IN', label: '🇮🇳 India' }, { code: 'US', label: '🇺🇸 United States' }, { code: 'UK', label: '🇬🇧 United Kingdom' }, { code: 'AE', label: '🇦🇪 UAE' }, { code: 'SG', label: '🇸🇬 Singapore' }];
 
 function getAvatarUrl(u) {
@@ -398,6 +471,7 @@ function loginSuccess() {
     const lastPage = DB.get('lastDashPage', 'pageHome');
     showDashPage(lastPage);
   }
+  translateApp();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1424,6 +1498,7 @@ function setLang(code) {
   if (state.currentUser) { state.currentUser.lang = code; saveData(); }
   closeDialog('langDialog');
   showToast("Language updated!");
+  translateApp();
   renderMore();
 }
 
