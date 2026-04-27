@@ -355,43 +355,31 @@ function completeSignup() {
 
 function loginSuccess() {
   const u = state.currentUser;
-  // Daily Tier Login Bonus — 10x of tier number, once per day
-  if (u && u.hasPaid && u.profileComplete) {
-    const today = new Date().toDateString();
-    if (u.lastTierBonus !== today) {
-      const tierBonus = (u.tier || 1) * 10;
-      u.coins += tierBonus;
-      u.lastTierBonus = today;
-      if (!u.txHistory) u.txHistory = [];
-      u.txHistory.unshift({ type: 'tier_bonus', coins: tierBonus, desc: 'Daily Tier Login Bonus (Tier ' + (u.tier || 1) + ' × 10)', time: Date.now() });
-      saveData();
-      setTimeout(() => showToast('🎉 Tier Bonus! +' + tierBonus + ' 🪙 (Tier ' + (u.tier || 1) + ' × 10)', 'success'), 800);
-    }
+  if (!u) return showView('authView');
+
+  // 1. Mandatory T&C check
+  if (!state.sessionTermsAccepted && !DB.get('termsAccepted', false)) {
+    showView('termsView');
+    return;
   }
 
-  // Mandatory Onboarding Flow
-  if (!state.sessionTermsAccepted) {
-    showView('termsView');
-  } else if (!u.hasPaid) {
+  // 2. Payment check
+  if (!u.hasPaid) {
     state.pendingPayment = { qty: 1, total: getNextTierPrice() };
     showView('paymentView');
+    return;
   }
-  // View Persistence
-  else if (state.currentView && !['authView', 'splashView', 'termsView'].includes(state.currentView)) {
-    showView(state.currentView);
-    if (state.currentView === 'dashView') {
-      renderDash();
-      initSpinWheel();
-    }
-  }
-  // Fallback
-  else if (!u.profileComplete) {
+
+  // 3. Profile Setup check
+  if (!u.profileComplete) {
     showView('profileSetupView');
-  } else {
-    showView('dashView');
-    renderDash();
-    initSpinWheel();
+    return;
   }
+
+  // 4. Final Destination: Dashboard
+  showView('dashView');
+  renderDash();
+  initSpinWheel();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -563,10 +551,7 @@ function afterPayment() {
     btnText.innerText = 'You now have ' + u.tiersOwned + ' tier' + (u.tiersOwned > 1 ? 's' : '') + ' in your pool.';
   }
   showToast('Purchase complete! Total tiers: ' + u.tiersOwned + ' · Invested ₹' + u.investment, 'success');
-  showView('dashView');
-  renderDash();
-  renderTiers();
-  initSpinWheel();
+  loginSuccess();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -596,19 +581,23 @@ function saveProfile() {
   u.lang = document.getElementById('langSelect').value;
   u.profileComplete = true;
   u.coins += 100; // profile complete bonus
-  // Update referral code with actual username
+  u.coins += 100;
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   u.refCode = 'Grow31/' + uname + '-' + randomNum;
   if (!u.txHistory) u.txHistory = [];
   u.txHistory.unshift({ type: 'profile', coins: 100, desc: 'Profile completion bonus', time: Date.now() });
-  if (!u.referralList) u.referralList = [];
   saveData();
-  showToast("Profile saved! +100 coins bonus 🎉", "success");
-  setTimeout(() => {
-    showView('dashView');
-    renderDash();
-    initSpinWheel();
-  }, 500);
+  showToast('Profile updated! Welcome ' + u.username, 'success');
+  loginSuccess();
+}
+
+function skipProfile() {
+  const u = state.currentUser;
+  if (u) {
+    u.profileComplete = true;
+    saveData();
+  }
+  loginSuccess();
 }
 
 // ═══════════════════════════════════════════════════════
