@@ -263,7 +263,7 @@ function verifyOTP() {
   }
 
   // Show T&C one-time after OTP but before finishing signup
-  if (!DB.get('termsAccepted', false)) {
+  if (!state.sessionTermsAccepted && !DB.get('termsAccepted', false)) {
     showView('termsView');
     return;
   }
