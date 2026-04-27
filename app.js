@@ -390,6 +390,9 @@ function loginSuccess() {
     if (lastView === 'dashView') {
       const lastPage = DB.get('lastDashPage', 'pageHome');
       showDashPage(lastPage);
+    } else if (lastView === 'winnersView') {
+      renderWinners();
+      startCountdownTimers();
     }
   } else {
     const lastPage = DB.get('lastDashPage', 'pageHome');
