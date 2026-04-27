@@ -2103,6 +2103,10 @@ function showView(id, addHistory = true) {
   if (id === 'paymentView') {
     updatePaymentView();
   }
+  if (id === 'winnersView') {
+    renderWinners();
+    startCountdownTimers();
+  }
   syncFixedBarHeights();
   updateMobileBackBtn();
   if (window.lucide) lucide.createIcons();
