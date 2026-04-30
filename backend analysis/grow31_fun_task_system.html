@@ -1,0 +1,454 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{padding:1rem 0;max-width:680px}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.header h2{font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.day-badge{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:4px 10px}
+.coins-bar{display:flex;gap:8px;margin-bottom:1.25rem}
+.coin-stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px;flex:1;text-align:center}
+.coin-stat .val{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.coin-stat .lbl{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.cat-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:1rem;scrollbar-width:none}
+.cat-tabs::-webkit-scrollbar{display:none}
+.cat-tab{flex-shrink:0;font-size:12px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;transition:all .15s}
+.cat-tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:transparent}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.task-card:hover{border-color:var(--color-border-secondary)}
+.task-card.done{opacity:.55;pointer-events:none}
+.task-card.done .task-status{display:block}
+.task-top{display:flex;align-items:flex-start;gap:12px}
+.task-icon{font-size:22px;flex-shrink:0;line-height:1;margin-top:1px}
+.task-info{flex:1;min-width:0}
+.task-title{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+.task-sub{font-size:12px;color:var(--color-text-secondary);margin-top:3px}
+.task-meta{display:flex;gap:6px;margin-top:8px;align-items:center}
+.badge{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:500}
+.badge-easy{background:#eaf3de;color:#3b6d11}
+.badge-medium{background:#faeeda;color:#854f0b}
+.badge-hard{background:#faece7;color:#993c1d}
+.badge-coins{background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.badge-method{background:var(--color-background-info);color:var(--color-text-info)}
+.task-status{display:none;font-size:11px;font-weight:500;color:#3b6d11;margin-top:6px}
+.task-btn{flex-shrink:0;padding:6px 14px;font-size:12px;font-weight:500;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer;white-space:nowrap}
+.task-btn:hover{background:var(--color-background-secondary)}
+.task-timer{display:none;margin-top:10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.timer-bar-wrap{height:4px;background:var(--color-border-tertiary);border-radius:2px;margin:6px 0 4px;overflow:hidden}
+.timer-bar{height:4px;background:var(--color-text-primary);border-radius:2px;width:0%;transition:width .1s linear}
+.timer-label{font-size:11px;color:var(--color-text-secondary);display:flex;justify-content:space-between}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--color-background-primary);border-radius:var(--border-radius-xl);padding:1.5rem;width:min(92vw,420px);border:0.5px solid var(--color-border-tertiary)}
+.modal h3{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.modal .sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.q-timer-ring{display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;width:60px;height:60px;position:relative}
+.q-timer-ring svg{position:absolute;inset:0}
+.q-timer-num{font-size:22px;font-weight:500;color:var(--color-text-primary);position:relative;z-index:1}
+.q-text{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem;line-height:1.5;text-align:center}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-opt{padding:10px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);font-size:13px;color:var(--color-text-primary);cursor:pointer;text-align:center;transition:all .12s}
+.q-opt:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.q-opt.correct{background:#eaf3de;border-color:#9FE1CB;color:#3b6d11}
+.q-opt.wrong{background:#fcebeb;border-color:#F7C1C1;color:#a32d2d}
+.q-progress{display:flex;gap:4px;margin-bottom:1rem}
+.q-dot{flex:1;height:3px;border-radius:2px;background:var(--color-border-tertiary)}
+.q-dot.done{background:var(--color-text-primary)}
+.q-dot.current{background:var(--color-text-secondary)}
+.result-wrap{text-align:center}
+.result-score{font-size:36px;font-weight:500;color:var(--color-text-primary);margin:8px 0}
+.result-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.result-coins{display:inline-flex;align-items:center;gap:6px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 16px;font-size:14px;font-weight:500;margin-bottom:1.25rem}
+.btn-primary{width:100%;padding:10px;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);font-size:14px;font-weight:500;cursor:pointer}
+.btn-primary:hover{opacity:.85}
+</style>
+
+<div class="wrap">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Grow31 daily tasks with 5-second quiz verification</h2>
+
+  <div class="header">
+    <div>
+      <div class="day-badge">Day 7 of 31</div>
+      <h2 style="margin-top:6px">Today's challenges</h2>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;color:var(--color-text-secondary)">streak</div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">7 days</div>
+    </div>
+  </div>
+
+  <div class="coins-bar">
+    <div class="coin-stat"><div class="val" id="totalCoins">140</div><div class="lbl">coins today</div></div>
+    <div class="coin-stat"><div class="val" id="doneCount">0/5</div><div class="lbl">done</div></div>
+    <div class="coin-stat"><div class="val">35</div><div class="lbl">bonus if all done</div></div>
+  </div>
+
+  <div class="cat-tabs">
+    <div class="cat-tab active" onclick="filterCat('all',this)">All</div>
+    <div class="cat-tab" onclick="filterCat('health',this)">Health</div>
+    <div class="cat-tab" onclick="filterCat('mind',this)">Mind</div>
+    <div class="cat-tab" onclick="filterCat('learn',this)">Learning</div>
+    <div class="cat-tab" onclick="filterCat('grow',this)">Grow31</div>
+    <div class="cat-tab" onclick="filterCat('fun',this)">Fun</div>
+  </div>
+
+  <div class="task-list" id="taskList"></div>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <div id="quizPhase">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <h3 id="quizTaskTitle">Task verification</h3>
+        <span id="qNum" style="font-size:12px;color:var(--color-text-secondary)">Q1 of 3</span>
+      </div>
+      <p class="sub" id="quizTaskSub">Answer 3 quick questions to verify your task</p>
+      <div class="q-progress" id="qProgress"></div>
+      <div class="q-timer-ring">
+        <svg viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="26" stroke="var(--color-border-tertiary)" stroke-width="3"/>
+          <circle id="timerCircle" cx="30" cy="30" r="26" stroke="var(--color-text-primary)" stroke-width="3"
+            stroke-dasharray="163.4" stroke-dashoffset="0" stroke-linecap="round"
+            transform="rotate(-90 30 30)" style="transition:stroke-dashoffset .1s linear"/>
+        </svg>
+        <div class="q-timer-num" id="timerNum">5</div>
+      </div>
+      <div class="q-text" id="qText"></div>
+      <div class="q-opts" id="qOpts"></div>
+    </div>
+
+    <div id="resultPhase" style="display:none">
+      <div class="result-wrap">
+        <div style="font-size:28px" id="resultEmoji"></div>
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-sub" id="resultSub"></div>
+        <div class="result-coins" id="resultCoins"></div>
+        <button class="btn-primary" onclick="closeModal()">Claim reward</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TASKS = [
+  {
+    id:'cold_face', icon:'', title:'Cold Water Face Splash', sub:'Splash cold water on face 10 times', cat:'health',
+    diff:'easy', coins:8, method:'5-sec quiz', time:'Any time',
+    questions:[
+      {q:'How many times should you splash?', opts:['5 times','10 times','20 times','Once'], ans:1},
+      {q:'Cold water helps with...', opts:['Memory only','Alertness & circulation','Making you taller','Nothing proven'], ans:1},
+      {q:'Best time to do this?', opts:['Only at night','Only at noon','Morning or after work','During meals'], ans:2}
+    ]
+  },
+  {
+    id:'power_pose', icon:'', title:'Power Pose for 2 Minutes', sub:'Stand like a superhero — arms wide, chin up', cat:'health',
+    diff:'easy', coins:8, method:'5-sec quiz', time:'Before 10am',
+    questions:[
+      {q:'How long must you hold the pose?', opts:['30 seconds','1 minute','2 minutes','10 minutes'], ans:2},
+      {q:'Power posing is linked to feeling...', opts:['Sleepy','More confident','Hungry','Shorter'], ans:1},
+      {q:'Where should your arms go?', opts:['Crossed on chest','Behind your back','Wide open — like a star','Straight down'], ans:2}
+    ]
+  },
+  {
+    id:'sun_charge', icon:'', title:'10-Minute Sunlight Boost', sub:'Stand outside in direct sunlight (no phone)', cat:'health',
+    diff:'easy', coins:10, method:'Timer + quiz', time:'Before 12pm',
+    questions:[
+      {q:'How long must you stay outside?', opts:['5 min','10 min','30 min','1 hour'], ans:1},
+      {q:'Morning sunlight helps reset your...', opts:['Body weight','Circadian rhythm','Hair colour','Memory only'], ans:1},
+      {q:'During the 10 minutes, you should...', opts:['Browse your phone','Stay offline outdoors','Do math problems','Stay inside glass'], ans:1}
+    ]
+  },
+  {
+    id:'dance_break', icon:'', title:'3-Minute Dance Break', sub:'Put on one song and actually dance — no watching', cat:'fun',
+    diff:'easy', coins:8, method:'5-sec quiz', time:'Any time',
+    questions:[
+      {q:'How long is the dance break?', opts:['1 minute','2 minutes','3 minutes','5 minutes'], ans:2},
+      {q:'Dancing boosts...', opts:['Only leg muscles','Mood and energy','Only calories','Nothing'], ans:1},
+      {q:'The rule is — no...', opts:['Music','Moving','Just watching — you must dance','Shoes'], ans:2}
+    ]
+  },
+  {
+    id:'breath_478', icon:'', title:'4-7-8 Breathing (5 rounds)', sub:'Inhale 4s, hold 7s, exhale 8s — repeat 5 times', cat:'mind',
+    diff:'medium', coins:12, method:'Timer + quiz', time:'Any time',
+    questions:[
+      {q:'How long is the HOLD phase?', opts:['4 seconds','5 seconds','7 seconds','8 seconds'], ans:2},
+      {q:'How long is the EXHALE phase?', opts:['4 seconds','5 seconds','7 seconds','8 seconds'], ans:3},
+      {q:'4-7-8 breathing is good for...', opts:['Building muscle','Reducing stress and anxiety','Improving eyesight','Gaining weight'], ans:1}
+    ]
+  },
+  {
+    id:'gratitude_3', icon:'', title:'Write 3 Specific Gratitudes', sub:'Not just "health" — write WHO, WHAT, WHY in detail', cat:'mind',
+    diff:'medium', coins:12, method:'Text + quiz', time:'Any time',
+    questions:[
+      {q:'How many gratitudes are required?', opts:['1','2','3','5'], ans:2},
+      {q:'Vague answers like "my health" are...', opts:['Accepted','Rejected — be specific','Worth double coins','Optional'], ans:1},
+      {q:'Research shows gratitude journaling...', opts:['Has no effect','Lowers happiness','Improves mood over time','Only works for rich people'], ans:2}
+    ]
+  },
+  {
+    id:'no_complain', icon:'', title:'No Complaining for 2 Hours', sub:'Zero complaints, gossip, or negativity. Log what you noticed.', cat:'mind',
+    diff:'hard', coins:20, method:'Timer + quiz', time:'Any time',
+    questions:[
+      {q:'What 3 things are banned in this challenge?', opts:['Smiling, laughing, eating','Complaining, gossip, negativity','Exercising, reading, working','Talking, cooking, singing'], ans:1},
+      {q:'If you accidentally complain, you should...', opts:['Give up the task','Note it and restart the 2 hours','Add 30 more minutes','Pretend it did not happen'], ans:1},
+      {q:'Avoiding complaints for 2 hours builds...', opts:['Physical strength','Mental resilience and awareness','Nothing','Only luck'], ans:1}
+    ]
+  },
+  {
+    id:'ted_talk', icon:'', title:'Watch a TED Talk (Full, 10+ min)', sub:'Watch one complete talk — then answer what you learned', cat:'learn',
+    diff:'medium', coins:15, method:'Timer + quiz', time:'Any time',
+    questions:[
+      {q:'Minimum length to qualify?', opts:['5 minutes','8 minutes','10 minutes','20 minutes'], ans:2},
+      {q:'After watching, you must...', opts:['Forget it','Write down one key idea you learned','Watch another','Rate it 5 stars'], ans:1},
+      {q:'TED stands for...', opts:['Total Educational Design','Technology, Entertainment, Design','Training Every Day','Teaching Every Domain'], ans:1}
+    ]
+  },
+  {
+    id:'fact_share', icon:'', title:'Learn & Share One Surprising Fact', sub:'Find a real fact, learn it, write it in your own words', cat:'learn',
+    diff:'easy', coins:8, method:'5-sec quiz', time:'Any time',
+    questions:[
+      {q:'You must write the fact in...', opts:['Copy-paste format','Your own words','Any language, AI-written is fine','Point form only'], ans:1},
+      {q:'The fact must be...', opts:['Funny only','About sports only','Real and verifiable','Made up is fine'], ans:2},
+      {q:'Sharing knowledge helps you...', opts:['Forget it faster','Remember it 50% better','Earn money only','Nothing extra'], ans:1}
+    ]
+  },
+  {
+    id:'money_lesson', icon:'', title:'Learn One Money Concept Today', sub:'Compound interest? SIP? Index fund? Pick one, understand it.', cat:'learn',
+    diff:'medium', coins:15, method:'Quiz gate', time:'Any time',
+    questions:[
+      {q:'Compound interest means...', opts:['Paying tax on savings','Earning interest on interest','Flat monthly fee','Penalty for late payment'], ans:1},
+      {q:'A SIP (Systematic Investment Plan) helps you...', opts:['Invest a lump sum once','Invest small amounts regularly','Withdraw money fast','Avoid paying taxes'], ans:1},
+      {q:'An index fund tracks...', opts:['One company only','A market index like Nifty 50','Only government bonds','Gold prices'], ans:1}
+    ]
+  },
+  {
+    id:'vocab_5', icon:'', title:'Learn 5 New English Words', sub:'With meanings + use each in a sentence', cat:'learn',
+    diff:'medium', coins:12, method:'5-sec quiz', time:'Any time',
+    questions:[
+      {q:'How many words must you learn?', opts:['3','4','5','10'], ans:2},
+      {q:'Just knowing the word is not enough — you must...', opts:['Spell it 10 times','Use it in a sentence','Translate it','Forget it by morning'], ans:1},
+      {q:'Reading new words improves your...', opts:['Physical health only','Vocabulary and communication','Eye colour','Only test scores'], ans:1}
+    ]
+  },
+  {
+    id:'referral_task', icon:'', title:'Invite 1 Friend to Grow31', sub:'Friend must click your link and register today', cat:'grow',
+    diff:'hard', coins:25, method:'Auto verify', time:'Any time',
+    questions:[
+      {q:'Your referral only counts if friend...', opts:['Views your post','Clicks link only','Registers on platform','Pays — auto verified'], ans:2},
+      {q:'Your referral code format is...', opts:['Random numbers','Grow31/YourName-XXXX','Any text you like','Your phone number'], ans:1},
+      {q:'Referring a friend gives them...', opts:['Nothing','50 bonus coins','Free tier upgrade','Double spins'], ans:1}
+    ]
+  },
+  {
+    id:'streak_checkin', icon:'', title:'Check In 3 Days in a Row', sub:'Open app and check in daily — server tracks streak', cat:'grow',
+    diff:'medium', coins:15, method:'Auto verify', time:'Any time',
+    questions:[
+      {q:'How many consecutive days needed?', opts:['2','3','5','7'], ans:1},
+      {q:'If you miss one day, your streak...', opts:['Continues fine','Resets to zero','Halves','Is paused for 24h'], ans:1},
+      {q:'Daily check-in also gives you...', opts:['Nothing extra','1 spin ticket','Free tier','50 coins always'], ans:1}
+    ]
+  },
+  {
+    id:'quiz_ace', icon:'', title:'Score 8 out of 10 on Daily Quiz', sub:'All quiz answers checked server-side — no peeking!', cat:'grow',
+    diff:'hard', coins:20, method:'Auto verify', time:'Any time',
+    questions:[
+      {q:'Minimum score to unlock this task?', opts:['5/10','6/10','8/10','10/10'], ans:2},
+      {q:'Quiz answers are stored...', opts:['In the app JavaScript','Only on the server','In your phone','In localStorage'], ans:1},
+      {q:'You have how long to complete the quiz?', opts:['5 minutes','10 minutes','30 minutes','Unlimited'], ans:2}
+    ]
+  },
+  {
+    id:'cold_shower', icon:'', title:'30-Second Cold Shower Finish', sub:'End your shower with 30 sec cold water. Full body.', cat:'health',
+    diff:'hard', coins:20, method:'Timer + quiz', time:'Any time',
+    questions:[
+      {q:'How long must the cold water run?', opts:['10 seconds','20 seconds','30 seconds','60 seconds'], ans:2},
+      {q:'Cold showers have been linked to...', opts:['Worse sleep only','Improved alertness and recovery','Hair loss','Gaining weight'], ans:1},
+      {q:'The cold water must be on...', opts:['Just your head','Just your feet','Your full body','Only your arms'], ans:2}
+    ]
+  }
+];
+
+let doneIds = new Set();
+let coinCount = 140;
+let currentTask = null;
+let currentQ = 0;
+let score = 0;
+let qTimer = null;
+let qTimeLeft = 5;
+let answered = false;
+let activeFilterCat = 'all';
+
+function filterCat(cat, el) {
+  activeFilterCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderTasks();
+}
+
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  const filtered = activeFilterCat === 'all' ? TASKS : TASKS.filter(t => t.cat === activeFilterCat);
+  list.innerHTML = filtered.map(t => {
+    const done = doneIds.has(t.id);
+    return `<div class="task-card${done?' done':''}" id="card_${t.id}">
+      <div class="task-top">
+        <div class="task-icon">${t.icon}</div>
+        <div class="task-info">
+          <div class="task-title">${t.title}</div>
+          <div class="task-sub">${t.sub}</div>
+          <div class="task-meta">
+            <span class="badge badge-${t.diff}">${t.diff}</span>
+            <span class="badge badge-coins">+${t.coins} coins</span>
+            <span class="badge badge-method">${t.method}</span>
+          </div>
+          ${done ? '<div class="task-status">Done! Coins earned.</div>' : ''}
+        </div>
+        ${!done ? `<button class="task-btn" onclick="startTask('${t.id}')">Start</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function startTask(id) {
+  currentTask = TASKS.find(t => t.id === id);
+  currentQ = 0;
+  score = 0;
+  answered = false;
+  document.getElementById('quizTaskTitle').textContent = currentTask.title;
+  document.getElementById('quizTaskSub').textContent = 'Answer 3 quick questions in 5 seconds each';
+  document.getElementById('quizPhase').style.display = 'block';
+  document.getElementById('resultPhase').style.display = 'none';
+  document.getElementById('modalBg').classList.add('open');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = currentTask.questions[currentQ];
+  const total = currentTask.questions.length;
+  answered = false;
+
+  document.getElementById('qNum').textContent = `Q${currentQ+1} of ${total}`;
+  document.getElementById('qText').textContent = q.q;
+
+  const prog = document.getElementById('qProgress');
+  prog.innerHTML = currentTask.questions.map((_,i) =>
+    `<div class="q-dot ${i < currentQ ? 'done' : i === currentQ ? 'current' : ''}"></div>`
+  ).join('');
+
+  const opts = document.getElementById('qOpts');
+  opts.innerHTML = q.opts.map((o,i) =>
+    `<button class="q-opt" id="opt_${i}" onclick="selectAnswer(${i})">${o}</button>`
+  ).join('');
+
+  startCountdown();
+}
+
+function startCountdown() {
+  if (qTimer) clearInterval(qTimer);
+  qTimeLeft = 5;
+  updateTimerDisplay(5);
+
+  qTimer = setInterval(() => {
+    qTimeLeft -= 0.1;
+    updateTimerDisplay(qTimeLeft);
+    if (qTimeLeft <= 0) {
+      clearInterval(qTimer);
+      if (!answered) timeOut();
+    }
+  }, 100);
+}
+
+function updateTimerDisplay(t) {
+  const n = Math.max(0, t);
+  document.getElementById('timerNum').textContent = Math.ceil(n);
+  const circumference = 163.4;
+  const offset = circumference * (1 - n / 5);
+  document.getElementById('timerCircle').style.strokeDashoffset = offset;
+  const color = n > 3 ? 'var(--color-text-primary)' : n > 1.5 ? '#BA7517' : '#E24B4A';
+  document.getElementById('timerCircle').style.stroke = color;
+  document.getElementById('timerNum').style.color = color;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  clearInterval(qTimer);
+  const q = currentTask.questions[currentQ];
+  const correct = idx === q.ans;
+  if (correct) score++;
+
+  document.querySelectorAll('.q-opt').forEach((el, i) => {
+    if (i === q.ans) el.classList.add('correct');
+    else if (i === idx && !correct) el.classList.add('wrong');
+    el.style.pointerEvents = 'none';
+  });
+
+  setTimeout(() => nextQuestion(), 900);
+}
+
+function timeOut() {
+  answered = true;
+  const q = currentTask.questions[currentQ];
+  document.querySelectorAll('.q-opt').forEach((el, i) => {
+    if (i === q.ans) el.classList.add('correct');
+    el.style.pointerEvents = 'none';
+  });
+  setTimeout(() => nextQuestion(), 900);
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= currentTask.questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quizPhase').style.display = 'none';
+  document.getElementById('resultPhase').style.display = 'block';
+  const total = currentTask.questions.length;
+  const passed = score >= 2;
+
+  document.getElementById('resultEmoji').textContent = passed ? (score === total ? '' : '') : '';
+  document.getElementById('resultScore').textContent = `${score} / ${total}`;
+
+  let coinsEarned = 0;
+  let sub = '';
+  if (score === total) {
+    coinsEarned = currentTask.coins + 5;
+    sub = 'Perfect! Bonus +5 coins for full marks';
+  } else if (passed) {
+    coinsEarned = currentTask.coins;
+    sub = 'Task verified! Coins added to your balance.';
+  } else {
+    sub = 'Score too low. Try again after completing the task again.';
+  }
+
+  document.getElementById('resultSub').textContent = sub;
+  document.getElementById('resultCoins').innerHTML = passed
+    ? `+${coinsEarned} coins earned`
+    : 'Task not verified this time';
+
+  if (passed) {
+    doneIds.add(currentTask.id);
+    coinCount += coinsEarned;
+    document.getElementById('totalCoins').textContent = coinCount;
+    document.getElementById('doneCount').textContent = `${doneIds.size}/5`;
+  }
+}
+
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+  if (qTimer) clearInterval(qTimer);
+  renderTasks();
+}
+
+document.getElementById('modalBg').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+renderTasks();
+</script>
