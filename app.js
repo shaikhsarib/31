@@ -1395,7 +1395,9 @@ function showDashPage(pageId = 'pageHome') {
 
   if (pageId === 'pageSpin') {
     initSpinWheel();
-    renderSpinLeaderboard();
+    startSpinLiveRefresh(); // Calls renderSpinLeaderboard + renderSpinRecords now, then every 10s
+  } else {
+    stopSpinLiveRefresh();
   }
   if (pageId === 'pageTiers') renderTiers();
   if (pageId === 'pageLeader') renderLeaderboard(Object.values(state.allUsers).sort((a, b) => b.coins - a.coins));
@@ -1405,17 +1407,6 @@ function showDashPage(pageId = 'pageHome') {
   if (pageId === 'pageTasks') renderTasksPage();
 
   startCountdownTimers();
-
-  // If on spin page, refresh leaderboard periodically for "live" feel
-  if (pageId === 'pageSpin') {
-    if (window.spinLiveInterval) clearInterval(window.spinLiveInterval);
-    window.spinLiveInterval = setInterval(() => {
-      if (currentDashPage === 'pageSpin') renderSpinLeaderboard();
-    }, 10000); // 10s refresh
-  } else {
-    if (window.spinLiveInterval) clearInterval(window.spinLiveInterval);
-  }
-
   syncFixedBarHeights();
   updateMobileBackBtn();
   if (window.lucide) lucide.createIcons();
@@ -1972,9 +1963,24 @@ function doSpin(type) {
         u.txHistory.unshift({ type: 'spin', coins: prize.coins, desc: 'Spin wheel win: ' + prize.label, time: Date.now(), status: 'pending' });
       }
       u.totalSpins = (u.totalSpins || 0) + 1;
+
+      // Record this spin in the global spin records (real data only — no mocks)
+      if (!state.spinRecords) state.spinRecords = [];
+      state.spinRecords.unshift({
+        user: u.username || u.phone || 'User',
+        userId: u.id,
+        avatar: getAvatarUrl(u),
+        prize: prize.label,
+        coins: prize.coins,
+        time: Date.now()
+      });
+      // Keep only last 50 records in memory
+      if (state.spinRecords.length > 50) state.spinRecords.length = 50;
+
       saveData();
 
-      // Record
+      // Refresh both panels immediately after spin
+      renderSpinRecords();
       renderSpinLeaderboard();
 
       // Show result dialog
@@ -1995,46 +2001,40 @@ function renderSpinRecords() {
   const container = document.getElementById('spinRecords');
   if (!container) return;
 
-  // Use global state.spinRecords or mock data if empty
-  let history = state.spinRecords || [];
+  // Only real spin records — no fake mock data
+  const history = state.spinRecords || [];
 
   if (history.length === 0) {
-    // Generate some mock recent wins for social proof
-    const mocks = [
-      { user: 'Rahul_01', prize: '50 Coins', time: Date.now() - 1000 * 60 * 5 },
-      { user: 'Sonia.K', prize: '100 Coins', time: Date.now() - 1000 * 60 * 15 },
-      { user: 'Amit_Grow', prize: '10 Coins', time: Date.now() - 1000 * 60 * 32 }
-    ];
-    container.innerHTML = mocks.map((m, i) => `
-      <div class="win-record" style="animation-delay: ${i * 0.1}s">
+    container.innerHTML = `
+      <div style="text-align:center;padding:24px 16px;color:rgba(255,255,255,0.35)">
+        <div style="font-size:2rem;margin-bottom:8px">🎡</div>
+        <div style="font-size:0.85rem">No spins yet — be the first to spin!</div>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = history.slice(0, 10).map((h, i) => {
+    const hue = (h.userId ? h.userId.charCodeAt(0) * 37 : i * 47) % 360;
+    const bg = h.avatar && h.avatar.includes('dicebear') ? 'transparent' : `hsl(${hue}, 65%, 55%)`;
+    const avatarStyle = h.avatar
+      ? `background-image:url('${h.avatar}');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:${bg};`
+      : `background:hsl(${hue}, 65%, 55%);`;
+    const timeLabel = typeof formatTimeAgo === 'function' ? formatTimeAgo(h.time) : 'just now';
+    const prizeColor = h.coins >= 20 ? '#f5c518' : h.coins >= 10 ? '#00e676' : h.coins >= 5 ? '#29b6f6' : 'rgba(255,255,255,0.4)';
+    return `
+      <div class="win-record" style="animation-delay:${i * 0.07}s">
         <div class="win-user">
-          <div class="win-avatar" style="background: hsl(${Math.random() * 360}, 70%, 60%)"></div>
+          <div class="win-avatar" style="${avatarStyle}border-radius:50%;width:34px;height:34px;flex-shrink:0"></div>
           <div class="win-info">
-            <div>${m.user}</div>
-            <div class="text-xs text-muted">${formatTimeAgo ? formatTimeAgo(m.time) : '5 mins ago'}</div>
+            <div style="font-size:0.88rem;font-weight:600">${h.user}</div>
+            <div class="text-xs text-muted" style="font-size:0.72rem">${timeLabel}</div>
           </div>
         </div>
-        <div class="win-amount">
-          <span class="g-coin"></span> ${m.prize}
-        </div>
-      </div>
-    `).join('');
-  } else {
-    container.innerHTML = history.slice(0, 8).map((h, i) => `
-      <div class="win-record" style="animation-delay: ${i * 0.1}s">
-        <div class="win-user">
-          <div class="win-avatar" style="background: #448aff"></div>
-          <div class="win-info">
-            <div>${h.user}</div>
-            <div class="text-xs text-muted">${formatTimeAgo ? formatTimeAgo(h.time) : 'Just now'}</div>
-          </div>
-        </div>
-        <div class="win-amount">
+        <div class="win-amount" style="color:${prizeColor};font-weight:700">
           <span class="g-coin"></span> ${h.prize}
         </div>
-      </div>
-    `).join('');
-  }
+      </div>`;
+  }).join('');
 
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
@@ -2049,57 +2049,82 @@ function renderSpinLeaderboard() {
 
   const u = state.currentUser;
 
-  // Aggregate real users + mock data for a full list
+  // Real users only — zero fake mocks
   let all = Object.values(state.allUsers || {}).map(user => ({
-    ...user,
-    username: user.username,
+    username: user.username || user.phone || 'User',
     totalSpins: user.totalSpins || 0,
     totalSpinCoins: user.totalSpinCoins || 0,
     tier: user.tier || 1,
-    id: user.id
-  }));
+    id: user.id,
+    avatar: getAvatarUrl(user)
+  })).filter(usr => usr.totalSpins > 0); // Only show users who have actually spun
 
-  // Add some high-activity mocks if list is short
-  if (all.length < 10) {
-    const mocks = [
-      { username: 'Rahul_Pro', totalSpins: 142, totalSpinCoins: 1250, tier: 28, id: 'm1' },
-      { username: 'Sonia.K', totalSpins: 98, totalSpinCoins: 840, tier: 27, id: 'm2' },
-      { username: 'Karan_VIP', totalSpins: 85, totalSpinCoins: 2100, tier: 30, id: 'm3' },
-      { username: 'Lucky_31', totalSpins: 64, totalSpinCoins: 420, tier: 25, id: 'm4' },
-      { username: 'Amit_Grow', totalSpins: 42, totalSpinCoins: 310, tier: 22, id: 'm5' }
-    ];
-    all = [...all, ...mocks];
+  // Sort by total spins descending
+  all.sort((a, b) => b.totalSpins - a.totalSpins);
+
+  const userRank = all.findIndex(x => x.id === u.id) + 1;
+  const rankLabel = userRank > 0 ? `#${userRank}` : 'Spin to rank!';
+
+  container.innerHTML = `<div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+    <div class="card-title">🏆 Top Spinners</div>
+    <div style="font-size:0.75rem;color:#448aff;font-weight:700">Your Rank: ${rankLabel}</div>
+  </div>`;
+
+  if (all.length === 0) {
+    container.innerHTML += `
+      <div style="text-align:center;padding:32px 16px;color:rgba(255,255,255,0.35)">
+        <div style="font-size:2.2rem;margin-bottom:8px">🎰</div>
+        <div style="font-size:0.85rem">No spinners yet — be the first!</div>
+        <div style="font-size:0.72rem;margin-top:4px;color:rgba(255,255,255,0.2)">Leaderboard updates live after each spin</div>
+      </div>`;
+  } else {
+    const rankColors = ['#f5c518', '#c0c0c0', '#cd7f32'];
+    all.slice(0, 20).forEach((usr, i) => {
+      const isMe = usr.id === u.id;
+      const bgSize = (usr.avatar && usr.avatar.includes('dicebear.com')) ? 'contain' : 'cover';
+      const rankBadge = i < 3
+        ? `<span style="font-size:1rem;line-height:1">${['🥇','🥈','🥉'][i]}</span>`
+        : `<span style="font-weight:800;font-size:.78rem;color:rgba(255,255,255,0.3);width:20px;display:inline-block;text-align:center">${i + 1}</span>`;
+
+      container.innerHTML += `
+        <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.1);border-left:3px solid #448aff;' : ''}">
+          <div style="width:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">${rankBadge}</div>
+          <div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${usr.avatar}');background-size:${bgSize};background-position:center;background-repeat:no-repeat;background-color:rgba(255,255,255,0.08);border:none;flex-shrink:0;border-radius:50%"></div>
+          <div style="flex:1;min-width:0">
+            <b style="font-size:.9rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${usr.username}${isMe ? ' <span class="badge badge-blue" style="font-size:10px">You</span>' : ''}</b>
+            <div style="display:flex;gap:4px;margin-top:2px;flex-wrap:wrap">
+              <span class="badge badge-gray" style="font-size:.65rem;padding:2px 6px">Tier ${usr.tier || 1}</span>
+              <span style="font-size:.65rem;color:rgba(255,255,255,0.35);padding:2px 0">${usr.totalSpinCoins} coins won</span>
+            </div>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-weight:800;font-size:1rem;color:#448aff">${usr.totalSpins}</div>
+            <div class="text-xs text-muted" style="font-size:10px">spins</div>
+          </div>
+        </div>`;
+    });
   }
 
-  // Sort by spins
-  all.sort((a, b) => b.totalSpins - a.totalSpins);
-  const userRank = all.findIndex(x => x.id === u.id) + 1;
-
-  container.innerHTML = `<div class="card-header"><div class="card-title">🏆 Top Spinners · Your Rank: #${userRank || '—'}</div></div>`;
-
-  all.slice(0, 15).forEach((usr, i) => {
-    const isMe = usr.id === u.id;
-    const finalPhoto = getAvatarUrl(usr);
-    const bgSize = (finalPhoto && finalPhoto.includes('dicebear.com')) ? 'contain' : 'cover';
-
-    container.innerHTML += `
-      <div class="list-item" style="${isMe ? 'background:rgba(68,138,255,0.08);border-left:3px solid #448aff;' : ''}">
-        <div style="font-weight:800;font-size:.8rem;color:rgba(255,255,255,0.3);width:20px">${i + 1}</div>
-        <div class="avatar-sleek" style="width:36px;height:36px;background-image:url('${finalPhoto}');background-size:${bgSize};background-position:center;background-repeat:no-repeat;background-color:rgba(255,255,255,0.08);border:none;flex-shrink:0"></div>
-        <div style="flex:1;min-width:0">
-          <b style="font-size:.92rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${usr.username}${isMe ? ' <span class="badge badge-blue" style="font-size:10px">You</span>' : ''}</b>
-          <div style="display:flex;gap:4px;margin-top:2px">
-            <span class="badge badge-gray" style="font-size:.65rem;padding:2px 6px">Tier ${usr.tier || 1}</span>
-          </div>
-        </div>
-        <div style="text-align:right;flex-shrink:0">
-          <div style="font-weight:800;font-size:1rem;color:#448aff">${usr.totalSpins}</div>
-          <div class="text-xs text-muted" style="font-size:10px">Total Spins</div>
-        </div>
-      </div>`;
-  });
-
   if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+// Auto-refresh spin leaderboard + records every 10 seconds while spin page is open
+let _spinRefreshInterval = null;
+function startSpinLiveRefresh() {
+  stopSpinLiveRefresh();
+  renderSpinLeaderboard();
+  renderSpinRecords();
+  _spinRefreshInterval = setInterval(() => {
+    if (document.getElementById('spinLeaderboardList')) {
+      renderSpinLeaderboard();
+      renderSpinRecords();
+    } else {
+      stopSpinLiveRefresh();
+    }
+  }, 10000);
+}
+function stopSpinLiveRefresh() {
+  if (_spinRefreshInterval) { clearInterval(_spinRefreshInterval); _spinRefreshInterval = null; }
 }
 
 function watchAdForSpin() {
