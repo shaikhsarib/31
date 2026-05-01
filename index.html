@@ -198,7 +198,12 @@
       <button class="back-btn" onclick="showView('authView')" style="margin:0"><i data-lucide="chevron-left"
           style="width:20px;height:20px"></i> <span data-i18n="back">Back</span></button>
       <div class="logo-text" onclick="goHome()"><img src="Images/LOGO.jpeg" alt="Grow31" class="app-logo"> Grow31</div>
-      <div style="width:60px"></div>
+      <div class="flex items-center gap-2">
+        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span
+            id="termsCoins">0</span></div>
+        <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu"
+            style="width:20px;height:20px"></i></button>
+      </div>
     </div>
     <div style="padding:20px 20px;max-width:480px;margin:0 auto;width:100%;flex:1;display:flex;flex-direction:column">
       <h2 class="section-heading" style="font-size:1.3rem;margin-bottom:14px"><i data-lucide="file-text"
@@ -210,111 +215,171 @@
         <button class="terms-tab-btn" onclick="switchTermsTab('refund',this)" data-i18n="refund_tab">Refund</button>
       </div>
       <!-- T&C -->
+      <!-- T&C -->
       <div class="terms-body terms-tab-panel active collapsed" id="tpanel-tc" style="flex:none;margin-bottom:10px">
-        <h4 data-i18n="tc_title">TERMS &amp; CONDITIONS – GROW31</h4>
-        <p style="color:#666;font-size:.7rem;margin-bottom:12px" data-i18n="effective_date">Effective Date: April 2024
-        </p>
-        <p data-i18n="tc_intro">Welcome to Grow31. By accessing or using this platform, you agree to the following Terms
-          &amp; Conditions.</p>
-        <h4 data-i18n="tc_h1">1. Platform Nature</h4>
-        <p data-i18n="tc_p1">Grow31 is a membership-based community participation platform offering a 31-day structured
-          engagement program. Grow31 is <b>NOT</b> an investment scheme, deposit scheme, or financial product.</p>
-        <h4 data-i18n="tc_h2">2. Membership Model</h4>
-        <p data-i18n="tc_p2">Users join Grow31 by purchasing a membership access. Membership allows participation in the
-          31-day structured program. Participation levels may vary based on joining structure.</p>
-        <h4 data-i18n="tc_h3">3. Participation Structure</h4>
-        <p data-i18n="tc_p3">Grow31 follows a time-based participation model (up to 31 days). Users may participate
-          daily or complete participation upfront.</p>
-        <h4 data-i18n="tc_h4">4. Referral System</h4>
-        <p data-i18n="tc_p4">Referral is optional and intended for community growth. Referrals do <b>NOT</b> guarantee
-          any reward or earning.</p>
-        <h4 data-i18n="tc_h5">5. Grow31 Coins System</h4>
-        <p data-i18n="tc_p5">Users receive Grow31 Coins based on participation and engagement. Coins are a digital
-          utility within the platform.</p>
-        <h4 data-i18n="tc_h7">7. No Guaranteed Returns</h4>
-        <p data-i18n="tc_p7">Grow31 does <b>NOT</b> guarantee any income, profit, or return. This platform is <b>NOT</b>
-          an earning or investment opportunity.</p>
-        <h4 data-i18n="tc_h8">8. Fees &amp; Payments</h4>
-        <p data-i18n="tc_p8">Membership fees are charged for platform access. All payments are voluntary and
-          non-refundable.</p>
-        <h4>9. Giveaways &amp; Rewards</h4>
-        <p>Grow31 may conduct giveaways, contests, or promotions. Rewards are limited and subject to availability.</p>
-        <h4>10. User Responsibilities</h4>
-        <p>Users agree: not to create fake accounts, not to misuse the referral system, not to engage in fraudulent
-          activity. Violation may lead to account suspension.</p>
-        <h4>11. Platform Rights</h4>
-        <p>Grow31 reserves the right to: modify or discontinue features, change reward structure, limit or disable coin
-          redemption, suspend user accounts.</p>
-        <h4>12. Risk Disclosure</h4>
-        <p>Users understand: outcomes vary based on participation, no fixed results are promised, platform structure may
-          change anytime.</p>
-        <h4>13. Limitation of Liability</h4>
-        <p>Grow31 is not responsible for: financial expectations not met, coin redemption issues, referral outcomes,
-          technical errors.</p>
-        <h4>14. Termination</h4>
-        <p>Accounts may be terminated in case of fraud, misuse, or violation of terms.</p>
-        <h4>15. Governing Law</h4>
-        <p>These Terms are governed by the laws of India. Jurisdiction: [Your City].</p>
-        <h4>16. Acceptance</h4>
-        <p>By using Grow31, you confirm that you understand the platform, accept all risks, and agree to these Terms.
-        </p>
-        <h4>17. Contact</h4>
-        <p>[Your Email / Contact Info]</p>
+        <h3>GROW31 - TERMS & CONDITIONS</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Last Updated: April 2026</p>
+
+        <h4>1. ACCEPTANCE OF TERMS</h4>
+        <p>By downloading, installing, or using the Grow31 application ("App"), you agree to be bound by these Terms &
+          Conditions ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+        <p>Grow31 ("We", "Us", "Our", "Company") reserves the right to modify these Terms at any time. Continued use of
+          the App after such modifications constitutes your acceptance of the updated Terms.</p>
+
+        <h4>2. LICENSE AND USE</h4>
+        <p><b>2.1 License Grant:</b> We grant you a limited, non-exclusive, non-transferable, revocable license to use
+          this App for personal, non-commercial purposes only.</p>
+        <p><b>2.2 Restrictions:</b> You agree NOT to: Copy, modify, or distribute the App; Reverse engineer or attempt
+          to derive source code; Use the App for any illegal purpose; Access via automated means or bots; Attempt
+          unauthorized access; Sell, rent, or lease the App; Create derivative works; Harass, threaten, or harm others;
+          Spam, phish, or engage in fraudulent activity.</p>
+
+        <h4>3. USER ACCOUNTS AND REGISTRATION</h4>
+        <p><b>3.1 Account Creation:</b> To use certain features, you must create an account. You agree to: Provide
+          accurate information; Maintain confidentiality of credentials; Notify us of unauthorized access; Be
+          responsible for all activities under your account.</p>
+        <p><b>3.2 Account Eligibility:</b> You must be at least 18 years old; Be a legal resident of India or another
+          supported country; One account per person (duplicate accounts are prohibited).</p>
+
+        <h4>4. PAYMENTS AND SUBSCRIPTIONS</h4>
+        <p><b>4.1 Pricing:</b> All prices are in Indian Rupees (INR) unless stated otherwise; Prices subject to change
+          with 30 days' notice; Taxes may apply.</p>
+        <p><b>4.2 In-App Purchases:</b> Various digital goods and services are available. All purchases are final unless
+          the refund policy applies. We are not responsible for accidental purchases.</p>
+        <p><b>4.3 Billing:</b> Payment is charged to your registered method. Refunds follow our Refund Policy (Section
+          7). We are not responsible for processing delays or disputes handled by providers.</p>
+
+        <h4>5. INTELLECTUAL PROPERTY RIGHTS</h4>
+        <p><b>5.1 Ownership:</b> All content in the App (text, graphics, videos, code, design) is owned by Grow31 or our
+          licensors and is protected by copyright laws.</p>
+        <p><b>5.2 User Content:</b> You retain ownership of content you create. You grant us permission to use, store,
+          and display it. We may use anonymized data for analytics.</p>
+
+        <h4>6. LIMITATION OF LIABILITY</h4>
+        <p><b>6.1 AS-IS BASIS:</b> The App is provided "AS-IS" without warranties. We do not warrant uninterrupted or
+          error-free service, or specific results.</p>
+        <p><b>6.2 LIABILITY CAP:</b> Our total liability shall not exceed the amount you paid in the past 12 months, or
+          Rs.10,000 (whichever is lesser).</p>
+        <p><b>6.3 NO LIABILITY FOR:</b> Loss of data, profits, business; indirect or consequential damages; third-party
+          actions; server downtime; force majeure.</p>
+
+        <h4>7. INDEMNIFICATION</h4>
+        <p>You agree to defend and indemnify us against claims arising from your violation of these Terms, misuse of the
+          App, infringement of rights, or breach of laws.</p>
+
+        <h4>8. THIRD-PARTY LINKS AND CONTENT</h4>
+        <p>We are NOT responsible for third-party content, accuracy, or damages. Use of third-party services is governed
+          by THEIR terms.</p>
+
+        <h4>9. USER CONDUCT</h4>
+        <p>You agree NOT to: Post offensive content; Engage in harassment; Share others' personal info without consent;
+          Violate laws; Disrupt the community; Impersonate others; Create fake accounts.</p>
+
+        <h4>10. DISPUTE RESOLUTION</h4>
+        <p><b>10.1 Governing Law:</b> These Terms are governed by the laws of India. Jurisdiction: New Delhi, India.</p>
+        <p><b>10.2 Arbitration:</b> Disputes will be resolved through good faith negotiation (7 days), mediation, or
+          arbitration under the Indian Arbitration Act, 1996.</p>
+
+        <h4>11. TERMINATION</h4>
+        <p>We may terminate your account for violations, illegal activity, or abuse. Upon termination, your license ends
+          and access is lost.</p>
+
+        <h4>12. CHANGES TO THE APP</h4>
+        <p>We may update, modify, or discontinue the App or features with 30 days' notice. Continued use means
+          acceptance.</p>
+
+        <h4>13. CONTACT US</h4>
+        <p>Email: legal@grow31.app<br>Support: support@grow31.app</p>
       </div>
+
       <!-- Privacy Policy -->
       <div class="terms-body terms-tab-panel collapsed" id="tpanel-privacy" style="flex:none;margin-bottom:10px">
-        <h4 data-i18n="pp_title">PRIVACY POLICY – GROW31</h4>
-        <p style="color:#666;font-size:.7rem;margin-bottom:12px" data-i18n="effective_date">Effective Date: April 2024
-        </p>
-        <h4 data-i18n="pp_h1">1. Information We Collect</h4>
-        <p data-i18n="pp_p1">We may collect: Name, Phone number, Email (if provided), Usage data (activity,
-          participation, progress).</p>
-        <h4>2. How We Use Information</h4>
-        <p>We use your data to: provide access to the Grow31 challenge, track your participation and progress, improve
-          platform experience, communicate important updates.</p>
-        <h4>3. Data Sharing</h4>
-        <p>We do <b>NOT</b> sell your personal data. Data may be shared with trusted services (payment providers,
-          hosting) only for platform functionality.</p>
-        <h4>4. Data Security</h4>
-        <p>We take reasonable measures to protect your information, but we cannot guarantee complete security due to the
-          nature of the internet.</p>
-        <h4>5. User Responsibility</h4>
-        <p>Users are responsible for keeping their login and personal information secure.</p>
-        <h4>6. Cookies</h4>
-        <p>We may use cookies or similar technologies to improve user experience.</p>
-        <h4>7. Third-Party Services</h4>
-        <p>Payments and certain features may be handled by third-party platforms. Their privacy policies may apply.</p>
-        <h4>8. Policy Updates</h4>
-        <p>We may update this Privacy Policy at any time. Continued use means you accept the changes.</p>
-        <h4>9. Contact</h4>
-        <p>[Your Email / Contact]</p>
+        <h3>GROW31 - PRIVACY POLICY</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Effective Date: April 2026</p>
+
+        <h4>1. INTRODUCTION</h4>
+        <p>We are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your
+          info. If you do not agree, please do not use the App.</p>
+
+        <h4>2. INFORMATION WE COLLECT</h4>
+        <p><b>2.1 Information You Provide:</b> Account Info (Name, Email, Phone, Profile Pic, Encrypted Password); Usage
+          Data (Goals, Progress, Posts, Settings). NOTE: We do NOT store payment card details.</p>
+        <p><b>2.2 Information Collected Automatically:</b> Device Info (Model, OS, App version, IP, ID); Usage Info
+          (Features accessed, Time spent, Crashes). We do NOT collect GPS location.</p>
+        <p><b>2.3 Third Parties:</b> Social media logins, Payment processors, Analytics, Support interactions.</p>
+
+        <h4>3. HOW WE USE YOUR INFORMATION</h4>
+        <p><b>3.1 Service Delivery:</b> Managing accounts, processing payments, support.</p>
+        <p><b>3.2 Improvement:</b> Analyzing behavior, fixing bugs, testing features.</p>
+        <p><b>3.3 Communication:</b> Sending updates, marketing (with consent), responding to inquiries.</p>
+        <p><b>3.4 Legal:</b> Preventing fraud, complying with obligations.</p>
+
+        <h4>4. DATA SHARING AND DISCLOSURE</h4>
+        <p><b>4.1 Service Providers:</b> We share with payment processors (Razorpay), cloud hosting, and analytics. They
+          must keep data secure.</p>
+        <p><b>4.2 Legal Requirements:</b> We may disclose info if required by court orders or law enforcement.</p>
+        <p><b>4.3 NO Marketing Sharing:</b> We do NOT sell or rent your personal data to third-party marketers.</p>
+
+        <h4>5. DATA RETENTION</h4>
+        <p>Account info is kept while active. Usage data for 24 months. Personal data from deleted accounts is removed
+          within 30 days.</p>
+
+        <h4>6. DATA SECURITY</h4>
+        <p>We use SSL/TLS encryption, secure hashing, and audits. While we use industry standards, no system is 100%
+          secure. Breach notifications will be sent within 72 hours.</p>
+
+        <h4>7. YOUR RIGHTS</h4>
+        <p>Under India's DPDP Act 2023, you have the right to access, correct, or delete your data, and withdraw
+          consent. Contact privacy@grow31.app.</p>
+
+        <h4>8. COOKIES AND TRACKING</h4>
+        <p>We use cookies for sessions, preferences, and analytics. You can opt-out of Google Analytics tracking.</p>
+
+        <h4>9. CHILDREN'S PRIVACY</h4>
+        <p>The App is NOT intended for users under 18. We delete data if we discover a minor has provided it.</p>
+
+        <h4>10. CONTACT US</h4>
+        <p>Email: privacy@grow31.app<br>Address: Grow31, India</p>
       </div>
+
       <!-- Refund Policy -->
       <div class="terms-body terms-tab-panel collapsed" id="tpanel-refund" style="flex:none;margin-bottom:10px">
-        <h4 data-i18n="rp_title">REFUND POLICY – GROW31</h4>
-        <p style="color:#666;font-size:.7rem;margin-bottom:12px" data-i18n="effective_date">Effective Date: April 2024
+        <h3>GROW31 - REFUND & CANCELLATION POLICY</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Effective Date: April 2026</p>
+
+        <h4>1. REFUND ELIGIBILITY</h4>
+        <p><b>1.1 Refundable:</b> In-App Purchases within 7 days if not used/activated. 100% refund (max 2 per month).
         </p>
-        <h4 data-i18n="rp_h1">1. No Refund Policy</h4>
-        <p data-i18n="rp_p1">All payments made for Grow31 participation are <b>non-refundable</b>. Once access to the
-          platform is granted, no refund requests will be entertained.</p>
-        <h4>2. Exception</h4>
-        <p>Refunds may be considered only in case of: duplicate payment, or technical error from the platform side. Such
-          cases will be reviewed at the sole discretion of Grow31.</p>
-        <h4>3. No Guarantees</h4>
-        <p>Participation does not guarantee any rewards, results, or outcomes. Payments are made for access to the
-          challenge and platform only.</p>
-        <h4>4. User Responsibility</h4>
-        <p>Users are advised to understand the platform before making any payment. By paying, the user agrees to this
-          refund policy.</p>
-        <h4>5. Contact</h4>
-        <p>[Your Email / Contact]</p>
+        <p><b>1.2 Non-Refundable:</b> Used/activated items, content accessed, rewards earned, prizes won, or purchases
+          over 7 days old.</p>
+
+        <h4>2. REFUND PROCESS</h4>
+        <p>Request via Settings -> Payment History in the app, or email support@grow31.app with your Transaction ID.
+          Processed within 7-14 business days to the original payment method.</p>
+
+        <h4>3. SPECIAL SCENARIOS</h4>
+        <p><b>3.1 Technical Issues:</b> Eligible if app is non-functional and we cannot fix it within 24 hours.</p>
+        <p><b>3.2 Duplicate Charges:</b> Refunded within 48 hours of reporting.</p>
+        <p><b>3.3 Unauthorized Transactions:</b> Investigated within 5-10 days; refund issued after confirmation.</p>
+
+        <h4>4. DISPUTE RESOLUTION</h4>
+        <p>Handled via App Stores or Razorpay. Escalations follow good faith negotiation and mediation.</p>
+
+        <h4>5. REFUND ABUSE POLICY</h4>
+        <p>We may deny refunds or suspend accounts if abuse patterns are detected (e.g., multiple refunds for same
+          service).</p>
+
+        <h4>6. APP DISCONTINUATION</h4>
+        <p>If discontinued, 30 days notice will be given with full refund for unused services.</p>
+
+        <h4>7. CONTACT & SUPPORT</h4>
+        <p>Email: support@grow31.app<br>Hours: Mon-Fri, 9 AM - 6 PM IST</p>
       </div>
       <div id="termsReadMore"
-        style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
-        <button class="btn-sm" onclick="expandTerms(this)"
-          style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;font-size:.8rem;cursor:pointer;padding:8px 16px;border-radius:20px"
-          data-i18n="show_more">Show
-          more</button>
+        style="text-align:center;margin-top:-30px;margin-bottom:20px;position:relative;z-index:20">
+        <button class="btn btn-sm" onclick="expandTerms(this)"
+          style="background:#050510;color:#fff;padding:10px 24px;border-radius:30px;font-size:.85rem;box-shadow:0 6px 16px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);font-weight:700"
+          data-i18n="show_more">Show More</button>
       </div>
       <label
         style="display:flex;align-items:center;gap:12px;margin-bottom:20px;cursor:pointer;padding:14px;background:rgba(68,138,255,0.08);border-radius:12px;border:1px solid rgba(68,138,255,0.2)">
@@ -1381,7 +1446,12 @@
       <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
           style="width:20px;height:20px"></i> <span data-i18n="back">Back</span></button>
       <div class="logo-text" data-i18n="follow_earn">Follow &amp; Earn</div>
-      <div class="coins-pill"><span class="g-coin"></span> <span id="followCoins">0</span></div>
+      <div class="flex items-center gap-2">
+        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span
+            id="followCoins">0</span></div>
+        <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu"
+            style="width:20px;height:20px"></i></button>
+      </div>
     </div>
     <div class="page-content">
       <h2 class="section-heading" data-i18n="follow_earn">Follow &amp; Earn <span class="g-coin"></span></h2>
@@ -1766,86 +1836,54 @@
         <button class="terms-tab-btn" onclick="switchTermsTab2('refund2',this)">Refund</button>
       </div>
       <div class="terms-body terms-tab-panel active collapsed" id="tpanel-tc2"
-        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
-        <h4>TERMS &amp; CONDITIONS – GROW31</h4>
-        <h4>1. Platform Nature</h4>
-        <p>Grow31 is a membership-based community participation platform. It is <b>NOT</b> an investment scheme or
-          financial product.</p>
-        <h4>2. Membership Model</h4>
-        <p>Users join by purchasing membership access for the 31-day structured program.</p>
-        <h4>3. Participation Structure</h4>
-        <p>Time-based model up to 31 days. Daily participation or upfront completion available.</p>
-        <h4>4. Referral System</h4>
-        <p>Referral is optional. Referrals do <b>NOT</b> guarantee any reward or earning.</p>
-        <h4>5. Grow31 Coins</h4>
-        <p>Coins are digital utility within the platform usable for rewards, redemption, or upgrades.</p>
-        <h4>6. Conditional Redemption</h4>
-        <p>Redemption is <b>NOT guaranteed</b> and depends on platform liquidity and policies.</p>
-        <h4>7. No Guaranteed Returns</h4>
-        <p>Grow31 does <b>NOT</b> guarantee income, profit, or return.</p>
-        <h4>8. Fees &amp; Payments</h4>
-        <p>Membership fees are non-refundable.</p>
-        <h4>9. Giveaways &amp; Rewards</h4>
-        <p>Limited and subject to availability.</p>
-        <h4>10. User Responsibilities</h4>
-        <p>No fake accounts, no referral abuse, no fraud. Violations lead to suspension.</p>
-        <h4>11. Platform Rights</h4>
-        <p>Grow31 may modify features, reward structure, or suspend accounts.</p>
-        <h4>12. Risk Disclosure</h4>
-        <p>Outcomes vary. No fixed results. Platform may change anytime.</p>
-        <h4>13. Limitation of Liability</h4>
-        <p>Grow31 is not responsible for unmet expectations, redemption issues, or technical errors.</p>
-        <h4>14. Termination</h4>
-        <p>Accounts may be terminated for fraud, misuse, or terms violation.</p>
-        <h4>15. Governing Law</h4>
-        <p>Governed by laws of India.</p>
-        <h4>16. Contact</h4>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-            data-cfemail="6c1f191c1c031e182c0b1e031b5f5d420f0301">[email&#160;protected]</a></p>
+        style="flex:none;margin-bottom:10px;background:#fff;color:#000">
+        <h3>GROW31 - TERMS & CONDITIONS</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Last Updated: April 2026</p>
+        <h4>1. ACCEPTANCE OF TERMS</h4>
+        <p>By using Grow31, you agree to be bound by these Terms. We reserve the right to modify these Terms at any
+          time.</p>
+        <h4>2. LICENSE AND USE</h4>
+        <p>Limited, non-exclusive license for personal use. Copying or reverse engineering is strictly prohibited.</p>
+        <h4>3. USER ACCOUNTS</h4>
+        <p>Must be 18+ and provide accurate info. One account per person.</p>
+        <h4>4. PAYMENTS</h4>
+        <p>Prices in INR. All purchases final. Taxes may apply.</p>
+        <h4>5. INTELLECTUAL PROPERTY</h4>
+        <p>All content owned by Grow31 or licensors.</p>
+        <h4>6. LIABILITY</h4>
+        <p>App provided AS-IS. Liability capped at Rs.10,000.</p>
+        <h4>10. DISPUTE RESOLUTION</h4>
+        <p>Governed by laws of India. Jurisdiction: New Delhi.</p>
       </div>
       <div class="terms-body terms-tab-panel collapsed" id="tpanel-privacy2"
-        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
-        <h4>PRIVACY POLICY – GROW31</h4>
-        <h4>1. Information We Collect</h4>
-        <p>Name, phone number, email (if provided), usage &amp; activity data.</p>
-        <h4>2. How We Use Information</h4>
-        <p>To provide platform access, track participation, improve experience, and send updates.</p>
-        <h4>3. Data Sharing</h4>
-        <p>We do <b>NOT</b> sell your data. Shared only with trusted service providers for functionality.</p>
-        <h4>4. Data Security</h4>
-        <p>Reasonable security measures taken. No guarantee of complete security.</p>
-        <h4>5. User Responsibility</h4>
-        <p>Keep your login secure.</p>
-        <h4>6. Cookies</h4>
-        <p>May use cookies to improve experience.</p>
-        <h4>7. Third-Party Services</h4>
-        <p>Payments are simulated in this demo. No live payment gateway is integrated.</p>
-        <h4>8. Policy Updates</h4>
-        <p>Policy may be updated. Continued use = acceptance.</p>
-        <h4>9. Contact</h4>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-            data-cfemail="11626461617e63655176637e6622203f727e7c">[email&#160;protected]</a></p>
+        style="flex:none;margin-bottom:10px;background:#fff;color:#000">
+        <h3>GROW31 - PRIVACY POLICY</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Effective Date: April 2026</p>
+        <h4>1. INFORMATION WE COLLECT</h4>
+        <p>Account info and usage data. No payment card details stored.</p>
+        <h4>3. HOW WE USE INFORMATION</h4>
+        <p>Service delivery, improvement, and legal compliance.</p>
+        <h4>4. DATA SHARING</h4>
+        <p>Shared with trusted providers only. We do NOT sell your data.</p>
+        <h4>7. YOUR RIGHTS</h4>
+        <p>Right to access, correct, or delete data under DPDP Act 2023.</p>
       </div>
       <div class="terms-body terms-tab-panel collapsed" id="tpanel-refund2"
-        style="max-height:none;background:#fff;color:#000;margin-bottom:10px">
-        <h4>REFUND POLICY – GROW31</h4>
-        <h4>1. No Refund Policy</h4>
-        <p>All payments are <b>non-refundable</b>. Once access granted, no refunds entertained.</p>
-        <h4>2. Exception</h4>
-        <p>Only considered for duplicate payment or technical error from platform side, at Grow31's sole discretion.</p>
-        <h4>3. No Guarantees</h4>
-        <p>Payments are for platform access only. No reward or result guaranteed.</p>
-        <h4>4. User Responsibility</h4>
-        <p>Understand the platform before paying. Payment = agreement to this policy.</p>
-        <h4>5. Contact</h4>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-            data-cfemail="6b181e1b1b04191f2b0c19041c585a45080406">[email&#160;protected]</a></p>
+        style="flex:none;margin-bottom:10px;background:#fff;color:#000">
+        <h3>GROW31 - REFUND & CANCELLATION</h3>
+        <p style="color:#666;font-size:.7rem;margin-bottom:12px">Effective Date: April 2026</p>
+        <h4>1. REFUND ELIGIBILITY</h4>
+        <p>Refunds within 7 days for unused items only.</p>
+        <h4>2. PROCESS</h4>
+        <p>Request via app or email support@grow31.app.</p>
+        <h4>5. REFUND ABUSE</h4>
+        <p>We reserve the right to deny refunds for abuse patterns.</p>
       </div>
       <div id="termsReadMore2"
-        style="text-align:center;margin-top:-40px;margin-bottom:20px;position:relative;z-index:10">
-        <button class="btn-sm" onclick="expandTerms2(this)"
-          style="background:none;border:none;color:#000;font-weight:800;font-size:.85rem;cursor:pointer;padding:10px 20px">Show
-          more</button>
+        style="text-align:center;margin-top:-30px;margin-bottom:20px;position:relative;z-index:20">
+        <button class="btn btn-sm" onclick="expandTerms2(this)"
+          style="background:#050510;color:#fff;padding:10px 24px;border-radius:30px;font-size:.85rem;box-shadow:0 6px 16px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);font-weight:700">Show
+          More</button>
       </div>
     </div>
   </div>
@@ -1858,7 +1896,12 @@
       <button class="back-btn" onclick="goBack()" style="margin:0"><i data-lucide="chevron-left"
           style="width:20px;height:20px"></i> <span data-i18n="back">Back</span></button>
       <div class="logo-text">Contact</div>
-      <div style="width:60px"></div>
+      <div class="flex items-center gap-2">
+        <div class="coins-pill" style="cursor:pointer" onclick="openWalletDialog()"><span class="g-coin"></span> <span
+            id="contactCoins">0</span></div>
+        <button class="dots-btn" onclick="openDrawer()"><i data-lucide="menu"
+            style="width:20px;height:20px"></i></button>
+      </div>
     </div>
     <div class="page-content">
       <h2 class="section-heading">Contact Us <i data-lucide="phone" style="width:20px;height:20px"></i></h2>
@@ -2100,6 +2143,16 @@
   </div>
 
   <!-- DIALOGS -->
+  <div class="dialog-overlay" id="spinResultDialog">
+    <div class="dialog" style="max-width:380px;text-align:center;padding:32px 24px">
+      <div id="spinResultIcon" style="font-size:3.5rem;margin-bottom:12px">🎉</div>
+      <h3 id="spinResultTitle"
+        style="font-family:'Poppins',sans-serif;font-weight:800;font-size:1.4rem;margin-bottom:8px">Winner!</h3>
+      <p id="spinResultDesc" class="text-muted" style="margin-bottom:24px"></p>
+      <button class="btn btn-white btn-full" onclick="closeDialog('spinResultDialog')">Awesome!</button>
+    </div>
+  </div>
+
   <div class="dialog-overlay" id="refDialog">
     <div class="dialog" style="max-width:420px">
       <button class="dialog-close" onclick="closeDialog('refDialog')">✕</button>

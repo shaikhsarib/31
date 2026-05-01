@@ -27,14 +27,14 @@ const CONFIG = {
     '#90caf9', '#80deea', '#a5d6a7', '#c5e1a5', '#fff176', '#ffe082'
   ],
   SPIN_PRIZES: [
-    { label: '30 🪙', coins: 30, color: '#f5c518', prob: 1 },
-    { label: '1 🪙', coins: 1, color: '#448aff', prob: 5000 },
-    { label: '10 🪙', coins: 10, color: '#00e676', prob: 200 },
-    { label: '0 🪙', coins: 0, color: '#555577', prob: 1000 },
-    { label: '5 🪙', coins: 5, color: '#ce93d8', prob: 400 },
-    { label: '15 🪙', coins: 15, color: '#29b6f6', prob: 80 },
-    { label: '20 🪙', coins: 20, color: '#ab47bc', prob: 40 },
-    { label: '25 🪙', coins: 25, color: '#66bb6a', prob: 10 }
+    { label: '30', coins: 30, color: '#f5c518', prob: 1 },
+    { label: '1', coins: 1, color: '#448aff', prob: 5000 },
+    { label: '10', coins: 10, color: '#00e676', prob: 200 },
+    { label: '0', coins: 0, color: '#555577', prob: 1000 },
+    { label: '5', coins: 5, color: '#ce93d8', prob: 400 },
+    { label: '15', coins: 15, color: '#29b6f6', prob: 80 },
+    { label: '20', coins: 20, color: '#ab47bc', prob: 40 },
+    { label: '25', coins: 25, color: '#66bb6a', prob: 10 }
   ],
   AVATARS: [
     { id: 'av1', url: 'https://api.dicebear.com/7.x/notionists/svg?seed=Felix', label: 'av1' },
@@ -311,28 +311,28 @@ const I18N = {
     level: "Level",
     beginner: "Beginner",
     enter_phone_to_start: "Enter your phone number to start your journey",
-    tc_title: "TERMS & CONDITIONS – GROW31",
-    tc_intro: "Welcome to Grow31. By accessing or using this platform, you agree to the following Terms & Conditions.",
-    tc_h1: "1. Platform Nature",
-    tc_p1: "Grow31 is a membership-based community participation platform. It is NOT an investment scheme.",
-    tc_h2: "2. Membership Model",
-    tc_p2: "Users join by purchasing membership. Participation levels vary by structure.",
-    tc_h3: "3. Participation Structure",
-    tc_p3: "Follows a time-based model up to 31 days. complete daily or upfront.",
-    tc_h4: "4. Referral System",
-    tc_p4: "Referral is optional. Does NOT guarantee rewards.",
-    tc_h5: "5. Grow31 Coins",
-    tc_p5: "Coins are digital utility for rewards, redemptions, and upgrades.",
-    tc_h7: "7. No Guaranteed Returns",
-    tc_p7: "Grow31 does NOT guarantee any income or profit.",
-    tc_h8: "8. Fees & Payments",
-    tc_p8: "Fees are for platform access and are non-refundable.",
-    pp_title: "PRIVACY POLICY – GROW31",
-    pp_h1: "1. Information We Collect",
-    pp_p1: "We collect name, phone, and usage data for platform functionality.",
-    rp_title: "REFUND POLICY – GROW31",
-    rp_h1: "1. No Refund Policy",
-    rp_p1: "All payments are non-refundable once access is granted.",
+    tc_title: "GROW31 - TERMS & CONDITIONS",
+    tc_intro: "By using Grow31, you agree to these terms. Last updated April 2026.",
+    tc_h1: "1. Acceptance",
+    tc_p1: "You agree to be bound by these terms by using the App.",
+    tc_h2: "2. License",
+    tc_p2: "Personal, non-commercial license grant with usage restrictions.",
+    tc_h3: "3. Accounts",
+    tc_p3: "Users must be 18+ and provide accurate registration data.",
+    tc_h4: "4. Payments",
+    tc_p4: "Prices in INR. All purchases final per refund policy.",
+    tc_h5: "5. Intellectual Property",
+    tc_p5: "All content owned by Grow31 or its licensors.",
+    tc_h7: "7. Liability",
+    tc_p7: "App provided AS-IS. Liability capped at Rs.10,000.",
+    tc_h8: "8. Governing Law",
+    tc_p8: "Governed by laws of India. Jurisdiction: New Delhi.",
+    pp_title: "GROW31 - PRIVACY POLICY",
+    pp_h1: "1. Data Collection",
+    pp_p1: "We collect name, phone, and usage data. No card details stored.",
+    rp_title: "GROW31 - REFUND & CANCELLATION",
+    rp_h1: "1. Eligibility",
+    rp_p1: "Refunds available within 7 days for unused items only.",
     ad_space: "Advertisement Space",
     ad_desc: "Your ad here · Contact us",
     complete_profile_cta: "Complete Your Profile",
@@ -523,28 +523,28 @@ const I18N = {
     level: "स्तर",
     beginner: "शुरुआती",
     enter_phone_to_start: "अपनी यात्रा शुरू करने के लिए अपना फोन नंबर दर्ज करें",
-    tc_title: "नियम और शर्तें – GROW31",
-    tc_intro: "Grow31 में आपका स्वागत है। इस प्लेटफॉर्म का उपयोग करके, आप निम्नलिखित नियमों और शर्तों से सहमत होते हैं।",
-    tc_h1: "1. प्लेटफॉर्म की प्रकृति",
-    tc_p1: "Grow31 एक सदस्यता-आधारित सामुदायिक भागीदारी प्लेटफॉर्म है। यह कोई निवेश योजना नहीं है।",
-    tc_h2: "2. सदस्यता मॉडल",
-    tc_p2: "उपयोगकर्ता सदस्यता खरीदकर जुड़ते हैं। भागीदारी का स्तर संरचना के अनुसार भिन्न होता है।",
-    tc_h3: "3. भागीदारी संरचना",
-    tc_p3: "31 दिनों तक के समय-आधारित मॉडल का पालन करता है। दैनिक या अग्रिम पूरा करें।",
-    tc_h4: "4. रेफरल सिस्टम",
-    tc_p4: "रेफरल वैकल्पिक है। पुरस्कारों की कोई गारंटी नहीं है।",
-    tc_h5: "5. Grow31 सिक्के",
-    tc_p5: "सिक्के पुरस्कार, रिडेम्पशन और अपग्रेड के लिए डिजिटल उपयोगिता हैं।",
-    tc_h7: "7. कोई गारंटीकृत रिटर्न नहीं",
-    tc_p7: "Grow31 किसी भी आय या लाभ की गारंटी नहीं देता है।",
-    tc_h8: "8. शुल्क और भुगतान",
-    tc_p8: "शुल्क प्लेटफॉर्म एक्सेस के लिए हैं और वापस नहीं किए जा सकते।",
-    pp_title: "गोपनीयता नीति – GROW31",
-    pp_h1: "1. जानकारी जो हम एकत्र करते हैं",
-    pp_p1: "हम प्लेटफॉर्म की कार्यक्षमता के लिए नाम, फोन और उपयोग डेटा एकत्र करते हैं।",
-    rp_title: "रिफंड नीति – GROW31",
-    rp_h1: "1. कोई रिफंड नीति नहीं",
-    rp_p1: "एक्सेस दिए जाने के बाद सभी भुगतान नॉन-रिफंडेबल हैं।",
+    tc_title: "GROW31 - नियम और शर्तें",
+    tc_intro: "Grow31 का उपयोग करके, आप इन शर्तों से सहमत होते हैं। अंतिम अपडेट अप्रैल 2026।",
+    tc_h1: "1. स्वीकृति",
+    tc_p1: "ऐप का उपयोग करके आप इन शर्तों से बंधे होने के लिए सहमत हैं।",
+    tc_h2: "2. लाइसेंस",
+    tc_p2: "उपयोग प्रतिबंधों के साथ व्यक्तिगत, गैर-व्यावसायिक लाइसेंस प्रदान किया गया।",
+    tc_h3: "3. खाते",
+    tc_p3: "उपयोगकर्ताओं की आयु 18+ होनी चाहिए और सटीक पंजीकरण डेटा प्रदान करना चाहिए।",
+    tc_h4: "4. भुगतान",
+    tc_p4: "कीमतें INR में हैं। रिफंड नीति के अनुसार सभी खरीदारी अंतिम हैं।",
+    tc_h5: "5. बौद्धिक संपदा",
+    tc_p5: "सभी सामग्री Grow31 या उसके लाइसेंसधारियों के स्वामित्व में है।",
+    tc_h7: "7. दायित्व",
+    tc_p7: "ऐप AS-IS प्रदान किया गया है। दायित्व 10,000 रुपये तक सीमित है।",
+    tc_h8: "8. शासी कानून",
+    tc_p8: "भारत के कानूनों द्वारा शासित। क्षेत्राधिकार: नई दिल्ली।",
+    pp_title: "GROW31 - गोपनीयता नीति",
+    pp_h1: "1. डेटा संग्रह",
+    pp_p1: "हम नाम, फोन और उपयोग डेटा एकत्र करते हैं। कोई कार्ड विवरण संग्रहीत नहीं।",
+    rp_title: "GROW31 - रिफंड और रद्दीकरण",
+    rp_h1: "1. पात्रता",
+    rp_p1: "केवल अप्रयुक्त वस्तुओं के लिए 7 दिनों के भीतर रिफंड उपलब्ध है।",
     ad_space: "विज्ञापन स्थान",
     ad_desc: "आपका विज्ञापन यहाँ · हमसे संपर्क करें",
     complete_profile_cta: "अपनी प्रोफ़ाइल पूरी करें",
@@ -1354,6 +1354,7 @@ function saveProfile() {
   u.refCode = 'Grow31/' + uname + '-' + randomNum;
   if (!u.txHistory) u.txHistory = [];
   u.txHistory.unshift({ type: 'profile', coins: 100, desc: 'Profile completion bonus', time: Date.now() });
+  u.needsWelcomeCoins = true;
   saveData();
   showToast('Profile updated! Welcome ' + u.username, 'success');
   state.allUsers[u.phone] = u; // Ensure persisted in the map
@@ -1419,6 +1420,20 @@ function renderDash() {
 
   // Header
   document.getElementById('headerCoins').innerText = u.coins.toLocaleString();
+
+  if (u.needsWelcomeCoins) {
+    u.needsWelcomeCoins = false;
+    saveData();
+    setTimeout(() => {
+      const dummy = document.createElement('div');
+      dummy.style.position = 'fixed';
+      dummy.style.left = '50%';
+      dummy.style.top = '50%';
+      document.body.appendChild(dummy);
+      animateCoins(dummy, 25);
+      setTimeout(() => dummy.remove(), 2000);
+    }, 800);
+  }
   document.getElementById('userName').innerText = u.username;
   document.getElementById('userDay').innerText = u.day;
   updateAvatarDisplays();
@@ -1528,7 +1543,7 @@ function renderTasksPage() {
     div.className = `task-item${t_item.done ? ' done' : ''}`;
     div.style.cssText = 'padding:14px 16px;border-radius:14px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;';
     if (t_item.done) div.style.opacity = '0.6';
-    div.onclick = () => completeTask(t_item.id);
+    div.onclick = (e) => completeTask(t_item.id, e.currentTarget);
     const title = t_item.title;
     div.innerHTML = `
   <div style="display:flex;align-items:flex-start;gap:12px">
@@ -1558,14 +1573,14 @@ function renderTasksPage() {
   }
 }
 
-function completeTask(tid) {
+function completeTask(tid, el) {
   const task = state.currentUser.tasks.find(x => x.id === tid);
   if (!task || task.done) return;
   task.done = true;
   task.completedAt = new Date().toISOString(); // Backend: POST /api/tasks/complete { taskId, userId, completedAt }
   state.currentUser.coins += task.reward;
-  if (!state.currentUser.txHistory) state.currentUser.txHistory = [];
   state.currentUser.txHistory.unshift({ type: 'task', coins: task.reward, desc: 'Task: ' + task.title, time: Date.now() });
+  if (el) animateCoins(el, task.reward);
   saveData();
 
   // Difficulty-based celebration
@@ -1580,6 +1595,7 @@ function completeTask(tid) {
     const bonus = 30;
     state.currentUser.coins += bonus;
     state.currentUser.txHistory.unshift({ type: 'bonus', coins: bonus, desc: '🏆 All tasks complete! Daily bonus', time: Date.now() });
+    if (el) animateCoins(el, bonus);
     saveData();
     setTimeout(() => showToast(`🏆 All tasks done! Bonus +${bonus} G-Coins earned!`, 'success'), 800);
   }
@@ -1851,16 +1867,48 @@ function drawWheel(canvas, angle) {
     ctx.stroke();
     ctx.restore();
 
-    // Text
+    // Text and Official Coin
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(startA + arc / 2);
+
+    // Draw Label
     ctx.textAlign = 'right';
-    ctx.font = 'bold 13px Syne,sans-serif';
+    ctx.font = '800 13px Poppins,sans-serif';
     ctx.fillStyle = '#fff';
     ctx.shadowColor = 'rgba(0,0,0,0.8)';
     ctx.shadowBlur = 4;
-    ctx.fillText(prize.label, r - 18, 5);
+    ctx.fillText(prize.label, r - 40, 5);
+
+    // Draw Official Coin (Real 3D effect)
+    const coinX = r - 22;
+    const coinY = 0;
+    const cr = 9;
+
+    // 3D Rim (Outer Edge)
+    ctx.beginPath();
+    ctx.arc(coinX, coinY, cr, 0, Math.PI * 2);
+    ctx.fillStyle = '#b8860b'; // Deep gold for rim
+    ctx.fill();
+
+    // Main Coin Face
+    const fr = cr - 1.2;
+    const cg = ctx.createRadialGradient(coinX - fr * 0.35, coinY - fr * 0.35, fr * 0.1, coinX, coinY, fr);
+    cg.addColorStop(0, '#fff');
+    cg.addColorStop(0.45, '#FFD700');
+    cg.addColorStop(1, '#FFA000');
+    ctx.beginPath();
+    ctx.arc(coinX, coinY, fr, 0, Math.PI * 2);
+    ctx.fillStyle = cg;
+    ctx.fill();
+
+    // Black G
+    ctx.fillStyle = '#000';
+    ctx.font = `900 ${fr * 1.2}px Poppins`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('G', coinX, coinY);
+
     ctx.restore();
   });
 
@@ -1985,13 +2033,18 @@ function doSpin(type) {
 
       // Show result dialog
       const isZero = prize.coins === 0;
-      document.getElementById('spinResultIcon').innerText = prize.coins >= 20 ? '🎰' : prize.coins >= 10 ? '💰' : isZero ? '📺' : '🎉';
-      document.getElementById('spinResultTitle').innerText = isZero ? 'Better luck next time!' : 'You won ' + prize.label + '!';
+      const iconEl = document.getElementById('spinResultIcon');
+      if (iconEl) {
+        if (isZero) iconEl.innerHTML = '📺';
+        else iconEl.innerHTML = '<span class="g-coin" style="width:64px;height:64px;font-size:32px"></span>';
+      }
+      document.getElementById('spinResultTitle').innerText = isZero ? 'Better luck next time!' : 'You won ' + prize.coins + '!';
       document.getElementById('spinResultDesc').innerText = isZero ? 'Watch an ad to get a bonus spin! 📺' : prize.coins + ' coins added · ⏳ Payout pending admin verification';
       document.getElementById('spinResultDialog').classList.add('open');
+      if (prize.coins > 0) animateCoins(document.getElementById('spinResultIcon'), prize.coins);
       if (document.getElementById('spinCoins')) document.getElementById('spinCoins').innerText = u.coins.toLocaleString();
       if (document.getElementById('spinTickets')) document.getElementById('spinTickets').innerText = u.spinTickets || 0;
-      if (document.getElementById('headerCoins')) document.getElementById('headerCoins').innerText = u.coins.toLocaleString();
+      // Removed instant headerCoins update to allow counting animation
     }
   }
   spinRAF = requestAnimationFrame(animate);
@@ -2083,7 +2136,7 @@ function renderSpinLeaderboard() {
       const isMe = usr.id === u.id;
       const bgSize = (usr.avatar && usr.avatar.includes('dicebear.com')) ? 'contain' : 'cover';
       const rankBadge = i < 3
-        ? `<span style="font-size:1rem;line-height:1">${['🥇','🥈','🥉'][i]}</span>`
+        ? `<span style="font-size:1rem;line-height:1">${['🥇', '🥈', '🥉'][i]}</span>`
         : `<span style="font-weight:800;font-size:.78rem;color:rgba(255,255,255,0.3);width:20px;display:inline-block;text-align:center">${i + 1}</span>`;
 
       container.innerHTML += `
@@ -2176,6 +2229,7 @@ function followSocial(platform, coins, btn) {
       u.coins += coins;
       if (!u.txHistory) u.txHistory = [];
       u.txHistory.unshift({ type: 'follow', coins, desc: 'Follow bonus: ' + platform, time: Date.now() });
+      if (btn) animateCoins(btn, coins);
       saveData();
       showToast('+' + coins + ' coins earned! 🎉', "success");
       if (document.getElementById('followCoins')) document.getElementById('followCoins').innerText = u.coins.toLocaleString();
@@ -2203,7 +2257,9 @@ function doCheckIn() {
   u.spinTickets = (u.spinTickets || 0) + 1;
   if (!u.txHistory) u.txHistory = [];
   u.txHistory.unshift({ type: 'checkin', coins: 5, desc: 'Daily check-in bonus', time: Date.now() });
+  animateCoins(document.getElementById('homeCheckInBtn'), 5);
   saveData();
+  renderDash();
   showToast("✓ Checked in! +5 G-coins + 1 spin ticket 🎟️", "success");
   // Update home button
   const homeBtn = document.getElementById('homeCheckInBtn');
@@ -2293,7 +2349,7 @@ function openReferralDialog() {
   const tierCoinsPerRef = getTierCoinsPerReferral(u.tier || 1);
   document.getElementById('refDialogEarned').innerText = ((u.referrals || 0) * tierCoinsPerRef).toLocaleString();
   const refPerLabel = document.getElementById('refPerReferralLabel');
-  if (refPerLabel) refPerLabel.innerText = '+' + tierCoinsPerRef + ' 🪙';
+  if (refPerLabel) refPerLabel.innerHTML = '+' + tierCoinsPerRef + ' <span class="g-coin"></span>';
 
   // Render referral list
   const c = document.getElementById('refListContainer');
@@ -2309,7 +2365,7 @@ function openReferralDialog() {
         <p style="font-size:.85rem;font-weight:600">${r.name || 'User'}</p>
         <p class="text-xs text-muted">${new Date(r.time).toLocaleDateString('en-IN')}</p>
       </div>
-      <span class="badge badge-yellow" style="font-size:.65rem">+${getTierCoinsPerReferral(state.currentUser?.tier || 1)} 🪙</span>
+      <span class="badge badge-yellow" style="font-size:.65rem">+${getTierCoinsPerReferral(state.currentUser?.tier || 1)} <span class="g-coin"></span></span>
     </div>`).join('');
     }
   }
@@ -2615,7 +2671,7 @@ function renderAdminUsers() {
       <small class="text-muted" style="font-size:.65rem">${u.refCode || '—'}</small>
     </div>
     <div class="text-right">
-      <span class="badge badge-yellow" style="color:#FFD700">🪙 ${u.coins.toLocaleString()}</span><br>
+      <span class="badge badge-yellow" style="color:#FFD700"><span class="g-coin"></span> ${u.coins.toLocaleString()}</span><br>
       <small class="text-muted" style="margin-top:4px;display:block">Tier ${tierNum} · Q#${qPos}</small>
       <small class="text-muted">Refs: ${u.referrals || 0}</small><br>
       <button class="btn btn-green btn-sm" style="margin-top:4px;font-size:.65rem;padding:3px 8px" onclick="adminVerifyPayout('${u.phone}')">✓ Verify Payout</button>
@@ -3293,7 +3349,7 @@ function initTasks() {
 const QUIZ_QUESTIONS = [
   // ── Grow31 Platform (Easy)
   { q: "How many days does the Grow31 challenge last?", opts: ["21 Days", "28 Days", "31 Days", "45 Days"], ans: 2, category: 'grow31', difficulty: 'easy', reward: 3 },
-  { q: "What do you earn by completing daily tasks?", opts: ["Points", "Stars", "🪙 G-Coins", "Badges"], ans: 2, category: 'grow31', difficulty: 'easy', reward: 3 },
+  { q: "What do you earn by completing daily tasks?", opts: ["Points", "Stars", "G-Coins", "Badges"], ans: 2, category: 'grow31', difficulty: 'easy', reward: 3 },
   { q: "What is the top tier in Grow31?", opts: ["Tier 1", "Tier 15", "Tier 31", "Tier 100"], ans: 2, category: 'grow31', difficulty: 'easy', reward: 3 },
   { q: "What happens when you miss a daily check-in?", opts: ["Coins doubled", "Streak resets", "Account banned", "Nothing"], ans: 1, category: 'grow31', difficulty: 'easy', reward: 3 },
   { q: "How many spin tickets do you start with?", opts: ["1", "2", "3", "5"], ans: 2, category: 'grow31', difficulty: 'easy', reward: 3 },
@@ -3405,7 +3461,7 @@ function renderQuizQuestion() {
         <span class="badge badge-blue">Q${idx + 1} of ${total}</span>
         <span class="badge badge-gray" style="font-size:.65rem;text-transform:uppercase">${q.difficulty}</span>
       </div>
-      <span style="font-size:.78rem;color:#FFD700;font-weight:600">+${q.reward} 🪙 if correct</span>
+      <span style="font-size:.78rem;color:#FFD700;font-weight:600">+${q.reward} <span class="g-coin"></span> if correct</span>
     </div>
     <p style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;line-height:1.5;margin-bottom:18px">${q.q}</p>
     <div id="quizOpts" style="display:flex;flex-direction:column;gap:10px">
@@ -3448,6 +3504,9 @@ function selectQuizAnswer(selected) {
     u.coins += q.reward;
     if (!u.txHistory) u.txHistory = [];
     u.txHistory.unshift({ type: 'quiz', coins: q.reward, desc: 'Quiz: ' + q.q.slice(0, 20) + '...', time: Date.now() });
+    const selBtn = document.getElementById('qopt' + selected);
+    if (selBtn) animateCoins(selBtn, q.reward);
+    renderDash();
   }
 
   const feedback = document.getElementById('quizFeedback');
@@ -3475,7 +3534,7 @@ function selectQuizAnswer(selected) {
       feedback.style.background = 'rgba(0,230,118,0.12)';
       feedback.style.border = '1px solid rgba(0,230,118,0.3)';
       feedback.style.color = '#00e676';
-      feedback.innerHTML = `✅ Correct! +${q.reward} 🪙`;
+      feedback.innerHTML = `✅ Correct! +${q.reward} <span class="g-coin"></span>`;
     } else {
       feedback.style.background = 'rgba(255,82,82,0.12)';
       feedback.style.border = '1px solid rgba(255,82,82,0.3)';
@@ -3503,6 +3562,75 @@ function selectQuizAnswer(selected) {
   }
 }
 
+
+function animateCoins(sourceEl, count = 5) {
+  // Reward is the 'count' passed. We cap visual particles at 30.
+  const reward = count;
+  const actualCount = Math.min(reward, 30);
+  const destEl = document.getElementById('headerCoins') || document.querySelector('.coins-pill');
+  if (!destEl || !sourceEl) return;
+
+  const headerEl = document.querySelector('.app-header');
+  if (headerEl) headerEl.classList.add('reward-active');
+
+  const rect = sourceEl.getBoundingClientRect();
+  const destRect = destEl.getBoundingClientRect();
+
+  const startX = rect.left + rect.width / 2;
+  const startY = rect.top + rect.height / 2;
+
+  const destX = (destRect.left + destRect.width / 2) - startX;
+  const destY = (destRect.top + destRect.height / 2) - startY;
+
+  // Get current displayed value to increment from
+  let currentVal = parseInt(destEl.innerText.replace(/,/g, '')) || 0;
+  const step = Math.max(1, Math.floor(reward / actualCount));
+
+  for (let i = 0; i < actualCount; i++) {
+    setTimeout(() => {
+      const coin = document.createElement('div');
+      coin.className = 'coin-particle';
+      coin.style.left = startX + 'px';
+      coin.style.top = startY + 'px';
+      coin.style.setProperty('--dest-x', destX + 'px');
+      coin.style.setProperty('--dest-y', destY + 'px');
+
+      const duration = 0.7 + Math.random() * 0.5;
+      coin.style.animation = `flyToWallet ${duration}s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards`;
+
+      document.body.appendChild(coin);
+
+      setTimeout(() => {
+        coin.remove();
+
+        // Update the display incrementally
+        currentVal += step;
+
+        // On last coin, ensure we show the absolute correct total from state
+        if (i === actualCount - 1 && state.currentUser) {
+          currentVal = state.currentUser.coins;
+        }
+
+        const formatted = currentVal.toLocaleString();
+        if (destEl.id === 'headerCoins') {
+          destEl.innerText = formatted;
+        } else {
+          const sub = destEl.querySelector('#headerCoins');
+          if (sub) sub.innerText = formatted;
+          else destEl.innerText = formatted;
+        }
+
+        destEl.classList.remove('coin-collecting');
+        void destEl.offsetWidth;
+        destEl.classList.add('coin-collecting');
+
+        if (i === actualCount - 1 && headerEl) {
+          setTimeout(() => headerEl.classList.remove('reward-active'), 800);
+        }
+      }, duration * 1000);
+    }, i * 120);
+  }
+}
 
 function saveData() { DB.set('users', state.allUsers) }
 
